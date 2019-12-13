@@ -30,3 +30,7 @@
   .navbar .welcome span {
     margin-right: 0.6rem;
   }
+
+  .nav-logo-text {
+    font-family: 'Shrikhand', cursive;
+  }
