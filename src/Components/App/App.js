@@ -4,7 +4,6 @@ import './App.css';
 import Navbar from '../Navbar/Navbar'
 import Landing from '../Landing/Landing';
 import Signup from '../Signup/Signup';
-// import Login from '../Login/Login';
 
 
 function App() {
