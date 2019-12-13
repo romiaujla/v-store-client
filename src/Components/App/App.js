@@ -10,7 +10,7 @@ import Login from '../Login/Login';
 function App() {
   return (
     <div className='App'>
-      <Route path='/' component='Navbar />
+      <Route path='/' component='Navbar' />
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/signup' component={Signup} />
