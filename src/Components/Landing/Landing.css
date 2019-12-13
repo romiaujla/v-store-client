@@ -20,11 +20,13 @@
   .hero-logo{
 	width:290px;
 	height:290px;
-    position:absolute;
+    /* position:absolute; */
     display: flex;
-	left:49%;
-	top:10%;
-	margin:-75px 0 0 -135px;
+	/* left:49%; */
+	/* top:10%; */
+    margin:0 auto;
+    /* margin-top: -135px; */
+    /* margin-top: 1px; */
 }
 
 @media (max-width: 700px) {

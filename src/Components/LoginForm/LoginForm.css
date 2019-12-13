@@ -2,23 +2,40 @@
     border: none;
 }
 
-.LoginForm {
-    border: 1px solid black;
-    max-width: 500px;
-    margin: auto;
-    margin-top: 40px;
+.LoginForm form{
+    width: 100%;
+    background: rgba(255,255,255, 0.2);
+    padding: 20px;
+    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.5);
 }
 
-.LoginForm fieldset legend{
-    text-align: center;
-}
-
-.LoginForm fieldset section{
+.LoginForm .flex{
     display: flex;
     flex-direction: column;
+    text-align: left;
 }
 
-.LoginForm fieldset section label{
+.LoginForm legend{
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.LoginForm .flex  label{
     display: flex;
     flex-direction: column;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    letter-spacing: 0.07em;
+}
+
+.LoginForm label .input-title{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.LoginForm button{
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 800;
+    cursor: pointer;
 }
