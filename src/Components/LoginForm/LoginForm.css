@@ -1,2 +1,24 @@
-.LoginForm{
+.LoginForm fieldset{
+    border: none;
+}
+
+.LoginForm {
+    border: 1px solid black;
+    max-width: 500px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.LoginForm fieldset legend{
+    text-align: center;
+}
+
+.LoginForm fieldset section{
+    display: flex;
+    flex-direction: column;
+}
+
+.LoginForm fieldset section label{
+    display: flex;
+    flex-direction: column;
 }
