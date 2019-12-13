@@ -9,7 +9,7 @@ export default class Landing extends Component {
           <div className='dark-overlay'>
             <div className='landing-inner'>
               <h1 className='x-large'>Shopzilla</h1>
-              <p className='lead'>Hero slogan here</p>
+              <p className='lead'>You have a product? We'll help you grow your brand and your business</p>
               <div className='buttons'>
                 <a href='register.html' className='btn btn-primary'>
                   Sign Up
