@@ -4,13 +4,13 @@ import './App.css';
 import Navbar from '../Navbar/Navbar'
 import Landing from '../Landing/Landing';
 import Signup from '../Signup/Signup';
-import Login from '../Login/Login';
+// import Login from '../Login/Login';
 
 
 function App() {
   return (
     <div className='App'>
-      <Route path='/' component='Navbar' />
+      <Route path='/' component={Navbar} />
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/signup' component={Signup} />
