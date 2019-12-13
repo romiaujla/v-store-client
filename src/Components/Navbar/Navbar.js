@@ -6,9 +6,10 @@ export default class Navbar extends Component {
   render() {
     return (
       <nav className='navbar bg-dark'>
+      <img src={require("../../images/logo-black.png")} alt="Shopping Cart" className="nav-logo"></img>
         <h1>
           <Link to='/'>
-            <i className='fas fa-code'></i> Shopzilla
+            <span className='hero-nav-text'></span> Shopzilla
           </Link>
         </h1>
         <ul>
