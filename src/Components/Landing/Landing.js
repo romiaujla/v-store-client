@@ -5,7 +5,22 @@ export default class Landing extends Component {
   render() {
     return (
       <div>
-        <h1>Landing Page</h1>
+        <section className='landing'>
+          <div className='dark-overlay'>
+            <div className='landing-inner'>
+              <h1 className='x-large'>Shopzilla</h1>
+              <p className='lead'>Hero slogan here</p>
+              <div className='buttons'>
+                <a href='register.html' className='btn btn-primary'>
+                  Sign Up
+                </a>
+                <a href='login.html' className='btn btn-light'>
+                  Login
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     );
   }

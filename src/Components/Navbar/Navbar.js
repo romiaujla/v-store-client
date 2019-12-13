@@ -5,10 +5,10 @@ import './Navbar.css';
 export default class Navbar extends Component {
   render() {
     return (
-      <nav class='navbar bg-dark'>
+      <nav className='navbar bg-dark'>
         <h1>
           <Link to='/'>
-            <i class='fas fa-code'></i> Variety Store
+            <i className='fas fa-code'></i> Shopzilla
           </Link>
         </h1>
         <ul>
