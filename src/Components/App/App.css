@@ -1,9 +1,9 @@
 /* Global Styles */
 :root {
-  --primary-color: #060968;
+  --primary-color: #e16b22;
   --dark-color: #323232;
   --light-color: #f4f4f4;
-
+  --nav-color: #f0f0f0a8;
 }
 
 * {
@@ -100,7 +100,7 @@ img {
 
 .btn-dark,
 .bg-dark {
-  background: var(--light-color);
+  background: var(--nav-color);
   color: #fff;
 }
 
@@ -127,4 +127,43 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Mobile Styles */
+@media (max-width: 700px) {
+  .container {
+    margin-top: 8rem;
+  }
+
+  /* Text Styles */
+  .x-large {
+    font-size: 3rem;
+  }
+
+  .large {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: block;
+    text-align: center;
+  }
+
+  .navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .navbar h1 {
+    margin-bottom: 1rem;
+  }
+
+  .navbar .welcome {
+    display: none;
+  }
 }

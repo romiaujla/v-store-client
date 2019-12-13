@@ -8,6 +8,7 @@ export default class Landing extends Component {
         <section className='landing'>
           <div className='dark-overlay'>
             <div className='landing-inner'>
+            <img src={require("../../images/logo-white.png")} alt="Shopping Cart" className="hero-logo"></img>
               <h1 className='x-large'>Shopzilla</h1>
               <p className='lead'>You have a product? We'll help you grow your brand and your business</p>
               <div className='buttons'>
