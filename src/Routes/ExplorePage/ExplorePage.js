@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ExplorePage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBookOpen, faBath, faAnchor } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBookOpen, faBath, faAnchor, faMusic } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
 class ExplorePage extends Component {
@@ -35,61 +35,55 @@ class ExplorePage extends Component {
                                 <FontAwesomeIcon icon={faGlassWhiskey} size='lg' />
                                 <FontAwesomeIcon icon={faHamburger} size='lg' />
                             </div>
-
                             <p> Food & Drink</p>
                         </li>
                         <li>
                             <div className='icons'>
                                 <FontAwesomeIcon icon={faLeaf} size='lg' />
                             </div>
-
                             <p>Body Healing</p>
                         </li>
                         <li>
                             <div className='icons'>
                                 <FontAwesomeIcon icon={faAnchor} size='lg' />
                             </div>
-
-
                             <p>Tattoo & Piercing</p>
+                        </li>
+                        <li>
+                            <div className='icons'>
+                                <FontAwesomeIcon icon={faMusic} size='lg' />
+                            </div>
+                            <p>Toys and Entertainment</p>
                         </li>
                         <li>
                             <div className='icons'>
                                 <FontAwesomeIcon icon={faBath} size='lg' />
                             </div>
-
-
                             <p>Bath & Body</p>
                         </li>
                         <li>
                             <div className='icons'>
                                 <FontAwesomeIcon icon={faTshirt} size='lg' />
                             </div>
-
-
                             <p>Clothing & Accessories</p>
                         </li>
                         <li>
                             <div className='icons'>
                                 <FontAwesomeIcon icon={faRibbon} size='lg' />
                             </div>
-
-
-                            <p>Home Decor</p>
+                            <p>Home & Party Decor</p>
                         </li>
                         <li>
                             <div className='icons'>
                                 <FontAwesomeIcon icon={faBookOpen} size='lg' />
                             </div>
-
-
-                            <p>Books</p>
+                        <p>Education</p>
                         </li>
                     </ul>
 
                 </section>
                 <section className='featured-stores'>
-                <h1>Featured popups</h1>
+                    <h1>Featured popups</h1>
                     <div class="grid">
                         <div class="cell">
                             <img src="http://placehold.it/800x800" class="responsive-image" />
