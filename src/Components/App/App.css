@@ -128,3 +128,12 @@ img {
   width: 100%;
   height: 100%;
 }
+
+
+/* Input Fields */
+input{
+  padding:5px 12px;
+  font-family: 'Poppins', serif;
+  font-size: 1.2em;
+  text-transform: lowercase;
+}
