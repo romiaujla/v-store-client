@@ -1,0 +1,95 @@
+.large-land {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.search-box {
+    width: 50%;
+}
+
+.search-btn {
+    background-color: #1dbf73;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 700;
+    color: #fff;
+    border: 1px solid transparent;
+    padding: 15px 35px;
+    margin-top: 5px;
+    display: inline-block;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#search-icon {
+    display: inline-block
+}
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.categories li {
+    align-self: center;
+    margin: 10px 10px
+}
+
+.categories li:after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+    padding: 0 0 8px;
+    width: 48px;
+    border-bottom: 2px solid #ccc;
+}
+
+.categories div.icons {
+    position: relative;
+    left: 33%
+}
+
+.featured-stores {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+.responsive-image {
+    max-width: 100%;
+}
+
+.cell img {
+    display: block;
+}
+
+.cell {
+    margin: 1rem;
+}
+
+@media screen and (min-width: 600px) {
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .cell {
+        /* width: 50%; */
+        width: calc(100% / 3);
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .cell {
+        width: calc(33.3333% - 2rem);
+    }
+}
