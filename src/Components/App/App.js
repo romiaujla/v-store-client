@@ -4,8 +4,7 @@ import './App.css';
 import Navbar from '../Navbar/Navbar'
 import Landing from '../Landing/Landing';
 import Signup from '../Signup/Signup';
-import Login from '../Login/Login';
-
+import LoginPage from '../../Routes/LoginPage/LoginPage';
 
 function App() {
   return (
@@ -14,7 +13,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/signup' component={Signup} />
-        <Route exact path='/login' component={Login} />
+        <Route exact path='/login' component={LoginPage} />
       </Switch>
     </div>
   );
