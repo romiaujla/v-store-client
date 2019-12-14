@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Stateless Component
 const Backdrop = (props) => {
     return (
         <section className="landing LoginForm">
