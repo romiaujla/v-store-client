@@ -7,10 +7,15 @@ class ExplorePage extends Component {
     super();
     this.state = {};
   }
+
+  handleShopCardClick = (shopId) => {
+    this.props.history.push(`/shop/${shopId}`);
+  }
+ 
   render() {
     return (
       <div>
-      <Cards />
+      <Cards handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
       </div>
     );
   }
