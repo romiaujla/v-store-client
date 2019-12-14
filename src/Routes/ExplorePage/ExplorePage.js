@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Backdrop from '../../Components/Backdrop/Backdrop';
+import './ExplorePage.css'
+import Cards from '../../Components/Cards/Cards';
 
 class ExplorePage extends Component {
   constructor() {
@@ -9,7 +10,7 @@ class ExplorePage extends Component {
   render() {
     return (
       <div>
-        <Backdrop />
+      <Cards />
       </div>
     );
   }
