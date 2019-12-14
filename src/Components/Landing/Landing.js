@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import "./Landing.css";
 import Backdrop from "../Backdrop/Backdrop";
 
@@ -19,12 +20,12 @@ export default class Landing extends Component {
             You have a product? We'll help you grow your brand and your business
           </p>
           <div className="buttons">
-            <a href="register.html" className="btn btn-primary">
+            <Link to="/register" className="btn btn-primary">
               Sign Up
-            </a>
-            <a href="login.html" className="btn btn-light">
+            </Link>
+            <Link to="/login" className="btn btn-light">
               Login
-            </a>
+            </Link>
           </div>
         </Backdrop>
       </div>
