@@ -7,11 +7,18 @@ class LoginPage extends Component {
         super(props);
         this.state = {  }
     }
+
+    onLoginSuccess = () => {
+        this.props.history.push('/explore');
+    }
+
     render() { 
         return ( 
             <div className='LoginPage'>
                 <Backdrop>
-                <LoginForm />
+                    <LoginForm onLoginSuccess={() => {
+                        this.onLoginSuccess();
+                    }} />
                 </Backdrop>
             </div>
         );

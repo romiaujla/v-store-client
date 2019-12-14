@@ -2,6 +2,23 @@ import React, { Component } from "react";
 import "./LoginForm.css";
 
 class LoginForm extends Component {
+
+  static defaultProps = {
+    onLoginSuccess: () => {},
+  }
+
+  handleLogin = (e) => {
+    e.preventDefault();
+    this.setState({
+        error: null,
+        username: false,
+        password: false,
+    })
+    const { username, password } = e.target;
+    // get user data and set user to logged in
+    this.props.onLoginSuccess();    
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +30,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-        <form className='LoginForm'>
+        <form className='LoginForm' onSubmit={(e) => {this.handleLogin(e)}}>
             <fieldset>
             <legend>
                 <h3>LOGIN</h3>
@@ -33,7 +50,7 @@ class LoginForm extends Component {
                 />
                 </label>
                 <button className="btn btn-light" type="submit">
-                Login
+                  Login
                 </button>
             </div>
             </fieldset>
