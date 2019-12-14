@@ -47,7 +47,7 @@
 }
 
 .card-text .date {
-    color: red;
+    color: var(--primary-color);;
     font-size: 13px;
 }
 
