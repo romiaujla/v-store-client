@@ -6,7 +6,6 @@ export default class Signup extends Component {
   
   render() {
     return (
-      <Backdrop>
       <form>
           <fieldset>
             <legend>
@@ -40,14 +39,6 @@ export default class Signup extends Component {
             </div>
           </fieldset>
         </form>
-      </Backdrop>
-      // <section className="landing LoginForm">
-      //   <div className="dark-overlay">
-      //     <div className="landing-inner">
-            
-      //     </div>
-      //   </div>
-      // </section>
     );
   }
 
