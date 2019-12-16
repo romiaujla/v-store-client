@@ -114,7 +114,11 @@ class ExplorePage extends Component {
                         </ul>
 
                     </section>
-                    <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }} />
+                    <section>
+                        <h1>Featured Popups</h1>
+                        <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }} />
+                    </section>
+                   
                 </div>
                 );
               }
