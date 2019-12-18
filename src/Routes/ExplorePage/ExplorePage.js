@@ -117,17 +117,22 @@ class ExplorePage extends Component {
           </ul>
 
         </section>
-        <section className="flex">
+        <section >
           <h1>Featured Popups</h1>
-          <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-          shop_name="Shopmart heaven" />
-          <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-          shop_name="FLip Flop" />
-          <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-          shop_name="Shopmart heaven" />
-          <div className="empty-div"></div>
-          <div className="empty-div"></div>
-
+          <div className="cards">
+            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+              shop_name="Shopmart heaven" />
+            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+              shop_name="FLip Flop" />
+            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+              shop_name="Shopmart heaven" />
+              <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+              shop_name="La La Land" />
+              <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+              shop_name="Walmart" />
+            <div className="empty-div"></div>
+            <div className="empty-div"></div>
+          </div>
         </section>
 
       </div>

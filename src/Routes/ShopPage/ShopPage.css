@@ -2,7 +2,7 @@
     display: table-cell;
    
    
-	width: 35%;
+	width: 500px;
 	vertical-align: top;
 }
 .items{
@@ -12,6 +12,7 @@
 } */
 .seller-page{
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin-top: 5em;

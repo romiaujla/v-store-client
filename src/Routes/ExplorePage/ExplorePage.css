@@ -73,10 +73,10 @@ div.icons:after{
     padding: 0 1rem;
 } */
 
-.flex {
+.cards {
     display: flex;
     /* margin: auto; */
-    flex-direction: row;
+
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
