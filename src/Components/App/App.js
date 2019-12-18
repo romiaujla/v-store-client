@@ -6,7 +6,7 @@ import Landing from '../Landing/Landing';
 import SignUpPage from '../../Routes/SignUpPage/SignUpPage';
 import LoginPage from '../../Routes/LoginPage/LoginPage';
 import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
-import SellerPage from '../../Routes/SellerPage/SellerPage';
+import ShopPage from '../../Routes/ShopPage/ShopPage';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route exact path='/signup' component={SignUpPage} />
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/explore' component={ExplorePage} />
-        <Route exact path={`/shop/1`} component={SellerPage} />
+        <Route exact path={`/shop/1`} component={ShopPage} />
       </Switch>
     </div>
   );

@@ -17,9 +17,6 @@
 }
 
 .search-btn {
-    /* flex-grow: 1;
-    flex-basis: auto;
-    flex-shrink: 1; */
     display: block;
     margin-top: 5px;
     background-color: #1dbf73;
@@ -34,7 +31,6 @@
 }
 
 .nav-categories{
-    
     display: block;
     max-width: 1400px;
     margin: 0 auto 64px;
@@ -71,15 +67,16 @@ div.icons:after{
     border-bottom: 2px solid #ccc;
 }
 
-.featured-stores {
+/* .featured-stores {
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 1rem;
-}
+} */
 
 .flex {
     display: flex;
-    margin: auto;
+    /* margin: auto; */
+    flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
 }

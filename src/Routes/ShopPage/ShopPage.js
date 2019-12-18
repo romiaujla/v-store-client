@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SellerPage.css'
+import './ShopPage.css'
 import Card from '../../Components/Card/Card'
 
 export default class SellerPage extends Component{
