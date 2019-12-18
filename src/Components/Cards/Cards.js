@@ -17,28 +17,6 @@ export default class Cards extends Component {
 
   render() {
     return (
-      // <div className="card-body" onClick={() => {this.handleShopCardClick()}}>
-      //   <div className="card">
-      //     <div className="card-image"></div>
-      //   </div>
-      // </div>
-      //       <main class="cards">
-      //   <article class="card">
-      //     <div className='card-image'></div>
-      //     <div class="text">
-      //       <h3>Seamlessly visualize quality</h3>
-      //       <p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
-      //       <button>Here's why</button>
-      //     </div>
-      //   </article>
-      // </main>
-      /* <div className="card">
-  <div className="container">
-  <img src={require("../../images/store-images/flipflops.jpeg")} />
-    <h4><b>Store Type</b></h4>
-    <p>$$$</p>
-  </div>
-</div> */
       <div className='card-container'>
         <img src={require(`../../images/store-images/${this.props.img_url}`)} />
         <div className='card-text'>
