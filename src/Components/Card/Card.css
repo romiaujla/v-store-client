@@ -1,12 +1,3 @@
-.card {
-    font-family: 'Poppins' sans-serif;
-    border-radius: 18px;
-    background: rgb(250, 250, 250);
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
-    text-align: center;
-    transition:  0.5s ease;
-    cursor: pointer;
-}
 
 .card-text {
     margin: 25px;
@@ -29,10 +20,10 @@
     box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
 }
 
-  .card .text {
+  .card-text {
     padding: 0 20px 20px;
   }
-  .card .text > button {
+  .card-text > button {
     background: gray;
     border: 0;
     color: white;
@@ -51,11 +42,6 @@
     text-align: center;
     cursor: pointer;
     transition: .5s ease;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    cursor: pointer;
 }
 
 /* Mobile */
