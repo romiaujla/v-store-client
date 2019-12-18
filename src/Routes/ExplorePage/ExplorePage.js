@@ -14,8 +14,21 @@ class ExplorePage extends Component {
  
   render() {
     return (
-      <div>
-      <Cards handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <div className="ExplorePage">
+      <div className="flex">
+      <Cards shop_name="Flip Flops USA" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="Shopmart heaven" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <Cards shop_name="cool store" handleShopCardClick={(shopId) => {this.handleShopCardClick(shopId)}}/>
+      <div className="empty-div"></div>
+      <div className="empty-div"></div>
+      </div>
       </div>
     );
   }
