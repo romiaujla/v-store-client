@@ -7,121 +7,132 @@ import './ExplorePage.css'
 import Card from '../../Components/Card/Card';
 
 class ExplorePage extends Component {
-    constructor() {
-        super();
-        this.state = {};
-    }
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-    handleShopCardClick = (shopId) => {
-        this.props.history.push(`/shop/${shopId}`);
-    }
+  handleShopCardClick = (shopId) => {
+    this.props.history.push(`/shop/${shopId}`);
+  }
 
-    render() {
-        return (
-           
-                <div className='Explore_Page'>
+  render() {
+    return (
 
-                    <section className='landing'>
-                        <div className='dark-overlay'>
-                            <div className='landing-inner'>
-                                <img src={require("../../images/logo-white.png")} alt="Shopping Cart" className="hero-logo"></img>
-                                <h1 className='x-large-land'>Shop<mark className="hero-mark">zilla</mark></h1>
-                                <p className='lead'>Find your favorite pop-up shop</p>
+      <div className='Explore_Page'>
 
-                                <input type="text" className='search-box' placeholder='Try "Soft-served ice cream"' />
-                                <button className="btn search-btn" type="submit">
-                                    Search
-            </button>
-                            </div>
-                        </div>
-                    </section>
-                    <section className='nav-categories'>
-                        <h1>Explore the marketplace</h1>
-                        <ul className='categories'>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faGlassWhiskey} size='lg' />
-                                        <FontAwesomeIcon icon={faHamburger} size='lg' />
-                                    </div>
-                                    <p> Food & Drink</p>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faLeaf} size='lg' />
-                                    </div>
-                                    <p>Body Healing</p>
-                                </Link>
+        <section className='landing'>
+          <div className='dark-overlay'>
+            <div className='landing-inner'>
+              <img src={require("../../images/logo-white.png")} alt="Shopping Cart" className="hero-logo"></img>
+              <h1 className='x-large-land'>Shop<mark className="hero-mark">zilla</mark></h1>
 
-                            </li>
+              <h2>Find your favorite pop-up shop</h2>
+              <div className='search-bar'>
+                <input type="text" className='search-box' placeholder='Try "henna tatoo"' />
+                <button className="btn search-btn" type="submit">
+                  Search
+                </button>
+              </div>
 
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faMusic} size='lg' />
-                                    </div>
-                                    <p> Entertainment</p>
-                                </Link>
-
-                            </li>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faBath} size='lg' />
-                                    </div>
-                                    <p>Bath & Body</p>
-                                </Link>
-
-                            </li>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faTshirt} size='lg' />
-                                    </div>
-                                    <p>Clothing & Accessories</p>
-                                </Link>
-
-                            </li>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faRibbon} size='lg' />
-                                    </div>
-                                    <p>Home & Party Decor</p>
-                                </Link>
-
-                            </li>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faBookOpen} size='lg' />
-                                    </div>
-                                    <p>Education</p>
-                                </Link>
-
-                            </li>
-                            <li>
-                                <Link>
-                                    <div className='icons'>
-                                        <FontAwesomeIcon icon={faAnchor} size='lg' />
-                                    </div>
-                                    <p>Others</p>
-                                </Link>
-
-                            </li>
-                        </ul>
-
-                    </section>
-                    <section>
-                        <h1>Featured Popups</h1>
-                        <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }} />
-                    </section>
-                   
+            </div>
+          </div>
+        </section>
+        <section className='nav-categories'>
+          <h1>Explore the marketplace</h1>
+          <ul className='categories'>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faGlassWhiskey} size='lg' />
+                  <FontAwesomeIcon icon={faHamburger} size='lg' />
                 </div>
-                );
-              }
-            }
-            
-            export default ExplorePage;
+                <p> Food & Drink</p>
+              </Link>
+            </li>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faLeaf} size='lg' />
+                </div>
+                <p>Body Healing</p>
+              </Link>
+
+            </li>
+
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faMusic} size='lg' />
+                </div>
+                <p> Toys & Leisure</p>
+              </Link>
+
+            </li>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faBath} size='lg' />
+                </div>
+                <p>Bath & Body</p>
+              </Link>
+
+            </li>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faTshirt} size='lg' />
+                </div>
+                <p>Clothing & Accessories</p>
+              </Link>
+
+            </li>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faRibbon} size='lg' />
+                </div>
+                <p>Home & Party Decor</p>
+              </Link>
+
+            </li>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faBookOpen} size='lg' />
+                </div>
+                <p>Education</p>
+              </Link>
+
+            </li>
+            <li>
+              <Link>
+                <div className='icons'>
+                  <FontAwesomeIcon icon={faAnchor} size='lg' />
+                </div>
+                <p>Others</p>
+              </Link>
+
+            </li>
+          </ul>
+
+        </section>
+        <section className="flex">
+          <h1>Featured Popups</h1>
+          <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+          shop_name="Shopmart heaven" />
+          <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+          shop_name="FLip Flop" />
+          <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+          shop_name="Shopmart heaven" />
+          <div className="empty-div"></div>
+          <div className="empty-div"></div>
+
+        </section>
+
+      </div>
+    );
+  }
+}
+
+export default ExplorePage;

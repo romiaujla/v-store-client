@@ -4,13 +4,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 .card {
     display: grid;
     grid-template-columns: 300px;
     grid-template-rows: 210px 210px 50px;
+  
     grid-template-areas: 'image' 'text';
 
     font-family: 'Poppins' sans-serif;

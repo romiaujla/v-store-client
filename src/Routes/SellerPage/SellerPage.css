@@ -1,0 +1,27 @@
+/* .side-profile{
+    display: table-cell;
+   
+   
+	width: 35%;
+	vertical-align: top;
+}
+.items{
+    display: table-cell;
+	width: 85%;
+	vertical-align: top;
+} */
+.seller-page{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 5em;
+}
+.side-profile{
+    flex-basis: 40%;
+    
+}
+.items{
+    
+    
+    flex-basis: 50%;
+}
