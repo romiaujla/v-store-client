@@ -112,10 +112,8 @@ class ExplorePage extends Component {
                 </div>
                 <p>Others</p>
               </Link>
-
             </li>
           </ul>
-
         </section>
         <section >
           <h1>Featured Popups</h1>
