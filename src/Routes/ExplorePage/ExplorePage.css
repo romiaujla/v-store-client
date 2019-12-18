@@ -1,0 +1,25 @@
+.flex {
+    display: flex;
+    margin: auto;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: 
+}
+
+.ExplorePage {
+    max-width: 1100px;
+    margin: auto;
+    margin-top: 60px;
+    /* border: 1px solid black; */
+}
+
+.empty-div {
+    width: 21%;
+}
+
+@media only screen and (max-width: 600px) {
+    .empty-div {
+        display: none;
+        
+    }
+}
