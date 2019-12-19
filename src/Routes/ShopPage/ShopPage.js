@@ -9,19 +9,19 @@ export default class ShopPage extends Component {
                 <section className='side-profile'>
                     {/* <Card shop-name="Flip-Flop USA"/> */}
                     <div className="shop-img">
-                        <img src="https://source.unsplash.com/xPJYL0l5Ii8" />
+                        <img src="https://source.unsplash.com/FzvCBuDhDDE" />
                     </div>
                     <div className="shop-info">
                         <h1>TeeShirt</h1>
                         <h4>Lorem Ipsum Description</h4>
-                        <p>Location: 32 Kent Street, New York, NY</p>
+                        <p>Come visit us at 32 Kent Street, New York, NY</p>
                         <div>Status: Active</div>
                         <div>Open from 8am to 8pm</div>
                     </div>
 
                 </section>
                 <section className='items'>
-                    <h2>Available items</h2>
+                    <h2>We offer new tee-shirts!</h2>
                     <nav class="product-filter">
                         <div class="sort">
                             <div class="collection-sort">
