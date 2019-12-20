@@ -66,6 +66,14 @@
     }
 }
 
+/* Tablet */
+
+@media only screen and (min-width:601px) and (max-width:768px) {
+    .card-container {
+        width: 40%;
+    }
+}
+
 /* Desktop */
 
 @media only screen and (min-width:769px) {
