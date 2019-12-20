@@ -8,7 +8,8 @@ export default class Cards extends Component {
     shop_name: "Flip Flop USA",
     service_type: "Clothing and accessories",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image_url: '',
   };
 
   handleShopCardClick = () => {
@@ -18,9 +19,13 @@ export default class Cards extends Component {
   render() {
     return (
       <div className="card-container" onClick={() => { this.handleShopCardClick() }}>
-      
-          {/* <img src={require(`../../images/store-images/${this.props.img_url}`)} /> */}
-          <img src="https://source.unsplash.com/H2N9K9y9e3E"/>
+          {
+            !this.props.image_url
+            ? 
+              <img src="https://source.unsplash.com/H2N9K9y9e3E"/>
+            :
+              <img src={require(`../../images/store-images/${this.props.image_url}`)} />
+          }
           <div className="card-text">
             <span className='store-type'>{this.props.service_type}</span>
             <h2>{this.props.shop_name}</h2>
