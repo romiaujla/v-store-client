@@ -7,26 +7,32 @@ import SignUpPage from '../../Routes/SignUpPage/SignUpPage';
 import LoginPage from '../../Routes/LoginPage/LoginPage';
 import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
+import ShopsContext from '../../Contexts/ShopContext';
+import ShopService from '../../Service/ShopService';
 
 export default class App extends Component {
+
+  static contextType = ShopsContext;
 
   constructor(props) {
     super(props);
     this.state = { 
       loggedIn: false,
-      shops: [],
     }
   }
 
-  // get all the shops
-  getShops = () => {
+  componentDidMount = () => {
     
+    // get all the shops and set to context
+    ShopService.getShops()
+      .then((shops) => {
+        this.context.setShops(shops);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
   }
-
-  componentWillMount = () => {
-
-  }
-
 
   render() { 
     return (
