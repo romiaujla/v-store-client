@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 import Navbar from '../Navbar/Navbar'
@@ -8,9 +8,29 @@ import LoginPage from '../../Routes/LoginPage/LoginPage';
 import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
 
-function App() {
-  return (
-    <div className='App'>
+export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { 
+      loggedIn: false,
+      shops: [],
+    }
+  }
+
+  // get all the shops
+  getShops = () => {
+    
+  }
+
+  componentWillMount = () => {
+
+  }
+
+
+  render() { 
+    return (
+      <div className='App'>
       <Route path='/' component={Navbar} />
       <Switch>
         <Route exact path='/' component={Landing} />
@@ -20,7 +40,7 @@ function App() {
         <Route exact path='/shop/:id' component={ShopPage} />
       </Switch>
     </div>
-  );
+    );
+  }
 }
 
-export default App;
