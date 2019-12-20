@@ -74,7 +74,8 @@ div.icons:after{
 .cards {
     display: flex;
     margin: auto;
-    justify-content: space-even;
+    max-width: 1400px;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -99,4 +100,17 @@ div.icons:after{
         display: none;
         
     }
+
+    .cards {
+        justify-content: space-evenly;
+    }
 }
+
+
+/* Tablet */
+
+/* @media only screen and (min-width:601px) and (max-width:768px) {
+    .cards {
+        width: 45%;
+    }
+} */
