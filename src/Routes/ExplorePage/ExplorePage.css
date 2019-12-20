@@ -74,12 +74,12 @@ div.icons:after{
 .cards {
     display: flex;
     margin: auto;
-    justify-content: space-even;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
 .cards:nth-child(){
-    padding: 4%;
+    padding: 2%;
     flex: 1 17%
 }
 
