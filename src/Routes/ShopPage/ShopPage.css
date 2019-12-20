@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
+
+/* Style side-by-side container*/
+.seller-page{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 5em;
+  
+}
+.side-profile{
+    flex-basis: 40%;
+}
+.side-profile img{
+    border-radius: 3px;
+}
+.items{
+    flex-basis: 55%;
+    border: 1px solid #e16b22;
+    padding: 3px 5px;
+}
+/* End styleing side-by-side container*/
+
+
+/* Style items */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  border-radius:5px;
+}
+
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+.grid > article img {
+  max-width: 100%;
+}
+
+.grid .text {
+  padding: 20px;
+  text-align: center;
+}
+
+.grid .text h3 {
+  font-size: 1.4rem;
+  font-family: 'Fredoka One', cursive;
+}
+
+.grid .text p {
+  font-size: 0.9rem;
+}
+
+.grid .text p a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #555;
+  font-family: 'Courgette', cursive;
+}
+/* End styling items */
+
+/*Style pagination*/
+.pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #e16b22;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+  }
+  /* End Styling pagination*/
