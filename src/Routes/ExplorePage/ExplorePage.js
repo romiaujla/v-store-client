@@ -115,7 +115,7 @@ class ExplorePage extends Component {
             </li>
           </ul>
         </section>
-        <section >
+        <section className='cards-container'>
           <h1>Featured Popups</h1>
           <div className="cards">
             <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
@@ -124,12 +124,10 @@ class ExplorePage extends Component {
               shop_name="FLip Flop" />
             <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
               shop_name="Shopmart heaven" />
-              <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
               shop_name="La La Land" />
-              <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
+            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
               shop_name="Walmart" />
-            <div className="empty-div"></div>
-            <div className="empty-div"></div>
           </div>
         </section>
 
