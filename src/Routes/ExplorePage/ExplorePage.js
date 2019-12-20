@@ -38,6 +38,7 @@ class ExplorePage extends Component {
             </div>
           </div>
         </section>
+        <div className="wave"/><div/>
         <section className='nav-categories'>
           <h1>Explore the marketplace</h1>
           <ul className='categories'>
