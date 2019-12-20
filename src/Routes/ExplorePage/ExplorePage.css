@@ -18,7 +18,7 @@
 .search-btn {
     display: block;
     margin-top: 5px;
-    background-color: #1dbf73;
+    background-color: #e16b22;
     font-size: 16px;
     line-height: 16px;
     font-weight: 700;
@@ -68,11 +68,19 @@ div.icons:after{
 /* End styling marketplace categories*/
 
 /* Style cards*/
+.cards-container{
+    padding: 50px;
+}
 .cards {
     display: flex;
-    /* margin: auto; */
-    justify-content: space-evenly;
+    margin: auto;
+    justify-content: space-even;
     flex-wrap: wrap;
+}
+
+.cards:nth-child(){
+    padding: 4%;
+    flex: 1 17%
 }
 
 .ExplorePage {
@@ -82,9 +90,9 @@ div.icons:after{
     /* border: 1px solid black; */
 }
 
-.empty-div {
+/* .empty-div {
     width: 21%;
-}
+} */
 
 @media only screen and (max-width: 600px) {
     .empty-div {
