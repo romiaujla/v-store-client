@@ -21,7 +21,7 @@ export default class ShopPage extends Component {
 
                 </section>
                 <section className='items'>
-                    <h2>We offer new tee-shirts!</h2>
+                    <h2>We offer new tee-shirts on SALE</h2>
                     <nav class="product-filter">
                         <div class="sort">
                             <div class="collection-sort">
