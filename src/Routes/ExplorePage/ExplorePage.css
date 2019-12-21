@@ -92,7 +92,6 @@ div.icons:after {
   margin: auto;
   max-width: 1400px;
   /* justify-content: space-evenly; */
-  padding: 20px;
   flex-wrap: wrap;
 }
 
