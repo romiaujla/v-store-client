@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './SignupForm.css';
-import Backdrop from '../Backdrop/Backdrop';
 
 export default class Signup extends Component {
 
