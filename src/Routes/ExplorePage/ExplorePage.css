@@ -4,7 +4,16 @@
 
 .large-land,
 h1 {
-  text-align: center;
+  text-align: center;  
+}
+
+.Explore_Page .landing-inner h2{
+  font-size: 2em;
+}
+
+.Explore_Page .search-btn{
+  width: auto;
+  margin: 10px auto;
 }
 
 /* Style searchbar */
@@ -95,6 +104,9 @@ div.icons:after {
   max-width: 1100px;
   margin: auto;
   margin-top: 60px;
+}
+.Explore_Page .landing{
+  height: 300px;
 }
 
 /* Mobile */
