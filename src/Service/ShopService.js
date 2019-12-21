@@ -11,7 +11,6 @@ const ShopService = {
         })
         .then(res => res.json())
         .then(shops => {
-            console.log(shops);
             return shops;
         })
         .catch(err => {
