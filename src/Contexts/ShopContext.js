@@ -1,44 +1,53 @@
 import React, { Component } from 'react';
-import ShopService from '../Service/ShopService';
 
-const ShopsContext = React.createContext({
-    shops: [],
+//this context is to provide the information of a single shop
+
+const ShopContext = React.createContext({
+    shop: {},
     error: null,
-    setShops: () => {},
+    setShop: () => {},
+    setError: () => {},
+    clearError: () => {},
+    
 })
 
-export default ShopsContext;
+export default ShopContext;
 
-export class ShopsProvider extends Component {
-    
+export class ShopProvider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shops: [],
+            shop: {},
             error: null,
         }
     }
 
-    // set the shops in the state
-    setShops = (shops) => {
+    // set the shop in the state
+    setShop = (shop) => {
         this.setState({
-            shops,
+            shop
         })
+    }
+
+    clearError = () =>{
+        this.setState({error: null})
     }
 
 
     render() { 
 
-        const obj = {
-            shops: this.state.shops,
+        const value = {
+            shop: this.state.shop,
             error: this.state.error,
-            setShops: this.setShops,
+            setShop: this.setShop,
+            setError: this.setError,
+            clearError: this.clearError
         }
 
         return (
-            <ShopsContext.Provider value={obj}>
+            <ShopContext.Provider value={value}>
                 {this.props.children}
-            </ShopsContext.Provider>
+            </ShopContext.Provider>
         );
     }
 }
