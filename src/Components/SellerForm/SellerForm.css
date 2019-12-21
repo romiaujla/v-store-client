@@ -1,0 +1,83 @@
+.dialog fieldset{
+    border: none;
+}
+
+.backgrop{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    padding: 50
+}
+
+.dialog{
+    background-color: '#fff';
+    border-radius: 5;
+    max-width: 500;
+    min-height: 300;
+    margin: '0 auto';
+    padding: 30
+}
+
+.dialog form{
+    width: 100%;
+    background: rgba(255,255,255, 0.1);
+    padding: 20px;
+    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.5);
+}
+
+.dialog .flex{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.dialog legend{
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.dialog .flex  label{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+    letter-spacing: 0.07em;
+}
+
+.dialog label .input-title{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.dialog form input{
+    width: 100%;
+}
+
+.form-buttons{
+    display: inline-flex;
+
+}
+
+.dialog button{
+    width: 100%;    
+    cursor: pointer;
+    font-size: 1.4em;
+    background-color: #e16b22;
+    border-radius: 5px;
+    border: 1px solid #000;
+    
+}
+
+
+@media only screen and (min-width:680px){
+    .dialog form{
+        max-width: 600px;
+    }
+    .dialog button{
+        width: auto;
+        margin: auto;
+    }
+}
