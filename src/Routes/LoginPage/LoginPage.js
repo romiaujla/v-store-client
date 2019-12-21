@@ -10,6 +10,7 @@ class LoginPage extends Component {
 
     onLoginSuccess = () => {
         this.props.history.push('/explore');
+        
     }
 
     render() { 
