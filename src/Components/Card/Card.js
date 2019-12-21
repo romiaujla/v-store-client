@@ -22,9 +22,9 @@ export default class Cards extends Component {
           {
             !this.props.image_url
             ? 
-              <img src="https://source.unsplash.com/H2N9K9y9e3E"/>
+              <img src="https://source.unsplash.com/H2N9K9y9e3E" alt='shop'/>
             :
-              <img src={require(`../../images/store-images/${this.props.image_url}`)} />
+              <img src={require(`../../images/store-images/${this.props.image_url}`)} alt='shop'/>
           }
           <div className="card-text">
             <span className='store-type'>{this.props.service_type}</span>
