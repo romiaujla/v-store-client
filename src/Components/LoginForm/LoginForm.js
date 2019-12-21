@@ -14,7 +14,7 @@ class LoginForm extends Component {
         username: false,
         password: false,
     })
-    const { username, password } = e.target;
+    // const { username, password } = e.target;
     // get user data and set user to logged in
     this.props.onLoginSuccess();    
   }
