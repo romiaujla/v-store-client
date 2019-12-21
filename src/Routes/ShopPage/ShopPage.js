@@ -51,7 +51,7 @@ export default class ShopPage extends Component {
                                         class="btn btn-primary btn-block">Add to cart</a>
                                 </div>
                             </article>
-                            <article>
+                            <article> 
                                 <img src="https://vangogh.teespring.com/v3/image/EzMTyEjKh-lwGS0DEHSCd31VwRE/480/560.jpg" alt="tshirt photo" />
                                 <div class="text">
                                     <h3>If you call one dog</h3>
