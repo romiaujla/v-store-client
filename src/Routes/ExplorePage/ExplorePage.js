@@ -5,12 +5,12 @@ import { faSearch, faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBo
 import { Link } from 'react-router-dom'
 import './ExplorePage.css'
 import Card from '../../Components/Card/Card';
-import ShopsContext from '../../Contexts/ShopContext';
+import ShopListContext from '../../Contexts/ShopListContext';
 import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 
 class ExplorePage extends Component {
 
-  static contextType = ShopsContext;
+  static contextType = ShopListContext;
 
   handleShopCardClick = (shopId) => {
     this.props.history.push(`/shop/${shopId}`);
@@ -35,7 +35,6 @@ class ExplorePage extends Component {
   render() {
 
     const {shops} = this.context
-
     return (
 
       <div className='Explore_Page'>
