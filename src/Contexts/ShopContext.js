@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ShopService from '../Service/ShopService';
 
 const ShopsContext = React.createContext({
     shops: [],
