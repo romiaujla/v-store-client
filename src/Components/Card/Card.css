@@ -58,6 +58,14 @@
     cursor: pointer;
 }
 
+.card-container .shop-img {
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
 /* Mobile */
 
 @media only screen and (max-width: 600px) {
