@@ -5,18 +5,37 @@ import { faSearch, faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBo
 import { Link } from 'react-router-dom'
 import './ExplorePage.css'
 import Card from '../../Components/Card/Card';
+import ShopsContext from '../../Contexts/ShopContext';
+import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 
 class ExplorePage extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+
+  static contextType = ShopsContext;
 
   handleShopCardClick = (shopId) => {
     this.props.history.push(`/shop/${shopId}`);
   }
 
+  renderShopCards = (shops) => {
+    return shops.map(shop => {
+      
+      return (
+        <Card 
+          key={shop.id}
+          shop_name={shop.shop_name}
+          description={shop.description}
+          image_url={shop.image_url}
+          service_type={shop.service_type}
+        />
+      )
+      
+    })
+  }
+
   render() {
+
+    const {shops} = this.context
+
     return (
 
       <div className='Explore_Page'>
@@ -118,8 +137,14 @@ class ExplorePage extends Component {
         <section className='cards-container'>
           <h1>Featured Popups</h1>
           <div className="cards">
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="Shopmart heaven" />
+            {
+              arrayIsEmpty(shops) 
+              ?
+                <div className='LoadingScreen'>Loading</div>
+              :
+                this.renderShopCards(shops)
+            }
+            
             <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
               shop_name="FLip Flop" />
             <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}

@@ -68,7 +68,7 @@
 
 /* Tablet */
 
-@media only screen and (min-width:601px) and (max-width:768px) {
+@media only screen and (min-width:601px) and (max-width:1099px) {
     .card-container {
         width: 40%;
     }
@@ -76,7 +76,7 @@
 
 /* Desktop */
 
-@media only screen and (min-width:769px) {
+@media only screen and (min-width:1100px) {
     .card-container {
         width: 20%;
     }
