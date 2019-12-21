@@ -2,7 +2,6 @@ import config from '../config';
 
 const ShopService = {
     getShops(){
-        console.log(`Get request entered`);
         return fetch(`${config.API_ENDPOINT}/shops`, {
             method: 'GET',
             headers: {
