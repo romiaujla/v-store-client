@@ -141,15 +141,6 @@ class ExplorePage extends Component {
               :
                 this.renderShopCards(shops)
             }
-            
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="FLip Flop" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="Shopmart heaven" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="La La Land" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="Walmart" />
           </div>
         </section>
 
