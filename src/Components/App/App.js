@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 import Navbar from '../Navbar/Navbar'
@@ -7,10 +7,36 @@ import SignUpPage from '../../Routes/SignUpPage/SignUpPage';
 import LoginPage from '../../Routes/LoginPage/LoginPage';
 import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
+import ShopsContext from '../../Contexts/ShopContext';
+import ShopService from '../../Service/ShopService';
 
-function App() {
-  return (
-    <div className='App'>
+export default class App extends Component {
+
+  static contextType = ShopsContext;
+
+  constructor(props) {
+    super(props);
+    this.state = { 
+      loggedIn: false,
+    }
+  }
+
+  componentDidMount = () => {
+    
+    // get all the shops and set to context
+    ShopService.getShops()
+      .then((shops) => {
+        this.context.setShops(shops);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  }
+
+  render() { 
+    return (
+      <div className='App'>
       <Route path='/' component={Navbar} />
       <Switch>
         <Route exact path='/' component={Landing} />
@@ -20,7 +46,7 @@ function App() {
         <Route exact path='/shop/:id' component={ShopPage} />
       </Switch>
     </div>
-  );
+    );
+  }
 }
 
-export default App;

@@ -44,7 +44,7 @@
 .card-container {
     /* width: 300px; */
     width: 100%;
-    margin: 15px 5px;
+    margin: 15px 30px;
     background: #FFF;
     border-radius: 6px;
     box-shadow: 0px 1px 4px 1px #000;
@@ -58,6 +58,14 @@
     cursor: pointer;
 }
 
+.card-container .shop-img {
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+
 /* Mobile */
 
 @media only screen and (max-width: 600px) {
@@ -68,7 +76,7 @@
 
 /* Tablet */
 
-@media only screen and (min-width:601px) and (max-width:768px) {
+@media only screen and (min-width:601px) and (max-width:1099px) {
     .card-container {
         width: 40%;
     }
@@ -76,7 +84,7 @@
 
 /* Desktop */
 
-@media only screen and (min-width:769px) {
+@media only screen and (min-width:1100px) {
     .card-container {
         width: 20%;
     }

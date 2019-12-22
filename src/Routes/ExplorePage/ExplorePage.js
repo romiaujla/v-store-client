@@ -1,22 +1,41 @@
 import React, { Component } from 'react';
 import './ExplorePage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBookOpen, faBath, faAnchor, faMusic, faImages } from '@fortawesome/free-solid-svg-icons'
+import { faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBookOpen, faBath, faAnchor, faMusic } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import './ExplorePage.css'
 import Card from '../../Components/Card/Card';
+import ShopsContext from '../../Contexts/ShopContext';
+import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 
 class ExplorePage extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+
+  static contextType = ShopsContext;
 
   handleShopCardClick = (shopId) => {
     this.props.history.push(`/shop/${shopId}`);
   }
 
+  renderShopCards = (shops) => {
+    return shops.map(shop => {
+      
+      return (
+        <Card 
+          key={shop.id}
+          shop_name={shop.shop_name}
+          description={shop.description}
+          image_url={shop.image_url}
+          service_type={shop.service_type}
+        />
+      )
+      
+    })
+  }
+
   render() {
+
+    const {shops} = this.context
+
     return (
 
       <div className='Explore_Page'>
@@ -24,9 +43,6 @@ class ExplorePage extends Component {
         <section className='landing'>
           <div className='dark-overlay'>
             <div className='landing-inner'>
-              <img src={require("../../images/logo-white.png")} alt="Shopping Cart" className="hero-logo"></img>
-              <h1 className='x-large-land'>Shop<mark className="hero-mark">zilla</mark></h1>
-
               <h2>Find your favorite pop-up shop</h2>
               <div className='search-bar'>
                 <input type="text" className='search-box' placeholder='Try "henna tatoo"' />
@@ -42,7 +58,7 @@ class ExplorePage extends Component {
           <h1>Explore the marketplace</h1>
           <ul className='categories'>
             <li>
-              <Link>
+              <Link to='/shop/type/food-and-drinks'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faGlassWhiskey} size='lg' />
                   <FontAwesomeIcon icon={faHamburger} size='lg' />
@@ -51,7 +67,7 @@ class ExplorePage extends Component {
               </Link>
             </li>
             <li>
-              <Link>
+              <Link to='/shop/type/body-healing'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faLeaf} size='lg' />
                 </div>
@@ -61,7 +77,7 @@ class ExplorePage extends Component {
             </li>
 
             <li>
-              <Link>
+              <Link to='/shop/type/toys-and-liesure'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faMusic} size='lg' />
                 </div>
@@ -70,7 +86,7 @@ class ExplorePage extends Component {
 
             </li>
             <li>
-              <Link>
+              <Link to='/shop/type/bath-and-body'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faBath} size='lg' />
                 </div>
@@ -79,7 +95,7 @@ class ExplorePage extends Component {
 
             </li>
             <li>
-              <Link>
+              <Link to='/shop/type/clothing-and-accessories'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faTshirt} size='lg' />
                 </div>
@@ -88,7 +104,7 @@ class ExplorePage extends Component {
 
             </li>
             <li>
-              <Link>
+              <Link to='/shop/type/home-and-party-decor'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faRibbon} size='lg' />
                 </div>
@@ -97,7 +113,7 @@ class ExplorePage extends Component {
 
             </li>
             <li>
-              <Link>
+              <Link to='/shop/type/education'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faBookOpen} size='lg' />
                 </div>
@@ -106,7 +122,7 @@ class ExplorePage extends Component {
 
             </li>
             <li>
-              <Link>
+              <Link to='/shop/type/others'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faAnchor} size='lg' />
                 </div>
@@ -118,16 +134,13 @@ class ExplorePage extends Component {
         <section className='cards-container'>
           <h1>Featured Popups</h1>
           <div className="cards">
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="Shopmart heaven" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="FLip Flop" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="Shopmart heaven" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="La La Land" />
-            <Card handleShopCardClick={(shopId) => { this.handleShopCardClick(shopId) }}
-              shop_name="Walmart" />
+            {
+              arrayIsEmpty(shops) 
+              ?
+                <div className='LoadingScreen'>Loading</div>
+              :
+                this.renderShopCards(shops)
+            }
           </div>
         </section>
 

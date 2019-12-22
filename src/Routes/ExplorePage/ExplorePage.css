@@ -1,102 +1,122 @@
-.large-land , h1{
-    text-align: center;
+.Explore_Page {
+  background-color: rgb(247, 247, 247)
 }
+
+.large-land,
+h1 {
+  text-align: center;  
+}
+
+.Explore_Page .landing-inner h2{
+  font-size: 2em;
+}
+
+.Explore_Page .search-btn{
+  width: auto;
+  margin: 10px auto;
+}
+
 /* Style searchbar */
-.search-bar{
-    display: flex;
-    flex-direction: column;
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
 }
 .search-box {
-    max-width: 450px;
-    width: 350px;
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    border-radius: 3px;
-    /* padding: 7px 7px 7px 28px; */
+  max-width: 450px;
+  width: 350px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  border-radius: 3px;
 }
 .search-btn {
-    display: block;
-    margin-top: 5px;
-    background-color: #e16b22;
-    font-size: 16px;
-    line-height: 16px;
-    font-weight: 700;
-    color: #fff;
-    border: 1px solid transparent;
-    padding: 15px 35px;
-    border-radius: 3px;
-    cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  background-color: #e16b22;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid transparent;
+  padding: 15px 35px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 /* End styling searchbar */
 
 /* Style marketplace categories*/
-.nav-categories{
-    display: block;
-    max-width: 1400px;
-    margin: 0 auto 64px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-    padding: 0 30px;
-    text-align: center;
+
+.nav-categories {
+  display: block;
+  max-width: 1400px;
+  margin: 0 auto 64px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  padding: 0 30px;
+  text-align: center;
 }
 
-.nav-categories li{
-    width: 25%;
-    display: inline-block;
-    text-align: center;
+.nav-categories li {
+  width: 25%;
+  display: inline-block;
+  text-align: center;
 }
-.categories{
-    margin-top: 4px;
-    margin-bottom: 4px;
+.categories {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 .categories div.icons {
-    display: block;
-    margin: 2px auto 5px 5px;
+  display: block;
+  margin: 2px auto 5px 5px;
 }
-div.icons:after{
-    content: "";
-    position: absolute;
-    top: 45px;
-    right: 50%;
-    -webkit-transform: translateX(50%);
-    transform: translateX(50%);
-    padding: 0 0 8px;
-    width: 48px;
-    border-bottom: 2px solid #ccc;
+div.icons:after {
+  content: '';
+  position: absolute;
+  top: 45px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+  transform: translateX(50%);
+  padding: 0 0 8px;
+  width: 48px;
+  border-bottom: 2px solid #ccc;
 }
 /* End styling marketplace categories*/
 
 /* Style cards*/
-.cards-container{
-    padding: 50px;
+.cards-container {
+  padding: 50px;
 }
 .cards {
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  margin: auto;
+  max-width: 1400px;
+  /* justify-content: space-evenly; */
+  flex-wrap: wrap;
 }
 
-.cards:nth-child(){
-    padding: 2%;
-    flex: 1 17%
+.cards:nth-child() {
+  padding: 4%;
+  flex: 1 17%;
 }
 
 .ExplorePage {
-    max-width: 1100px;
-    margin: auto;
-    margin-top: 60px;
-    /* border: 1px solid black; */
+  max-width: 1100px;
+  margin: auto;
+  margin-top: 60px;
+}
+.Explore_Page .landing{
+  height: 300px;
 }
 
-/* .empty-div {
-    width: 21%;
-} */
+/* Mobile */
 
 @media only screen and (max-width: 600px) {
-    .empty-div {
-        display: none;
-        
-    }
+  .empty-div {
+    display: none;
+  }
+
+  .cards {
+    justify-content: space-evenly;
+  }
 }
