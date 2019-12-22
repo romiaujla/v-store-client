@@ -1,27 +1,48 @@
 import React, { Component } from 'react';
 import './ShopPage.css'
-// import Card from '../../Components/Card/Card'
+import ShopContext from '../../Contexts/ShopContext'
+import ShopService from '../../Service/ShopService'
+import moment from 'moment'
 
+//Shop Page route is when the buyer/customer clicks to visit the shop
 export default class ShopPage extends Component {
+    static contextType = ShopContext;
+    componentDidMount() {
+        // get a single shop and set to context
+        const { id } = this.props.match.params
+        ShopService.getShop(id)
+            .then((shop) => {
+                this.context.setShop(shop);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     render() {
+        const { shop } = this.context
+        
         return (
             <div className='seller-page'>
                 <section className='side-profile'>
-                    {/* <Card shop-name="Flip-Flop USA"/> */}
                     <div className="shop-img">
-                        <img src="https://source.unsplash.com/FzvCBuDhDDE" alt='shop'/>
+                        <img src={`${shop.image_url}`} alt='shop'/>
                     </div>
                     <div className="shop-info">
-                        <h1>TeeShirt</h1>
-                        <h4>Lorem Ipsum Description</h4>
-                        <p>Come visit us at 32 Kent Street, New York, NY</p>
-                        <div>Status: Active</div>
-                        <div>Open from 8am to 8pm</div>
+                        <h1>{shop.name}</h1>
+                        <h4>{shop.description}</h4>
+                        <h4>Come visit us at :</h4> 
+                        <span>{shop.address}</span>
+                        <h4>Opening at: </h4>
+                        <span>{shop.opening_time}</span>
+                        <h4>Closing at: </h4>
+                        <span>{shop.closing_time}</span>
+                        <h4>From {moment(shop.start_date).format('MMMM Do, YYYY')} to {moment(shop.end_date).format('MMMM Do, YYYY')}</h4>
                     </div>
 
                 </section>
                 <section className='items'>
-                    <h2>We offer new tee-shirts on SALE</h2>
+                    <h2>Our Items</h2>
                     <nav class="product-filter">
                         <div class="sort">
                             <div class="collection-sort">
@@ -51,8 +72,8 @@ export default class ShopPage extends Component {
                                         class="btn btn-primary btn-block">Add to cart</a>
                                 </div>
                             </article>
-                            <article>
-                                <img src="https://vangogh.teespring.com/v3/image/EzMTyEjKh-lwGS0DEHSCd31VwRE/480/560.jpg" alt="tshirt" />
+                            <article> 
+                                <img src="https://vangogh.teespring.com/v3/image/EzMTyEjKh-lwGS0DEHSCd31VwRE/480/560.jpg" alt="tshirt photo" />
                                 <div class="text">
                                     <h3>If you call one dog</h3>
                                     <p>by <a href="https://teespring.com/stores/dog-lover-graphic-design">Dog Lover Graphic Design</a></p>

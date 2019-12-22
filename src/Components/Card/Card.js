@@ -7,8 +7,8 @@ export default class Cards extends Component {
     shop_name: 'Flip Flop USA',
     service_type: 'Clothing and accessories',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    image_url: ''
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    image_url: '',
   };
 
   handleShopCardClick = () => {

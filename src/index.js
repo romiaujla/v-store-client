@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './Components/App/App'
-import { ShopsProvider } from './Contexts/ShopContext';
+import { ShopListProvider } from './Contexts/ShopListContext';
+import { ShopProvider } from './Contexts/ShopContext'
 
 ReactDOM.render(
   <BrowserRouter>
-    <ShopsProvider>
-      <App />
-    </ShopsProvider>
+    <ShopListProvider>
+      <ShopProvider>
+        <App/>
+      </ShopProvider>
+    </ShopListProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );

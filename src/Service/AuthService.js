@@ -1,6 +1,6 @@
 import config from '../config';
 
-const AuthService = {
+const AuthApiService = {
     // login authorization
     postLogin(credentials){
         return fetch(`${config.API_ENDPOINT}/auth/login`, {
@@ -46,4 +46,4 @@ const AuthService = {
     }
 }
 
-export default AuthService;
+export default AuthApiService;

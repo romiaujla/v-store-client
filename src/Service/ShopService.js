@@ -1,7 +1,8 @@
 import config from '../config';
 
 const ShopService = {
-    getShops(){
+    getShops() {
+        console.log(`Get request entered`);
         return fetch(`${config.API_ENDPOINT}/shops`, {
             method: 'GET',
             headers: {
@@ -15,6 +16,23 @@ const ShopService = {
         .catch(err => {
             console.log(err);
         })
+    },
+
+    getShop(id) {
+        return fetch(`${config.API_ENDPOINT}/shops/${id}`, {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(shop => {
+                console.log(shop);
+                return shop;
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 }
 
