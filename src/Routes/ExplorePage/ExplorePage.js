@@ -12,9 +12,9 @@ class ExplorePage extends Component {
 
   static contextType = ShopListContext;
 
-  handleShopCardClick = (shopId) => {
-    this.props.history.push(`/shop/${shopId}`);
-  }
+  // handleShopCardClick = (shopId) => {
+  //   this.props.history.push(`/shop/${shopId}`);
+  // }
 
   renderShopCards = (shops) => {
     return shops.map(shop => {
@@ -22,12 +22,11 @@ class ExplorePage extends Component {
       return (
         <Card 
           key={shop.id}
-          shopId = {shop.id}
+          shopId={shop.id}
           shop_name={shop.shop_name}
           description={shop.description}
           image_url={shop.image_url}
           service_type={shop.service_type}
-          handleShopCardClick={this.handleShopCardClick}
         />
       )
       
@@ -78,7 +77,7 @@ class ExplorePage extends Component {
             </li>
 
             <li>
-              <Link to='/shop/type/toys-and-liesure'>
+              <Link to='/shop/type/toys-and-leisure'>
                 <div className='icons'>
                   <FontAwesomeIcon icon={faMusic} size='lg' />
                 </div>
