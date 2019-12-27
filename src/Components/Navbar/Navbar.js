@@ -19,7 +19,13 @@ export default class Navbar extends Component {
     return (
       <nav className='navbar bg-dark'>
         <h1 className='nav-logo-text'>
-          <Link to='/'>Shopzilla</Link>
+          {
+            TokenService.hasAuthToken()
+            ?
+            <Link to='/explore'>Shopzilla</Link>
+            :
+            <Link to='/'>Shopzilla</Link>
+          }
         </h1>
         <ul>
           <li>
