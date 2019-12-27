@@ -4,8 +4,10 @@ import React, { Component } from 'react';
 
 const ShopContext = React.createContext({
     shop: {},
+    shopProducts: [],
     error: null,
     setShop: () => {},
+    setShopProducts: () => {},
     setError: () => {},
     clearError: () => {},
     
@@ -29,6 +31,13 @@ export class ShopProvider extends Component {
         })
     }
 
+    //set products for a shop
+    setShopProducts = (shopProducts) => {
+        this.setState({
+            shopProducts
+        })
+    }
+
     clearError = () =>{
         this.setState({error: null})
     }
@@ -38,8 +47,10 @@ export class ShopProvider extends Component {
 
         const value = {
             shop: this.state.shop,
+            shopProducts: this.state.shopProducts,
             error: this.state.error,
             setShop: this.setShop,
+            setShopProducts: this.setShopProducts,
             setError: this.setError,
             clearError: this.clearError
         }
