@@ -61,8 +61,9 @@ export default class ShopPage extends Component {
                             <h3>{product.item}</h3>
                             <p>Description: {product.description}</p>
                             <p>Price: $ {product.price}</p>
+                            <a className='btn btn-primary btn-block'>Add to cart</a>
                         </div>
-                        <a className='btn btn-primary btn-block'>Add to cart</a>
+                        
                     </article>
                 )
             })
@@ -101,7 +102,7 @@ export default class ShopPage extends Component {
                     </nav>
 
                     <div class="container">
-                        <div class="grid">
+                        <main class="grid">
                             {
                                 !(shopProducts)
                                     ?
@@ -109,7 +110,7 @@ export default class ShopPage extends Component {
                                     :
                                     this.renderProducts(shopProducts)
                             }
-                        </div>
+                        </main>
 
 
                     </div>
