@@ -9,7 +9,6 @@ import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
 import ShopListContext from '../../Contexts/ShopListContext';
 import ShopService from '../../Service/ShopService';
-import SellerProfile from '../SellerProfile/SellerProfile'
 
 export default class App extends Component {
 
@@ -45,7 +44,6 @@ export default class App extends Component {
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/explore' component={ExplorePage} />
         <Route exact path='/shop/:id' component={ShopPage} />
-        <Route exact path='/shops/:shopId' component={SellerProfile}/>
       </Switch>
     </div>
     );
