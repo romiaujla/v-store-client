@@ -4,19 +4,15 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import './SellerForm.css'
 
+//only renders Seller Edit Form in the ShopPage component when logged in as Seller
+
 class SellerForm extends Component {
     state = {
-        editedForm: {
-            shopName: '',
-            description: '',
-            status: true, //true is open
-            location: '',
-            openDateTime: Date(),
-            closingDateTime: Date()
-        }
-
-
+        
+        // isLoggedIn: TokenService.hasAuthToken()
     }
+
+
     render() {
         // The gray background
         const backdropStyle = {
@@ -47,9 +43,20 @@ class SellerForm extends Component {
                     <form>
                         <fieldset>
                             <legend>
-                                <h3>Edit Your Shop Info</h3>
+                                <h3>Edit Your Shop</h3>
                             </legend>
                             <div className="flex">
+                                <label htmlFor="service-type">
+                                    <span className="input-title">* Service Type:</span>
+                                    <input //make it dropdown menu...
+                                        type="text"
+                                        id="service-type"
+                                        name="service-type"
+                                        required
+                                        defaultValue={this.props.serviceType}
+                                        onChange={(e) => { this.setState({ serviceType: e.target.value }) }}
+                                    />
+                                </label>
                                 <label htmlFor="shop-name">
                                     <span className="input-title">* Shop Name:</span>
                                     <input
@@ -57,20 +64,20 @@ class SellerForm extends Component {
                                         id="shop-name"
                                         name="shop-name"
                                         required
-                                        value={this.state.shopName}
+                                        defaultValue={this.props.curShopName}
                                         onChange={(e) => { this.setState({ shopName: e.target.value }) }}
                                     />
                                 </label>
                                 <label htmlFor="description">
                                     <span className="input-title">* Description:</span>
-                                    <input
+                                    <textarea
                                         type="textarea"
                                         id="desc"
                                         name="description"
                                         required
-                                        value={this.state.description}
+                                        defaultValue={this.props.curDesc}
                                         onChange={(e) => { this.setState({ description: e.target.value }) }}
-                                    />
+                                    ></textarea>
                                     {/* {
                             error.password &&
                             <span className='error'>{error.passwordError}</span>
@@ -83,41 +90,51 @@ class SellerForm extends Component {
                                         id="location"
                                         name="location"
                                         required
-                                        value={this.state.location}
+                                        defaultValue={this.props.currAddress}
                                         onChange={(e) => { this.setState({ location: e.target.value }) }}
                                     />
                                 </label>
                                 <label htmlFor="open-close-date">
                                     <span className="input-title">* Opening Date:</span>
-                                    <DateRangePicker
-                                        startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                                    <input
+                                        type='text'
+                                        defaultValue={this.props.curStartDate}
+                                        onChange={(e) => { this.setState({ startDate: e.target.value }) }} />
+
+                                    <span className="input-title">* Closing Date:</span>
+                                    <input
+                                        type='text'
+                                        defaultValue={this.props.curEndDate}
+                                        onChange={(e) => { this.setState({ endDate: e.target.value }) }} />
+
+                                    {/* <DateRangePicker
+                                        startDate={this.props.startDate} // momentPropTypes.momentObj or null,
                                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-                                        endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                                        endDate={this.props.endDate} // momentPropTypes.momentObj or null,
                                         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
                                         onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
                                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                                    />
+                                    /> */}
                                 </label>
                                 <label htmlFor="open-close-time">
                                     <span>*Opening Time:</span>
-                                    <input type="time" placeholder="Enter your opening time"/>
+                                    <input type="text" placeholder="Enter your opening time"
+                                        defaultValue={this.props.curStartTime}
+                                        onChange={(e) => { this.setState({ startTime: e.target.value }) }}
+                                    />
                                     {' '}
                                     <span>*Closing Time:</span>
-                                    <input type="time" placeholder="Enter your closing time"/>
-                                </label>
-                                <label htmlFor="status">
-                                    <span className="input-title">* Status</span>
-                                    <select className='select-css'>
-                                        <option value='-1'>Open</option>
-                                        <option value='1'>Closed</option>
-                                    </select>
+                                    <input type="text" placeholder="Enter your closing time"
+                                        defaultValue={this.props.curEndTime}
+                                        onChange={(e) => { this.setState({ endTime: e.target.value }) }}
+                                    />
                                 </label>
                                 <div className="form-buttons">
                                     <button className="btn btn-light" type="submit">
                                         Save
                                     </button>
-                                     {'  '}
+                                    {'  '}
                                     <button className="btn" onClick={this.props.handleCloseDialog} >
                                         Cancel
                                     </button>
