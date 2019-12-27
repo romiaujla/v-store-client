@@ -7,25 +7,38 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-top: 5em;
-  
+    max-width: 1600px;
+    margin:auto;
+    margin-top: 2em;
 }
-.side-profile{
-    flex-basis: 40%;
+.seller-page .side-profile{
+  flex-basis: 35%;
+  margin: 0px 40px;  
 }
-.side-profile img{
+.seller-page .side-profile img{
     border-radius: 3px;
 }
-.items{
+.seller-page .items{
     flex-basis: 55%;
-    border: 1px solid #e16b22;
-    padding: 3px 5px;
+    border: none;
+    padding: 20px;
+    margin: 0px;
+}
+.seller-page .container{
+  margin: 20px 0px;
+  padding: 0px;
 }
 /* End styleing side-by-side container*/
 
-
+.shop-info .description{
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.8em;
+  margin: 15px 0px;
+  font-size: 0.9em;
+}
 /* Style items */
-.grid {
+.seller-page .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 20px;
@@ -33,30 +46,30 @@
   border-radius:5px;
 }
 
-.grid > article {
+.seller-page .grid > article {
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
 }
 
-.grid > article img {
+.seller-page .grid > article img {
   max-width: 100%;
 }
 
-.grid .text {
+.seller-page .grid .text {
   padding: 20px;
   text-align: center;
 }
 
-.grid .text h3 {
+.seller-page .grid .text h3 {
   font-size: 1.4rem;
   font-family: 'Fredoka One', cursive;
 }
 
-.grid .text p {
+.seller-page .grid .text p {
   font-size: 0.9rem;
 }
 
-.grid .text p a {
+.seller-page .grid .text p a {
   text-decoration: none;
   font-weight: bold;
   color: #555;
@@ -65,25 +78,32 @@
 /* End styling items */
 
 /*Style pagination*/
-.pagination {
+.seller-page .pagination {
     display: inline-block;
   }
-  
-  .pagination a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
+
+.seller-page .pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.seller-page .pagination a.active {
+  background-color: #e16b22;
+  color: white;
+  border-radius: 5px;
+}
+
+.seller-page .pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+/* End Styling pagination*/
+
+@media only screen and (max-width: 800px){
+  .seller-page .side-profile{
+    flex-basis: 75%;
+    margin: 0px;
   }
-  
-  .pagination a.active {
-    background-color: #e16b22;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  .pagination a:hover:not(.active) {
-    background-color: #ddd;
-    border-radius: 5px;
-  }
-  /* End Styling pagination*/
+}
