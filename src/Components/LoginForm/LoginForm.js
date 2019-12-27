@@ -60,7 +60,7 @@ class LoginForm extends Component {
 
       if(!this.state.incorrectPassword && !this.state.incorrectUsername){
         TokenService.saveAuthToken(res.authToken);
-        this.context.setUserType(res.userType);
+        this.context.setUserType(res.userType, res.userTypeId);
         this.props.onLoginSuccess();
         username.value = '';
         password.value = ''
