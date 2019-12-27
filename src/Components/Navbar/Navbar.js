@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import TokenService from '../../Service/TokenService';
-
+import LoggedContext from '../../Contexts/LoggedContext';
 
 export default class Navbar extends Component {
 
+  static contextType = LoggedContext;
+
   handleLogout = () => {
     TokenService.clearAuthToken();
+    this.context.clearLoggedInUser();
     this.props.history.push('/');
   }
  
