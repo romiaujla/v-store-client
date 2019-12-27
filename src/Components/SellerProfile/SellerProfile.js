@@ -5,7 +5,7 @@ import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import './SellerProfile.css';
 
-//Seller Profile let loggedin seller see and edit their profile
+//Loggedin seller can see and edit their profile here
 
 class SellerProfile extends Component {
     static contextType = ShopContext;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Card.css';
+import { Link } from 'react-router-dom'
 
+//this is to display information in a Shop Card
 export default class Cards extends Component {
   static defaultProps = {
     shop_id: 1,
@@ -11,9 +13,11 @@ export default class Cards extends Component {
     image_url: '',
   };
 
-  handleShopCardClick = () => {
-    this.props.handleShopCardClick(this.props.shop_id);
-  };
+  // handleShopCardClick = () => {
+    
+  //    this.props.handleShopCardClick(this.props.shop_id);
+    
+  // };
 
   limitDescription = (description, length) => {
     if (description.length <= length) {
@@ -24,11 +28,11 @@ export default class Cards extends Component {
 
   render() {
     return (
-      <div
+      <Link to={`/shop/${this.props.shopId}`}
         className='card-container'
-        onClick={() => {
-          this.handleShopCardClick();
-        }}
+        // onClick={() => {
+        //   this.handleShopCardClick();
+        // }}
       >
         {!this.props.image_url ? (
           <div
@@ -50,7 +54,7 @@ export default class Cards extends Component {
           <h2>{this.props.shop_name}</h2>
           <p>{this.limitDescription(this.props.description, 100)}</p>
         </div>
-      </div>
+      </Link>
     );
   }
 }
