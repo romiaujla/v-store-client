@@ -59,7 +59,7 @@ class SellerProfile extends Component {
                         </section>
 
                         <section className='sellerForm'>
-                            <button onClick={this.toggleDialog} className="btn btn-light">Edit Your Shop</button>
+                            {/* <button onClick={this.toggleDialog} className="btn btn-light">Edit Your Shop</button> */}
                             <SellerForm
                                 isDialogShowing={this.state.isDialogShowing}
                                 handleCloseDialog={this.toggleDialog}
