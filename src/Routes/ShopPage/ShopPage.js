@@ -77,11 +77,6 @@ export default class ShopPage extends Component {
             <div className='seller-page'>
 
                 {this.renderShopInfo(shop)}
-
-
-
-
-
                 <section className='items'>
                     <h2>Our Items</h2>
                     <nav class="product-filter">
@@ -111,12 +106,7 @@ export default class ShopPage extends Component {
                                     this.renderProducts(shopProducts)
                             }
                         </main>
-
-
                     </div>
-
-
-
                 </section>
             </div>
 
