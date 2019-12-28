@@ -29,7 +29,7 @@ export default class App extends Component {
         this.context.setShops(shops);
       })
       .catch(err => {
-        console.log(err)
+        this.context.setError(err)
       })
 
   }
