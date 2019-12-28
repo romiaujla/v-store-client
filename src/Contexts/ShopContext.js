@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoggedContext from './LoggedContext';
 
 //this context is to provide the information of a single shop
 
@@ -23,6 +24,8 @@ export class ShopProvider extends Component {
             error: null,
         }
     }
+
+    static contextType = LoggedContext;
 
     // set the shop in the state
     setShop = (shop) => {
@@ -59,9 +62,8 @@ export class ShopProvider extends Component {
             setError: this.setError,
             clearError: this.clearError
         }
-
         return (
-            <ShopContext.Provider value={value}>
+            <ShopContext.Provider value={{...value, ...this.context}}>
                 {this.props.children}
             </ShopContext.Provider>
         );

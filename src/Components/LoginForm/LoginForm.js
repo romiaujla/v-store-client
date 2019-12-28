@@ -39,7 +39,6 @@ class LoginForm extends Component {
       username: username.value,
       password: password.value
     }).then(res => {
-      console.log(res.message);
       if (res.message === "Incorrect Username") {
         this.setState({
           incorrectUsername: true,
