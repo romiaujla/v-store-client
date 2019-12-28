@@ -21,18 +21,18 @@ export default class App extends Component {
     }
   }
 
-  componentDidMount = () => {
+  // componentDidMount = () => {
     
-    // get all the shops and set to context
-    ShopService.getShops()
-      .then((shops) => {
-        this.context.setShops(shops);
-      })
-      .catch(err => {
-        this.context.setError(err)
-      })
+  //   // get all the shops and set to context
+  //   ShopService.getShops()
+  //     .then((shops) => {
+  //       this.context.setShops(shops);
+  //     })
+  //     .catch(err => {
+  //       this.context.setError(err)
+  //     })
 
-  }
+  // }
 
   render() { 
     return (
