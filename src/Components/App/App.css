@@ -171,12 +171,13 @@ img {
 }
 
 /* Input Fields */
-input{
+input, textarea, select{
   padding:5px 12px;
   font-family: 'Poppins', serif;
   font-size: 1.2em;
   text-transform: lowercase;
 }
+
 
 /* Select Drop Down Styling */
 .select-css{
