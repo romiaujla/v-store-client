@@ -49,6 +49,22 @@ const ShopService = {
             .catch(err => {
                 console.log(err);
             })
+    },
+    getShopsForCategory(serviceType){
+        return fetch(`${config.API_ENDPOINT}/shops/service-type/${serviceType}`, {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(items => {
+                 console.log('items', items);
+                return items;
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 }
 
