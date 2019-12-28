@@ -12,7 +12,6 @@ class SellerForm extends Component {
         // isLoggedIn: TokenService.hasAuthToken()
     }
 
-
     render() {
         // The gray background
         const backdropStyle = {
@@ -42,20 +41,20 @@ class SellerForm extends Component {
                 <div className="dialog" style={{ modalStyle }}>
                     <form>
                         <fieldset>
-                            <legend>
-                                <h3>Edit Your Shop</h3>
-                            </legend>
                             <div className="flex">
                                 <label htmlFor="service-type">
                                     <span className="input-title">* Service Type:</span>
-                                    <input //make it dropdown menu...
-                                        type="text"
-                                        id="service-type"
-                                        name="service-type"
-                                        required
-                                        defaultValue={this.props.serviceType}
-                                        onChange={(e) => { this.setState({ serviceType: e.target.value }) }}
-                                    />
+                                    <select  onChange={(e) => { this.setState({ serviceType: e.target.value }) }}>
+                                        <option>{this.props.serviceType}</option>
+                                        <option value='food and drink'>Food & Drink</option>
+                                        <option value='body healing'>Body Healing</option>
+                                        <option value='toy and leisure'>Toy & Leisure</option>
+                                        <option value='bath and body'>Bath & Body</option>
+                                        <option value='clothing and accessories'>Clothing & Accessories</option>
+                                        <option value='home and party decor'>Home & Party Decor</option>
+                                        <option value='education'>Education</option>
+                                        <option value='others'>Others</option>
+                                    </select>
                                 </label>
                                 <label htmlFor="shop-name">
                                     <span className="input-title">* Shop Name:</span>
@@ -139,8 +138,6 @@ class SellerForm extends Component {
                                         Cancel
                                     </button>
                                 </div>
-
-
                             </div>
                         </fieldset>
 
