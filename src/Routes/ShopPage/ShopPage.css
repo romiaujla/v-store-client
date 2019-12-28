@@ -62,7 +62,7 @@
 
 .seller-page .grid .text h3 {
   font-size: 1.4rem;
-  font-family: 'Fredoka One', cursive;
+
 }
 
 .seller-page .grid .text p {
@@ -73,9 +73,28 @@
   text-decoration: none;
   font-weight: bold;
   color: #555;
-  font-family: 'Courgette', cursive;
+}
+
+.seller-page .btn{
+  padding: 10px 40px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.seller-page .shop-info .shop-name{
+  text-transform: capitalize;
+  letter-spacing: 0.06em;
+  margin-top: 15px;
 }
 /* End styling items */
+
+.seller-page .not-bold{
+  font-weight: 400;
+}
+
+.seller-page .shop-info{
+  margin-bottom: 10px;
+}
 
 /*Style pagination*/
 .seller-page .pagination {

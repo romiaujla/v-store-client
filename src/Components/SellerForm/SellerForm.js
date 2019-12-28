@@ -5,45 +5,20 @@ import 'react-dates/lib/css/_datepicker.css';
 import './SellerForm.css';
 
 class SellerForm extends Component {
+  
   state = {
     editedForm: {
       shopName: '',
       description: '',
       status: true, //true is open
       location: '',
-      openDateTime: Date(),
-      closingDateTime: Date()
     }
   };
 
   render() {
-    // The gray background
-    const backdropStyle = {
-      position: 'fixed',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      backgroundColor: 'rgba(0,0,0,0.3)',
-      padding: 50
-    };
 
-    // The modal "window"
-    const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      maxWidth: 500,
-      minHeight: 300,
-      margin: '0 auto',
-      padding: 30
-    };
-    if (!this.props.isDialogShowing) {
-      return null;
-    }
     return (
-      <div className='backdrop' style={{ backdropStyle }}>
-        <div className='dialog' style={{ modalStyle }}>
-          <form>
+          <form className='SellerForm'>
             <fieldset>
               <legend>
                 <h3>Edit Your Shop Info</h3>
@@ -140,8 +115,6 @@ class SellerForm extends Component {
               </div>
             </fieldset>
           </form>
-        </div>
-      </div>
     );
   }
 }

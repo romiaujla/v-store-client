@@ -3,11 +3,20 @@ import './ShopPage.css';
 import ShopContext from '../../Contexts/ShopContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
+import SellerForm from '../../Components/SellerForm/SellerForm';
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
 export default class ShopPage extends Component {
+  
   static contextType = ShopContext;
+
+  constructor(props){
+    super(props);
+    this.state = {
+      editingMode: false
+    }
+  }
 
   componentDidMount() {
     // get a single shop and set to context
@@ -27,6 +36,7 @@ export default class ShopPage extends Component {
   }
 
   renderShopInfo(shop) {
+  
     return (
       <section className='side-profile'>
         <div className='shop-img'>
@@ -38,18 +48,74 @@ export default class ShopPage extends Component {
           )}
         </div>
         <div className='shop-info'>
-          <h1>{shop.name}</h1>
+          <h1 className='shop-name'>{shop.shop_name}</h1>
           <h4 className='description'>{shop.description}</h4>
-          <h4>Come visit us at :</h4>
-          <span>{shop.address}</span>
-          <h4>Opening at: </h4>
-          <span>{shop.opening_time}</span>
-          <h4>Closing at: </h4>
-          <span>{shop.closing_time}</span>
+          <div className='shop-info'>
+            <h4>Come visit us at :</h4>
+            <span>{shop.address}</span>
+          </div>
+          <div className='shop-info'>
+            <h4>Opening at: </h4>
+            <span>{shop.opening_time}</span>
+          </div>
+          <div className='shop-info'>
+            <h4>Closing at: </h4>
+            <span>{shop.closing_time}</span>
+          </div>
           <h4>
-            From {moment(shop.start_date).format('MMMM Do, YYYY')} to{' '}
-            {moment(shop.end_date).format('MMMM Do, YYYY')}
+            From 
+            <span className='not-bold'> {moment(shop.start_date).format('MM/DD/YYYY')} </span> 
+            to {' '}
+            <span className='not-bold'>{moment(shop.end_date).format('MM/DD/YYYY')}</span>
           </h4>
+        </div>
+        <div>
+          {
+            this.state.editingMode
+            ?
+            <>
+            <button
+              className='btn btn-primary'
+              type='button'
+              onClick={
+                () => {
+                  this.setState({
+                    editingMode: !this.state.editingMode
+                  })
+                }
+              }
+            >
+              Save
+            </button>
+            <button
+              className='btn btn-primary'
+              type='button'
+              onClick={
+                () => {
+                  this.setState({
+                    editingMode: !this.state.editingMode
+                  })
+                }
+              }
+            >
+              Cancel
+            </button>
+            </>
+            :
+            <button
+              className='btn btn-primary'
+              type='button'
+              onClick={
+                () => {
+                  this.setState({
+                    editingMode: !this.state.editingMode
+                  })
+                }
+              }
+            >
+              Edit
+            </button>
+          }
         </div>
       </section>
     );
@@ -62,11 +128,10 @@ export default class ShopPage extends Component {
           <img
             src={require(`../../../public/images/products/${product.image_url}`)}
           />
-          <div class='text'>
+          <div className='text'>
             <h3>{product.item}</h3>
             <p>Description: {product.description}</p>
             <p>Price: $ {product.price}</p>
-            {/* <a className='btn btn-primary btn-block'>Add to cart</a> */}
           </div>
         </article>
       );
@@ -77,29 +142,17 @@ export default class ShopPage extends Component {
     const { shop, shopProducts } = this.context;
     return (
       <div className='seller-page'>
-        {this.renderShopInfo(shop)}
-
+        {
+          this.state.editingMode
+          ?
+          <SellerForm/>
+          :
+          this.renderShopInfo(shop)
+        }
         <section className='items'>
           <h2>Our Items</h2>
-          {/* <nav class='product-filter'>
-            <div class='sort'>
-              <div class='collection-sort'>
-                <label>Filter by:</label>
-                <select>
-                  <option value='/'>All Items</option>
-                </select>
-              </div>
-              <div class='collection-sort'>
-                <label>Sort by:</label>
-                <select>
-                  <option value='/'>Featured</option>
-                </select>
-              </div>
-            </div>
-          </nav> */}
-
-          <div class='container'>
-            <main class='grid'>
+          <div className='container'>
+            <main className='grid'>
               {!shopProducts ? (
                 <div className='LoadingScreen'>Loading</div>
               ) : (
