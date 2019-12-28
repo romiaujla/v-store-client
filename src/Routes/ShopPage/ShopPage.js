@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ShopPage.css';
 import ShopContext from '../../Contexts/ShopContext';
+import LoggedContext from '../../Contexts/LoggedContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
