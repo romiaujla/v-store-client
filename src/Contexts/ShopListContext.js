@@ -24,7 +24,14 @@ export class ShopListProvider extends Component {
             shops,
         })
     }
-
+    setError = (error) =>{
+        this.setState({
+            error,
+        })
+    }
+    clearError = () =>{
+        this.setState({error: null})
+    }
 
     render() { 
 
