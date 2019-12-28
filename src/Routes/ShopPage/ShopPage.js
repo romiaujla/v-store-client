@@ -3,8 +3,7 @@ import './ShopPage.css';
 import ShopContext from '../../Contexts/ShopContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
-import SellerForm from '../../Components/SellerForm/SellerForm';
-import TokenService from '../../Service/TokenService';
+import SellerForm from '../../Components/SellerForm/SellerForm'
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 

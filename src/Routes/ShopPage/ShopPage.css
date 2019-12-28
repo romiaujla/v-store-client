@@ -2,35 +2,35 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette&display=swap');
 
 /* Style side-by-side container*/
-.seller-page{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    max-width: 1600px;
-    margin:auto;
-    margin-top: 2em;
+.seller-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: auto;
+  margin-top: 2em;
 }
-.seller-page .side-profile{
+.seller-page .side-profile {
   flex-basis: 35%;
-  margin: 0px 40px;  
+  margin: 0px 40px;
 }
-.seller-page .side-profile img{
-    border-radius: 3px;
+.seller-page .side-profile img {
+  border-radius: 3px;
 }
-.seller-page .items{
-    flex-basis: 55%;
-    border: none;
-    padding: 20px;
-    margin: 0px;
+.seller-page .items {
+  flex-basis: 55%;
+  border: none;
+  padding: 20px;
+  margin: 0px;
 }
-.seller-page .container{
+.seller-page .container {
   margin: 20px 0px;
   padding: 0px;
 }
 /* End styleing side-by-side container*/
 
-.shop-info .description{
+.shop-info .description {
   font-weight: 400;
   letter-spacing: 0.05em;
   line-height: 1.8em;
@@ -43,7 +43,7 @@
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 .seller-page .grid > article {
@@ -96,10 +96,17 @@
   margin-bottom: 10px;
 }
 
+.no-items {
+  text-align: center;
+  margin-left: 200px;
+  margin-top: 150px;
+  display: flex-box;
+}
+
 /*Style pagination*/
 .seller-page .pagination {
-    display: inline-block;
-  }
+  display: inline-block;
+}
 
 .seller-page .pagination a {
   color: black;
@@ -120,9 +127,12 @@
 }
 /* End Styling pagination*/
 
-@media only screen and (max-width: 800px){
-  .seller-page .side-profile{
+@media only screen and (max-width: 800px) {
+  .seller-page .side-profile {
     flex-basis: 75%;
     margin: 0px;
+  }
+
+  .no-items {
   }
 }
