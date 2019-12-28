@@ -93,72 +93,49 @@ export default class ShopPage extends Component {
                         From {moment(shop.start_date).format('MMMM Do, YYYY')} to{' '}
                         {moment(shop.end_date).format('MMMM Do, YYYY')}
                     </h4>
+                    <button onClick={() => { this.toggleDialog(1, true) }} className="btn btn-light">Edit Your Shop</button>
+                    <section className='sellerForm'>
+                        <SellerForm
+                            isDialogShowing={this.state.isDialogShowing}
+                            handleCloseDialog={this.handleCloseDialog}
+                            currentIndex={this.state.currentIndex}
+                            serviceType={this.state.serviceType}
+                            curShopName={this.state.curShopName}
+                            curDesc={this.state.curDesc}
+                            currAddress={this.state.currAddress}
+                            curStartDate={this.state.curStartDate}
+                            curEndDate={this.state.curEndDate}
+                            curStartTime={this.state.curStartTime}
+                            curEndTime={this.state.curEndTime}
+
+                        />
+                    </section>
                 </div>
             </section>
         );
     }
 
-    renderShopInfo(shop) {
-        return (
-            <section className='side-profile'>
-                <div className="shop-img">
-                    <img src={`./images/${shop.image_url}`} alt='shop' />
-                </div>
-                <div className="shop-info">
-                    <h1>{shop.name}</h1>
-                    <h4>{shop.description}</h4>
-                    <h4>Come visit us at :</h4>
-                    <span>{shop.address}</span>
-                    <h4>Opening at: </h4>
-                    <span>{shop.opening_time}</span>
-                    <h4>Closing at: </h4>
-                    <span>{shop.closing_time}</span>
-                    <h4>From {moment(shop.start_date).format('MMMM Do, YYYY')} to {moment(shop.end_date).format('MMMM Do, YYYY')}</h4>
-                </div>
-                <button onClick={() => { this.toggleDialog(1, true) }} className="btn btn-light">Edit Your Shop</button>
-                <section className='sellerForm'>
-                    <SellerForm
-                        isDialogShowing={this.state.isDialogShowing}
-                        handleCloseDialog={this.handleCloseDialog}
-                        currentIndex={this.state.currentIndex}
-                        serviceType={this.state.serviceType}
-                        curShopName={this.state.curShopName}
-                        curDesc={this.state.curDesc}
-                        currAddress={this.state.currAddress}
-                        curStartDate={this.state.curStartDate}
-                        curEndDate={this.state.curEndDate}
-                        curStartTime={this.state.curStartTime}
-                        curEndTime={this.state.curEndTime}
-
-                    />
-                </section>
-            </section>
-        )
-    }
-
     renderProducts(products) {
-        return (
-            products.map((product) => {
-                return (
-                    <article key={product.id}>
-                        <img src={`product.image_url`} />
-                        <div class="text">
-                            <h3>{product.item}</h3>
-                            <p>{product.description}</p>
-                            <p>Price: $ {product.price}</p>
-                            <a className='btn btn-primary btn-block'>Add to cart</a>
-                        </div>
-
-                    </article>
-                )
-            })
-        )
+        return products.map(product => {
+            return (
+                <article key={product.id}>
+                    <img
+                        src={require(`../../../public/images/products/${product.image_url}`)}
+                    />
+                    <div class='text'>
+                        <h3>{product.item}</h3>
+                        <p>Description: {product.description}</p>
+                        <p>Price: $ {product.price}</p>
+                        {/* <a className='btn btn-primary btn-block'>Add to cart</a> */}
+                    </div>
+                </article>
+            );
+        });
     }
 
     render() {
-        const { shop, shopProducts } = this.context
+        const { shop, shopProducts } = this.context;
         return (
-
             <div className='seller-page'>
                 {this.renderShopInfo(shop)}
 
@@ -174,21 +151,9 @@ export default class ShopPage extends Component {
                                     this.renderProducts(shopProducts)
                             }
                         </main>
-
                     </div>
                 </section>
-
-                <div class='container'>
-                    <main class='grid'>
-                        {!shopProducts ? (
-                            <div className='LoadingScreen'>Loading</div>
-                        ) : (
-                                this.renderProducts(shopProducts)
-                            )}
-                    </main>
-                </div>
             </div>
-
         );
     }
 }
