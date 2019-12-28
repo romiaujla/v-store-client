@@ -3,19 +3,18 @@ import './ShopPage.css';
 import ShopContext from '../../Contexts/ShopContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
-import SellerForm from '../../Components/SellerForm/SellerForm'
+import SellerForm from '../../Components/SellerForm/SellerForm';
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
 export default class ShopPage extends Component {
-  
   static contextType = ShopContext;
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       editingMode: false
-    }
+    };
   }
 
   componentDidMount = () => {
@@ -33,10 +32,9 @@ export default class ShopPage extends Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   renderShopInfo(shop) {
-  
     return (
       <section className='side-profile'>
         <div className='shop-img'>
@@ -47,13 +45,9 @@ export default class ShopPage extends Component {
             />
           )}
         </div>
-        {
-          this.state.editingMode
-          ?
-          <SellerForm
-            shop={shop}
-          />
-          :
+        {this.state.editingMode ? (
+          <SellerForm shop={shop} />
+        ) : (
           <div className='shop-info'>
             <h1 className='shop-name'>{shop.shop_name}</h1>
             <h4 className='description'>{shop.description}</h4>
@@ -70,67 +64,63 @@ export default class ShopPage extends Component {
               <span>{shop.closing_time}</span>
             </div>
             <h4>
-              From 
-              <span className='not-bold'> {moment(shop.start_date).format('MM/DD/YYYY')} </span> 
-              to {' '}
-              <span className='not-bold'>{moment(shop.end_date).format('MM/DD/YYYY')}</span>
+              From
+              <span className='not-bold'>
+                {' '}
+                {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
+              </span>
+              to{' '}
+              <span className='not-bold'>
+                {moment(shop.end_date).format('MM/DD/YYYY')}
+              </span>
             </h4>
           </div>
-        }
-        {
-          // remove tokenservice.hasauthtoken
-          this.context.loggedInUser.id === parseInt(this.props.match.params.id, 10) &&
+        )}
+        {// remove tokenservice.hasauthtoken
+        this.context.loggedInUser.id ===
+          parseInt(this.props.match.params.id, 10) && (
           <div>
-          {
-            this.state.editingMode
-            ?
-            <>
-            <button
-              className='btn btn-primary'
-              type='button'
-              onClick={
-                () => {
+            {this.state.editingMode ? (
+              <>
+                <button
+                  className='btn btn-primary'
+                  type='button'
+                  onClick={() => {
+                    this.setState({
+                      editingMode: !this.state.editingMode
+                    });
+                  }}
+                >
+                  Save
+                </button>
+                <button
+                  className='btn btn-primary'
+                  type='button'
+                  onClick={() => {
+                    this.setState({
+                      editingMode: !this.state.editingMode
+                    });
+                  }}
+                >
+                  Cancel
+                </button>
+              </>
+            ) : (
+              <button
+                className='btn btn-primary'
+                type='button'
+                onClick={() => {
                   this.setState({
                     editingMode: !this.state.editingMode
-                  })
-                }
-              }
-            >
-              Save
-            </button>
-            <button
-              className='btn btn-primary'
-              type='button'
-              onClick={
-                () => {
-                  this.setState({
-                    editingMode: !this.state.editingMode
-                  })
-                }
-              }
-            >
-              Cancel
-            </button>
-            </>
-            :
-            <button
-              className='btn btn-primary'
-              type='button'
-              onClick={
-                () => {
-                  this.setState({
-                    editingMode: !this.state.editingMode
-                  })
-                }
-              }
-            >
-              Edit
-            </button>
-          }
-        </div>
-
-        }
-        </section>
+                  });
+                }}
+              >
+                Edit
+              </button>
+            )}
+          </div>
+        )}
+      </section>
     );
   }
 
@@ -152,28 +142,28 @@ export default class ShopPage extends Component {
     });
   }
 
-  renderProductsIfFound = (products) => {
-
-    if(!products.length){
+  renderProductsIfFound = products => {
+    if (!products.length) {
       return (
         <div className='no-item'>
-          <h1>No products at the moment</h1>
-          <p>Please come back later!</p>
+          <h1 className='no-item-header'>
+            No products at the moment,
+            <br />
+            please come back later!
+          </h1>
         </div>
-      )
+      );
     }
 
     return (
       <>
         <h2>Our Items</h2>
         <div className='container'>
-          <main className='grid'>
-            {this.renderProducts(products)}
-          </main>
+          <main className='grid'>{this.renderProducts(products)}</main>
         </div>
       </>
-    )
-  }
+    );
+  };
 
   render() {
     const { shop, shopProducts } = this.context;
@@ -181,13 +171,11 @@ export default class ShopPage extends Component {
       <div className='seller-page'>
         {this.renderShopInfo(shop)}
         <section className='items'>
-          {
-            !shopProducts 
-              ?
-              <div className='Loading'>Loading Products</div>
-              :
-              this.renderProductsIfFound(shopProducts)
-          }
+          {!shopProducts ? (
+            <div className='Loading'>Loading Products</div>
+          ) : (
+            this.renderProductsIfFound(shopProducts)
+          )}
         </section>
       </div>
     );

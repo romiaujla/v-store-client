@@ -62,7 +62,6 @@
 
 .seller-page .grid .text h3 {
   font-size: 1.4rem;
-
 }
 
 .seller-page .grid .text p {
@@ -75,32 +74,33 @@
   color: #555;
 }
 
-.seller-page .btn{
+.seller-page .btn {
   padding: 10px 40px;
   font-weight: 800;
   letter-spacing: 0.06em;
 }
 
-.seller-page .shop-info .shop-name{
+.seller-page .shop-info .shop-name {
   text-transform: capitalize;
   letter-spacing: 0.06em;
   margin-top: 15px;
 }
 /* End styling items */
 
-.seller-page .not-bold{
+.seller-page .not-bold {
   font-weight: 400;
 }
 
-.seller-page .shop-info{
+.seller-page .shop-info {
   margin-bottom: 10px;
 }
 
 .no-items {
-  text-align: center;
-  margin-left: 200px;
-  margin-top: 150px;
-  display: flex-box;
+  margin-top: 100px;
+}
+
+.no-item-header {
+  margin-top: 250px;
 }
 
 /*Style pagination*/
