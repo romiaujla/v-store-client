@@ -140,6 +140,7 @@ export default class ShopPage extends Component {
         <article key={product.id}>
           <img
             src={require(`../../../public/images/products/${product.image_url}`)}
+            alt='product'
           />
           <div className='text'>
             <h3>{product.item}</h3>
@@ -151,22 +152,42 @@ export default class ShopPage extends Component {
     });
   }
 
+  renderProductsIfFound = (products) => {
+
+    if(!products.length){
+      return (
+        <div className='no-item'>
+          <h1>No products at the moment</h1>
+          <p>Please come back later!</p>
+        </div>
+      )
+    }
+
+    return (
+      <>
+        <h2>Our Items</h2>
+        <div className='container'>
+          <main className='grid'>
+            {this.renderProducts(products)}
+          </main>
+        </div>
+      </>
+    )
+  }
+
   render() {
     const { shop, shopProducts } = this.context;
     return (
       <div className='seller-page'>
         {this.renderShopInfo(shop)}
         <section className='items'>
-          <h2>Our Items</h2>
-          <div className='container'>
-            <main className='grid'>
-              {!shopProducts ? (
-                <div className='LoadingScreen'>Loading</div>
-              ) : (
-                this.renderProducts(shopProducts)
-              )}
-            </main>
-          </div>
+          {
+            !shopProducts 
+              ?
+              <div className='Loading'>Loading Products</div>
+              :
+              this.renderProductsIfFound(shopProducts)
+          }
         </section>
       </div>
     );
