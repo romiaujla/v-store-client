@@ -37,6 +37,11 @@ export class ShopProvider extends Component {
             shopProducts
         })
     }
+    setError = (error) =>{
+        this.setState({
+            error
+        })
+    }
 
     clearError = () =>{
         this.setState({error: null})
