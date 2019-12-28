@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './ExplorePage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLeaf, faHamburger, faGlassWhiskey, faTshirt, faRibbon, faBookOpen, faBath, faAnchor, faMusic } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
 import './ExplorePage.css'
 import Card from '../../Components/Card/Card';
 import ShopListContext from '../../Contexts/ShopListContext';

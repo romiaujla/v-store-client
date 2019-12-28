@@ -8,7 +8,6 @@ import LoginPage from '../../Routes/LoginPage/LoginPage';
 import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
 import ShopListContext from '../../Contexts/ShopListContext';
-import ShopService from '../../Service/ShopService';
 
 export default class App extends Component {
 
