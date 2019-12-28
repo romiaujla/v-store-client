@@ -68,9 +68,16 @@
     background-color: #e16b22;
     border-radius: 5px;
     border: 1px solid #000;
-    
 }
 
+input,textarea,select{
+    padding:5px 12px;
+    font-size: 1em;
+}
+textarea{
+    height: 150px;
+    overflow: hidden;
+}
 
 @media only screen and (min-width:680px){
     .dialog form{
