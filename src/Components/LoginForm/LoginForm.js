@@ -3,6 +3,7 @@ import "./LoginForm.css";
 import AuthService from "../../Service/AuthService";
 import TokenService from "../../Service/TokenService";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import LoggedContext from '../../Contexts/LoggedContext';
 
 class LoginForm extends Component {
   // Initializing state of LoginForm Component
@@ -16,6 +17,8 @@ class LoginForm extends Component {
       error: null
     };
   }
+
+  static contextType = LoggedContext
 
   static defaultProps = {
     onLoginSuccess: () => {}
@@ -57,6 +60,7 @@ class LoginForm extends Component {
 
       if(!this.state.incorrectPassword && !this.state.incorrectUsername){
         TokenService.saveAuthToken(res.authToken);
+        this.context.setUserType(res.userType, res.userTypeId);
         this.props.onLoginSuccess();
         username.value = '';
         password.value = ''

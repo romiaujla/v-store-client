@@ -1,17 +1,5 @@
-const validUsername = (username) => {
-    const usernameErrors = {
-        emptyString: 'Username is required, must be between 6 and 20 cahracters',
-        tooLong: 'Username cannot be longer than 20 characters',
-        spaces: 'Username cannot contain spaces',
-    }
-    if(!username.trim()){
-        return usernameErrors.emptyString
-    }
-    
-    const splitUsername = username.split(" ");
-    if(splitUsername.length > 1){
-        return usernameErrors.spaces
-    }
-
-    
+// returns false is the date is not in a valid format
+export function notValidDate(date){
+    const date_regex = /^(0?[1-9]|1[0-2])\/(0?[1-9]|1\d|2\d|3[01])\/(15|18|17|16|19|20|21|23|24|25)\d{2}$/ ;
+    return date.length < 8 || !date_regex.test(date);
 }
