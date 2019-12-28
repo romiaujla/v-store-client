@@ -73,6 +73,7 @@
 input,textarea,select{
     padding:5px 12px;
     font-size: 1em;
+    text-transform: none;
 }
 textarea{
     height: 150px;
