@@ -59,7 +59,22 @@ const ShopService = {
         })
             .then(res => res.json())
             .then(items => {
-                 console.log('items', items);
+                return items;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    },
+    getShopsForSearchBox(term){
+        return fetch(`${config.API_ENDPOINT}/shops/search/${term}`, {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+            .then(res => res.json())
+            .then(items => {
+                console.log('search items', items)
                 return items;
             })
             .catch(err => {
