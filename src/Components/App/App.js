@@ -43,7 +43,18 @@ export default class App extends Component {
         <Route exact path='/signup' component={SignUpPage} />
         <Route exact path='/login' component={LoginPage} />
         <Route exact path='/explore' component={ExplorePage} />
-        <Route exact path='/shop/:id' component={ShopPage} />
+        <Route 
+          exact 
+          path='/shop/:id' 
+          component={ (rprops) => {
+            const {id} = rprops.match.params;
+            const shop = this.context.getShopById(id)[0];
+            return <ShopPage 
+              rprops={rprops} 
+              shop={shop}
+            />
+          }} 
+        />
       </Switch>
     </div>
     );
