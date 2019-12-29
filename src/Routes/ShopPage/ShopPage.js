@@ -26,12 +26,12 @@ export default class ShopPage extends Component {
         this.context.setShop(shop);
       })
       .catch(err => {
-        console.log(err);
+       this.context.setError(err);
       });
     ShopService.getShopProducts(id)
       .then(this.context.setShopProducts)
       .catch(err => {
-        console.log(err);
+        this.context.setError(err);
       });
   };
 
@@ -159,7 +159,7 @@ export default class ShopPage extends Component {
         {this.renderShopInfo(shop)}
         <section className='items'>
           {!shopProducts ? (
-            <div className='Loading'>Loading Products</div>
+            <div className='LoadingScreen'>Loading Products</div>
           ) : (
             this.renderProductsIfFound(shopProducts)
           )}

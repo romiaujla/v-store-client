@@ -13,6 +13,11 @@ export default class Navbar extends Component {
     this.context.clearLoggedInUser();
     this.props.history.push('/');
   }
+
+  handleClickShop = () =>{
+    const { loggedInUser } = this.context;
+    this.props.history.push(`/shop/${loggedInUser.id}`);
+  }
  
 
   render() {
@@ -40,12 +45,21 @@ export default class Navbar extends Component {
             {
               TokenService.hasAuthToken()
               ?
-                <button 
+              <div>
+              <button
                   className='link-btn'
-                  onClick={()=>{this.handleLogout()}}
-                >
+                  onClick={()=>{this.handleLogout()}}>
+                
                   Logout
                 </button>
+                <button 
+                  className='link-btn'
+                onClick = {() => this.handleClickShop()}
+                >
+                  Your Shop
+                </button>
+                </div>
+                
               : 
                 <Link to='/login'>Login</Link>   
             }
