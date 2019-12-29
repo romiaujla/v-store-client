@@ -47,8 +47,6 @@ class SellerForm extends Component {
       closing_time      
     } = e.target
 
-    console.log(this.context.shops);
-
 
     this.props.closeEditForm();
   }
