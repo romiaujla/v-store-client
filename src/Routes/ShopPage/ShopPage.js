@@ -4,6 +4,7 @@ import ShopContext from '../../Contexts/ShopContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
+import TokenSerivce from '../../Service/TokenService';
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -34,6 +35,12 @@ export default class ShopPage extends Component {
       });
   };
 
+  handleCloseEditForm = () => {
+    this.setState({
+      editingMode: false
+    })
+  }
+
   renderShopInfo(shop) {
     return (
       <section className='side-profile'>
@@ -46,7 +53,10 @@ export default class ShopPage extends Component {
           )}
         </div>
         {this.state.editingMode ? (
-          <SellerForm shop={shop} />
+          <SellerForm 
+            shop={shop} 
+            closeEditForm={()=>{this.handleCloseEditForm()}}
+          />
         ) : (
           <div className='shop-info'>
             <h1 className='shop-name'>{shop.shop_name}</h1>
@@ -77,35 +87,13 @@ export default class ShopPage extends Component {
           </div>
         )}
         {// remove tokenservice.hasauthtoken
-        this.context.loggedInUser.id ===
-          parseInt(this.props.match.params.id, 10) && (
-          <div>
-            {this.state.editingMode ? (
-              <>
-                <button
-                  className='btn btn-primary'
-                  type='button'
-                  onClick={() => {
-                    this.setState({
-                      editingMode: !this.state.editingMode
-                    });
-                  }}
-                >
-                  Save
-                </button>
-                <button
-                  className='btn btn-primary'
-                  type='button'
-                  onClick={() => {
-                    this.setState({
-                      editingMode: !this.state.editingMode
-                    });
-                  }}
-                >
-                  Cancel
-                </button>
-              </>
-            ) : (
+        (
+          (this.context.loggedInUser.id === parseInt(this.props.match.params.id, 10) 
+          || TokenSerivce.hasAuthToken())
+          && !this.state.editingMode
+        )
+        && (
+          <div>  
               <button
                 className='btn btn-primary'
                 type='button'
@@ -117,7 +105,6 @@ export default class ShopPage extends Component {
               >
                 Edit
               </button>
-            )}
           </div>
         )}
       </section>
