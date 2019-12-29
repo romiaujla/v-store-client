@@ -88,8 +88,7 @@ export default class ShopPage extends Component {
         )}
         {// remove tokenservice.hasauthtoken
         (
-          (this.context.loggedInUser.id === parseInt(this.props.match.params.id, 10) 
-          || TokenSerivce.hasAuthToken())
+          (this.context.loggedInUser.id === parseInt(this.props.match.params.id, 10))
           && !this.state.editingMode
         )
         && (
