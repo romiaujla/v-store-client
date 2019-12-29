@@ -4,7 +4,6 @@ import ShopContext from '../../Contexts/ShopContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
-import TokenSerivce from '../../Service/TokenService';
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -14,30 +13,57 @@ export default class ShopPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editingMode: false
+      shop: {},
+      products: [],
+      editingMode: false,
+      showEditButton: false,
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     // get a single shop and set to context
     const { id } = this.props.match.params;
-    ShopService.getShop(id)
+    
+    await ShopService.getShop(id)
       .then(shop => {
-        this.context.setShop(shop);
+        this.setState({
+          shop,
+        })
       })
       .catch(err => {
-       this.context.setError(err);
-      });
-    ShopService.getShopProducts(id)
-      .then(this.context.setShopProducts)
+       console.log(err);
+    });
+
+    await ShopService.getShopProducts(id)
+      .then((products) => {
+        this.setState({
+          products,
+        })
+      })
       .catch(err => {
-        this.context.setError(err);
-      });
+        console.log(err);
+    });
+
+    if(this.context.loggedInUser.id === this.props.match.params.id){
+      this.setState({
+        showEditButton: true
+      })
+    } 
+
   };
 
   handleCloseEditForm = () => {
     this.setState({
       editingMode: false
+    })
+  }
+
+  handleEditShop = (shop) => {
+    this.setState({
+      shop: {
+        ...this.state.shop,
+        ...shop,
+      }
     })
   }
 
@@ -56,6 +82,7 @@ export default class ShopPage extends Component {
           <SellerForm 
             shop={shop} 
             closeEditForm={()=>{this.handleCloseEditForm()}}
+            editShop={(shop) => {this.handleEditShop(shop)}}
           />
         ) : (
           <div className='shop-info'>
@@ -86,12 +113,8 @@ export default class ShopPage extends Component {
             </h4>
           </div>
         )}
-        {// remove tokenservice.hasauthtoken
-        (
-          (this.context.loggedInUser.id === parseInt(this.props.match.params.id, 10))
-          && !this.state.editingMode
-        )
-        && (
+        {
+          (this.state.showEditButton && !this.state.editingMode) && (
           <div>  
               <button
                 className='btn btn-primary'
@@ -152,15 +175,15 @@ export default class ShopPage extends Component {
   };
 
   render() {
-    const { shop, shopProducts } = this.context;
+    const { shop, products } = this.state;
     return (
       <div className='seller-page'>
         {this.renderShopInfo(shop)}
         <section className='items'>
-          {!shopProducts ? (
+          {!products ? (
             <div className='LoadingScreen'>Loading Products</div>
           ) : (
-            this.renderProductsIfFound(shopProducts)
+            this.renderProductsIfFound(products)
           )}
         </section>
       </div>
