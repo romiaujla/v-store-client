@@ -24,7 +24,6 @@ export class LoggedProvider extends React.Component {
     }
 
     setUserType = (type, id) => {
-        console.log(this.state);
         this.setState({
             loggedInUser: {
                 id,
