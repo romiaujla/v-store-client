@@ -18,16 +18,23 @@ class ExplorePage extends Component {
   }
   
   componentDidMount = async () => {
-    console.log(`Explore Page mounting`);
+
+    // Do a get shops request only if the
+    // context is empty
     // get all the shops and set to context
-    await ShopService.getShops()
+    if(arrayIsEmpty(this.context.shops)){
+      await ShopService.getShops()
       .then((shops) => {
         this.context.setShops(shops);
       })
       .catch(err => {
         this.context.setError(err)
-      })   
-       
+      })
+    }  
+    this.displayAllShops();
+  }
+
+  displayAllShops = () => {
     this.setState({
       shops: this.context.getShops()
     })
@@ -40,6 +47,12 @@ class ExplorePage extends Component {
   }
 
   search = (term) => {
+    
+    // if the term is left empty display all shops in the store
+    if(!term.trim()){
+      this.displayAllShops();
+      return;
+    }
 
     ShopService.getShopsForSearchBox(term)
       .then(shops => {
