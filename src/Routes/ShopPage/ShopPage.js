@@ -13,43 +13,39 @@ export default class ShopPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shop: {},
+      rprops: {},
+      shop: props.shop || {},
       products: [],
       editingMode: false,
       showEditButton: false,
     };
   }
 
-  componentDidMount = async () => {
+  renderInitialPageState = () => {
     // get a single shop and set to context
-    const { id } = this.props.match.params;
-    
-    await ShopService.getShop(id)
-      .then(shop => {
-        this.setState({
-          shop,
-        })
-      })
-      .catch(err => {
-       console.log(err);
-    });
+    const { id } = this.props.rprops.match.params;
 
-    await ShopService.getShopProducts(id)
+    ShopService.getShopProducts(id)
       .then((products) => {
         this.setState({
           products,
         })
+        console.log(products);
+        console.log(id);
       })
       .catch(err => {
         console.log(err);
     });
 
-    if(this.context.loggedInUser.id === this.props.match.params.id){
+    if(this.context.loggedInUser.id === this.props.rprops.match.params.id){
       this.setState({
         showEditButton: true
       })
     } 
+  }
 
+  componentDidMount = () => {
+    this.renderInitialPageState();
   };
 
   handleCloseEditForm = () => {
@@ -65,6 +61,11 @@ export default class ShopPage extends Component {
         ...shop,
       }
     })
+
+    // change data in the database
+    ShopService.updateShop(shop, this.props.rprops.match.params.id)
+      .then(res => res)
+      .catch(err => {console.log(err)});
   }
 
   renderShopInfo(shop) {
@@ -175,7 +176,8 @@ export default class ShopPage extends Component {
   };
 
   render() {
-    const { shop, products } = this.state;
+    const {products =[] } = this.state;
+    const {shop = {}} = this.props;
     return (
       <div className='seller-page'>
         {this.renderShopInfo(shop)}
