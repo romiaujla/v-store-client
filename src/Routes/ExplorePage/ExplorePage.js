@@ -13,35 +13,35 @@ class ExplorePage extends Component {
   static contextType = ShopListContext;
 
   state= {
-    term: ''
+    term: '',
+    shops: [],
   }
+  
   componentDidMount = () => {
     // get all the shops and set to context
-    ShopService.getShops()
-      .then((shops) => {
-        this.context.setShops(shops);
-      })
-      .catch(err => {
-        this.context.setError(err)
-      })
-
+    this.setState({
+      shops: this.context.getShops()
+    })
   }
 
-  // handleShopCardClick = (shopId) => {
-  //   this.props.history.push(`/shop/${shopId}`);
-  // }
-
   getShopsForCategory = (serviceType) => {
-    ShopService.getShopsForCategory(serviceType)
-      .then(this.context.setShops)
-      .catch(this.context.error)
+    this.setState({
+      shops:this.context.getShopsByCategory(serviceType)
+    })
   }
 
   search = (term) => {
-    // console.log(term)
+
     ShopService.getShopsForSearchBox(term)
-      .then(this.context.setShops)
-      .catch(this.context.error)
+      .then(shops => {
+        console.log(shops);
+        this.setState({
+          shops,
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   renderShopCards = (shops) => {
@@ -62,7 +62,7 @@ class ExplorePage extends Component {
 
   render() {
 
-    const { shops } = this.context
+    const { shops } = this.state
     return (
 
       <div className='Explore_Page'>
