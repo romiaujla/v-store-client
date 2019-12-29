@@ -14,12 +14,6 @@ export default class Navbar extends Component {
     this.props.history.push('/');
   }
 
-  handleClickShop = () =>{
-    const { loggedInUser } = this.context;
-    this.props.history.push(`/shop/${loggedInUser.id}`);
-  }
- 
-
   render() {
     return (
       <nav className='navbar bg-dark'>
@@ -49,16 +43,12 @@ export default class Navbar extends Component {
               <button
                   className='link-btn'
                   onClick={()=>{this.handleLogout()}}>
-                
                   Logout
-                </button>
-                <button 
-                  className='link-btn'
-                onClick = {() => this.handleClickShop()}
-                >
-                  Your Shop
-                </button>
-                </div>
+              </button>
+              <Link to={`/shop/${this.context.loggedInUser.id}`}>
+                Your Shop
+              </Link>
+              </div>
                 
               : 
                 <Link to='/login'>Login</Link>   
