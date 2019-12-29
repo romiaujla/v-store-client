@@ -17,8 +17,17 @@ class ExplorePage extends Component {
     shops: [],
   }
   
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    console.log(`Explore Page mounting`);
     // get all the shops and set to context
+    await ShopService.getShops()
+      .then((shops) => {
+        this.context.setShops(shops);
+      })
+      .catch(err => {
+        this.context.setError(err)
+      })   
+       
     this.setState({
       shops: this.context.getShops()
     })
