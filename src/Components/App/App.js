@@ -8,6 +8,7 @@ import LoginPage from '../../Routes/LoginPage/LoginPage';
 import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
 import ShopListContext from '../../Contexts/ShopListContext';
+import ShopService from '../../Service/ShopService';
 
 export default class App extends Component {
 
@@ -20,18 +21,18 @@ export default class App extends Component {
     }
   }
 
-  // componentDidMount = () => {
+  componentDidMount = () => {
     
-  //   // get all the shops and set to context
-  //   ShopService.getShops()
-  //     .then((shops) => {
-  //       this.context.setShops(shops);
-  //     })
-  //     .catch(err => {
-  //       this.context.setError(err)
-  //     })
+    // get all the shops and set to context
+    ShopService.getShops()
+      .then((shops) => {
+        this.context.setShops(shops);
+      })
+      .catch(err => {
+        this.context.setError(err)
+      })
 
-  // }
+  }
 
   render() { 
     return (
