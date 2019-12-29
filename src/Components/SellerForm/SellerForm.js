@@ -16,6 +16,7 @@ class SellerForm extends Component {
   static defautProps = {
     shop: {},
     closeEditForm: () => {},
+    editShop: () => {},
   }
 
   static contextType = ShopListContext;
@@ -47,8 +48,24 @@ class SellerForm extends Component {
       closing_time      
     } = e.target
 
+    const newShopData = {
+      service_type: service_type.value,
+      shop_name: shop_name.value,
+      description: description.value,
+      address: address.value,
+      start_date: start_date.value,
+      end_date: end_date.value,
+      opening_time: opening_time.value,
+      closing_time: closing_time.value,      
+    }
 
+    // Updating all the shop in the list of all the shops
+    this.context.setShopById(newShopData, this.state.shop.id);
+    //update the state of the shop on the ShopPage.js 
+    this.props.editShop(newShopData);
+    // we close the edit form
     this.props.closeEditForm();
+
   }
 
   render() {
@@ -155,11 +172,11 @@ class SellerForm extends Component {
                 }}
               />
             </label>
-            <label htmlFor='closing_date'>
+            <label htmlFor='end_date'>
               <span className="input-title">* Closing Date:</span>
               <input
-                name='closing_date'
-                id='closing_date'
+                name='end_date'
+                id='end_date'
                 type="text"
                 defaultValue={shop.end_date}
                 onChange={e => {
