@@ -30,6 +30,8 @@ export class LoggedProvider extends React.Component {
                 type
             }
         })
+        localStorage.setItem("userId", id);
+        localStorage.setItem("userType", type);
     }
 
     // could have been done by using the setUserType = (type, id) => {}, 
@@ -42,10 +44,21 @@ export class LoggedProvider extends React.Component {
                 type: ''
             }
         })
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userType");
     }
 
-    componentDidMount = () => {
-        
+    componentDidMount = () => {        
+        if(localStorage.getItem("userId")){
+            if(this.state.loggedInUser.id !== localStorage.getItem("userId")){
+                this.setState({
+                    loggedInUser: {
+                        id: localStorage.getItem("userId"),
+                        type: localStorage.getItem("userType"),
+                    }
+                })
+            }
+        }
     }
 
     render(){
