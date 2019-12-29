@@ -39,8 +39,7 @@ export class ShopListProvider extends Component {
     }
 
     getShopById = (id) => {
-        // == only so that even if id is a string it will match and send the result
-        return this.state.shops.filter(shop => shop.id == id)
+        return this.state.shops.filter(shop => shop.id === parseInt(id, 10));
     }
 
     setShopById = (shop, id) => {
