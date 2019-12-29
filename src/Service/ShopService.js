@@ -1,4 +1,5 @@
 import config from '../config';
+import TokenService from './TokenService';
 
 const ShopService = {
     getShops() {
@@ -26,7 +27,6 @@ const ShopService = {
         })
             .then(res => res.json())
             .then(shop => {
-                // console.log(shop);
                 return shop;
             })
             .catch(err => {
@@ -42,7 +42,6 @@ const ShopService = {
         })
             .then(res => res.json())
             .then(products => {
-                // console.log('products', products);
                 return products;
             })
             .catch(err => {
@@ -73,11 +72,32 @@ const ShopService = {
         })
             .then(res => res.json())
             .then(items => {
-                console.log('search items', items)
                 return items;
             })
             .catch(err => {
                 console.log(err);
+            })
+    },
+    updateShop(newShopData, id){
+        return fetch(`${config.API_ENDPOINT}/shops/${id}`, {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                Authorization: `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({
+                service_type: newShopData.service_type,
+                shop_name: newShopData.shop_name,
+                description: newShopData.description,
+                address: newShopData.address,
+                start_date: newShopData.start_date,
+                end_date: newShopData.end_date,
+                opening_time: newShopData.opening_time,
+                closing_time: newShopData.closing_time, 
+            })
+        })
+            .catch((error) => {
+                console.log(error);
             })
     }
 }
