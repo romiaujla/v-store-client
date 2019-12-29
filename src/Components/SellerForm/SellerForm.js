@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "react-dates/initialize";
-// import { DateRangePicker } from 'react-dates';
 import "react-dates/lib/css/_datepicker.css";
 import "./SellerForm.css";
 import { formatDate } from "../../HelperFunctions/HelperFunctions";
+import ShopListContext from '../../Contexts/ShopListContext';
 
 //only renders Seller Edit Form in the ShopPage component when logged in as Seller
 
@@ -15,7 +15,10 @@ class SellerForm extends Component {
 
   static defautProps = {
     shop: {},
+    closeEditForm: () => {},
   }
+
+  static contextType = ShopListContext;
 
   componentDidMount = () => {
     let {start_date, end_date} = this.props.shop;
@@ -30,17 +33,39 @@ class SellerForm extends Component {
     })
   }
 
+  handleEditingShop = (e) => {
+    e.preventDefault();
+    
+    const {
+      service_type,
+      shop_name,
+      description,
+      address,
+      start_date,
+      end_date,
+      opening_time,
+      closing_time      
+    } = e.target
+
+    console.log(this.context.shops);
+
+
+    this.props.closeEditForm();
+  }
+
   render() {
 
     const {shop} = this.state;
 
     return (
-      <form className="SellerForm">
+      <form className="SellerForm" onSubmit={(e) => {this.handleEditingShop(e)}}>
         <fieldset>
           <div className="flex">
-            <label htmlFor="service-type">
+            <label htmlFor="service_type">
               <span className="input-title">* Service Type:</span>
               <select
+                name='service_type'
+                id='service_type'
                 onChange={e => {
                   this.setState({ 
                     shop: {
@@ -63,12 +88,12 @@ class SellerForm extends Component {
                 <option value="others">Others</option>
               </select>
             </label>
-            <label htmlFor="shop-name">
+            <label htmlFor="shop_name">
               <span className="input-title">* Shop Name:</span>
               <input
                 type="text"
-                id="shop-name"
-                name="shop-name"
+                id="shop_name"
+                name="shop_name"
                 required
                 defaultValue={shop.shop_name}
                 onChange={e => {
@@ -106,7 +131,7 @@ class SellerForm extends Component {
                 id="address"
                 name="address"
                 required
-                value={shop.address}
+                defaultValue={shop.address}
                 onChange={e => {
                   this.setState({
                     shop: {
@@ -117,11 +142,13 @@ class SellerForm extends Component {
                 }}
               />
             </label>
-            <label htmlFor="open-close-date">
+            <label htmlFor="start_date">
               <span className="input-title">* Opening Date:</span>
               <input
+                name='start_date'
+                id='start_date'
                 type="text"
-                value={shop.start_date}
+                defaultValue={shop.start_date}
                 onChange={e => {
                   this.setState({
                     ...shop,
@@ -129,11 +156,14 @@ class SellerForm extends Component {
                   });
                 }}
               />
-
+            </label>
+            <label htmlFor='closing_date'>
               <span className="input-title">* Closing Date:</span>
               <input
+                name='closing_date'
+                id='closing_date'
                 type="text"
-                value={shop.end_date}
+                defaultValue={shop.end_date}
                 onChange={e => {
                   this.setState({
                     ...shop,
@@ -142,12 +172,14 @@ class SellerForm extends Component {
                 }}
               />
             </label>
-            <label htmlFor="open-close-time">
+            <label htmlFor="opening_time">
               <span>*Opening Time:</span>
               <input
                 type="time"
+                name='opening_time'
+                id='opening_time'
                 placeholder="Enter your opening time"
-                value={shop.opening_time}
+                defaultValue={shop.opening_time}
                 onChange={e => {
                   this.setState({
                     ...shop,
@@ -155,11 +187,15 @@ class SellerForm extends Component {
                   });
                 }}
               />{" "}
+            </label>
+            <label htmlFor='closing_time'>
               <span>*Closing Time:</span>
               <input
+                id='closing_time'
+                name='closing_time'
                 type="time"
                 placeholder="Enter your closing time"
-                value={shop.closing_time}
+                defaultValue={shop.closing_time}
                 onChange={e => {
                   this.setState({
                     ...shop,
@@ -169,6 +205,21 @@ class SellerForm extends Component {
               />
             </label>
           </div>
+          <div>
+                <button
+                  className='btn btn-primary'
+                  type='submit'
+                >
+                  Save
+                </button>
+                <button
+                  className='btn btn-primary'
+                  type='button'
+                  onClick={() => {this.props.closeEditForm()}}
+                >
+                  Cancel
+                </button>
+            </div>
         </fieldset>
       </form>
     );
