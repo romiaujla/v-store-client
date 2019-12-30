@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './SignupForm.css';
-import AuthApiService from '../../Service/AuthService';
+// import AuthApiService from '../../Service/AuthService';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
+import RegistrationService from '../../Service/RegistrationService';
 
 export default class Signup extends Component {
 
@@ -11,8 +14,10 @@ export default class Signup extends Component {
       password: '',
       user_type: -1,
       error: true,
-      usernameLengthError: true,
-      passwordLengthError: true,
+      usernameErrorTags: {
+        length: true,
+        alreadyExists: true,
+      }
     }
   }
 
@@ -31,18 +36,51 @@ export default class Signup extends Component {
     }
   }
 
-  renderAddShopForm = (userCredentials) => {
-    console.log(`Add shop`, userCredentials);
-  }
-
-  renderAddBuyerForm = (userCredentials) => {
-    console.log(`Add Buyer`, userCredentials);
-  }
-
   handleUserNameChange = (username) => {
+    
+    // username.trim() - So the user is not able to add 
+    // spaces to the begining and the end of the username
     this.setState({
-      username,
+      username: username.trim(),
     })
+
+    // check the length of the username
+    if(username.length >= 6 && username.length <=72){
+      this.setState({
+        usernameErrorTags: {
+          ...this.state.usernameErrorTags,
+          hasValue: false,
+          length: false
+        }
+      })
+
+      RegistrationService.checkUserExistance(username)
+        .then((user) => {
+          if(user && user.length){
+            this.setState({
+              usernameErrorTags: {
+                ...this.state.usernameErrorTags,
+                alreadyExists: true,
+              }
+            })
+          } else {
+            this.setState({
+              usernameErrorTags: {
+                ...this.state.usernameErrorTags,
+                alreadyExists: false,
+              }
+            })
+          }
+        })
+
+    }else{
+      this.setState({
+        usernameErrorTags: {
+          ...this.state.usernameErrorTags,
+          length: true
+        }
+      })
+    }
   }
 
   handlePasswordChange = (password) => {
@@ -56,81 +94,56 @@ export default class Signup extends Component {
       user_type,
     })
   }
-  
-  render() {
 
-    const {error} = this.state;
+  renderErrorTag = (error, tag) => {
     const redColor = {
       color: 'red',
+      fontSize: '0.8em',
     }
     const greenColor = {
       color: 'green',
+      fontSize: '0.8em',
     }
 
+    return error 
+      ?(
+        <span className='errorTag' style={redColor}>
+          <FontAwesomeIcon icon={faTimes} /> {tag}
+        </span>
+      )
+      :(
+        <span className='errorTag' style={greenColor}>
+          <FontAwesomeIcon icon={faCheck} /> {tag}
+        </span>
+      )
+
+  }
+  
+  render() {
+
+    const {usernameErrorTags} = this.state;
 
     return (
+
       <form className='SignUpForm' onSubmit={(e) => {this.handleRegisteration(e)}}>
           <fieldset>
-            <legend>
-              <h3>Register</h3>
-            </legend>
-            <div className="flex">
-              <label htmlFor="username">
-                <span className="input-title">* Username:</span>
-                <input 
-                  type="text" 
-                  id="username" 
-                  name="username" 
-                  required 
-                  value={this.state.username}
-                  onChange = {(e) => {this.handleUserNameChange(e.target.value)}}
-                />
-                <span className='error' style={redColor}>Username cannot be empty</span>
-                <span className='error' style={greenColor}>Username must be 6 to 72 characters long</span>
-              </label>
-              <label htmlFor="password">
-                <span className="input-title">* Password:</span>
+            <legend>Register</legend>
+            <div className='flex'>
+              <label htmlFor='username'>
+                <span className='label-tag'>*Username</span>
                 <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  value={this.state.password}
-                  onChange = {(e) => {this.handlePasswordChange(e.target.value)}}
+                  type='text'
+                  name='username'
+                  id='username'
+                  value={this.state.username}
+                  onChange={(e) => {this.handleUserNameChange(e.target.value)}}
                 />
-                {
-                  error.password &&
-                    <span className='error'>{error.passwordError}</span>
-                }
+                {this.renderErrorTag(usernameErrorTags.length, 'Username must be between 6 and 72 characters in length')}
+                {this.renderErrorTag(usernameErrorTags.alreadyExists, 'Username already taken')}
               </label>
-              <label htmlFor="user_type">
-                <span className="input-title">* Select Account Type</span>
-                <select 
-                  className='select-css'
-                  name='user_type'
-                  id='user_type'
-                  defaultValue={this.state.user_type}
-                  onChange={(e) => {this.handleUserTypeChange(e.target.value)}}
-                >
-                  <option value='-1'>Select One Type</option>
-                  <option value='shop'>Seller</option>
-                  <option value='buyer'>Buyer</option>
-                </select>
-                {
-                  error.user_type &&
-                    <span className='error'>{error.user_typeError}</span>
-                }
-              </label>
-              <button 
-                className="btn btn-light" 
-                type="submit"
-                disabled={this.state.disableButton}
-              >
-                Register
-              </button>
             </div>
           </fieldset>
-        </form>
+      </form>
     );
   }
 
