@@ -48,13 +48,17 @@ export default class ShopPage extends Component {
     this.renderInitialPageState();
   };
 
+  
   handleCloseEditForm = () => {
+    // Change the state to close the edit form
     this.setState({
       editingMode: false
     })
   }
 
+
   handleEditShop = (shop) => {
+    // change state of the current shop
     this.setState({
       shop: {
         ...this.state.shop,
