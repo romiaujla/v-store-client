@@ -12,18 +12,13 @@ class AddProductForm extends Component {
   };
 
   static defautProps = {
-    product: {},
-    closeEditForm: () => { },
-    editProduct: () => { },
+    handleAddProduct: () => { },
+    handleCloseAddProdForm: () => { },
   }
 
   static contextType = ShopContext;
 
-  componentDidMount = () => {
-
-  }
-
-  handleSubmitProduct = e => {
+  handleAddProduct = e => {
     e.preventDefault();
 
     const {
@@ -33,16 +28,17 @@ class AddProductForm extends Component {
       price
     } = e.target
 
-    if(!img_url.value.trim()){
-      img_url.value = 'product.png'
+    let imageURL = img_url.value;
+    if(!imageURL.trim()){
+      imageURL = 'product.png'
     }
 
     const shopId  = this.context.loggedInUser.id
 
-    ShopService.postNewProduct(shopId , img_url.value, product_name.value, description.value, price.value)
-      .then((product) =>
-         this.context.addProduct(product)
-      )
+    ShopService.postNewProduct(shopId , imageURL, product_name.value, description.value, price.value)
+      .then((product) => {
+        this.props.handleAddProduct(product)
+      })
       .then(() => {
         product_name.value = ''
         description.value = ''
@@ -61,7 +57,7 @@ class AddProductForm extends Component {
     // const { product } = this.state;
 
     return (
-      <form className="ProductForm" onSubmit={this.handleSubmitProduct}>
+      <form className="ProductForm" onSubmit={this.handleAddProduct}>
         <fieldset>
           <div className="flex">
             <label htmlFor='img_url'>

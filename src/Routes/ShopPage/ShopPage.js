@@ -62,7 +62,7 @@ export default class ShopPage extends Component {
     })
   }
 
-  handleCloseEditProdForm = () => {
+  handleCloseAddProdForm = () => {
     this.setState({
       editingProductMode: false
     })
@@ -87,6 +87,15 @@ export default class ShopPage extends Component {
   toggleAddproduct = () =>{
     this.setState({
       editingProductMode: !this.state.editingProductMode
+    })
+  }
+
+  handleAddProduct = (product) => {
+    this.setState({
+      products: [
+        ...this.state.products,
+        product,
+      ]
     })
   }
 
@@ -221,8 +230,8 @@ export default class ShopPage extends Component {
           )}
           {this.state.editingProductMode &&
             <AddProductForm
-              handleAddProduct={this.handleAddproduct}
-              handleCloseEditProdForm={this.handleCloseEditProdForm}
+              handleAddProduct={(prod) => {this.handleAddProduct(prod)}}
+              handleCloseEditProdForm={this.handleCloseAddProdForm}
             />
           }
 
