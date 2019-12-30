@@ -1,0 +1,12 @@
+.SignUpForm .error{
+    color:red;
+    font-size: 0.8em;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.SignUpForm button:disabled{
+    cursor: initial;
+    background-color: silver;
+}
