@@ -4,6 +4,7 @@ import './SignupForm.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
 import RegistrationService from '../../Service/RegistrationService';
+import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
 
 export default class Signup extends Component {
 
@@ -12,11 +13,25 @@ export default class Signup extends Component {
     this.state = {
       username: '',
       password: '',
+      rePassword: '',
       user_type: -1,
       error: true,
+      isEnabled: true,
       usernameErrorTags: {
         length: true,
         alreadyExists: true,
+      },
+      passwordErrorTag: {
+        length: true,
+      },
+      rePasswordErrorTag: {
+        match: true,
+      },
+      userTypeErrorTag: {
+        noSelection: true,
+      },
+      nameErrorTag: {
+        length: true,
       }
     }
   }
@@ -49,7 +64,6 @@ export default class Signup extends Component {
       this.setState({
         usernameErrorTags: {
           ...this.state.usernameErrorTags,
-          hasValue: false,
           length: false
         }
       })
@@ -77,7 +91,8 @@ export default class Signup extends Component {
       this.setState({
         usernameErrorTags: {
           ...this.state.usernameErrorTags,
-          length: true
+          length: true,
+          alreadyExists: true,
         }
       })
     }
@@ -87,14 +102,97 @@ export default class Signup extends Component {
     this.setState({
       password,
     })
+
+    if(password.length >= 6 && password.length <= 72){
+      this.setState({
+        passwordErrorTag: {
+          ...this.state.passwordErrorTag,
+          length: false,
+        }
+      })
+    } else{
+      this.setState({
+        passwordErrorTag: {
+          ...this.state.passwordErrorTag,
+          length: true,
+        }
+      })
+    }
   }
 
   handleUserTypeChange = (user_type) => {
     this.setState({
       user_type,
     })
+
+    if(user_type === -1){
+      this.setState({
+        userTypeErrorTag: {
+          ...this.state.userTypeErrorTag,
+          noSelection: true,
+        }
+      })
+    }else{
+      this.setState({
+        userTypeErrorTag:{
+          ...this.state.userTypeErrorTag,
+          noSelection: false,
+        }
+      })
+
+      if(user_type === 'shop'){
+        console.log(`renderShopProfileFields`);
+      }else{
+        console.log(`renderBuyerProfileFields`);
+      }
+    }
+    
   }
 
+  handleReEnteringPasswordChange = (rePassword) => {
+    this.setState({
+      rePassword,
+    })
+
+    if(rePassword === this.state.password){
+      this.setState({
+        rePasswordErrorTag: {
+          ...this.state.rePasswordErrorTag,
+          match: false,
+        }
+      })
+    }else{
+      this.setState({
+        rePasswordErrorTag: {
+          ...this.state.rePasswordErrorTag,
+          match: true,
+        }
+      })
+    }
+  }
+
+  handeNameChange = (name) => {
+    this.setState({
+      name,
+    })
+
+    if(name.trim().length > 0){
+      this.setState({
+        nameErrorTag: {
+          ...this.state.nameErrorTag,
+          length: false,
+        }
+      })
+    }else{
+      this.setState({
+        nameErrorTag: {
+          ...this.state.nameErrorTag,
+          length: true,
+        }
+      })
+    }
+  }
+    
   renderErrorTag = (error, tag) => {
     const redColor = {
       color: 'red',
@@ -116,12 +214,17 @@ export default class Signup extends Component {
           <FontAwesomeIcon icon={faCheck} /> {tag}
         </span>
       )
-
   }
   
   render() {
 
-    const {usernameErrorTags} = this.state;
+    const {
+      usernameErrorTags, 
+      passwordErrorTag, 
+      rePasswordErrorTag, 
+      userTypeErrorTag, 
+      nameErrorTag
+    } = this.state;
 
     return (
 
@@ -141,6 +244,68 @@ export default class Signup extends Component {
                 {this.renderErrorTag(usernameErrorTags.length, 'Username must be between 6 and 72 characters in length')}
                 {this.renderErrorTag(usernameErrorTags.alreadyExists, 'Username already taken')}
               </label>
+              <label htmlFor='password'>
+                <span className='label-tag'>*Password</span>
+                <input
+                  type='password'
+                  name='password'
+                  id='password'
+                  value={this.state.password}
+                  onChange={(e) => {this.handlePasswordChange(e.target.value)}}
+                />
+                {this.renderErrorTag(passwordErrorTag.length, 'Password must be between 6 and 72 character in length')}
+              </label>
+              <label htmlFor='rePassword'>
+                <span className='label-tag'>*Re-enter Password</span>
+                <input
+                  type='password'
+                  name='rePassword'
+                  id='rePassword'
+                  value={this.state.rePassword}
+                  onChange={(e) => {this.handleReEnteringPasswordChange(e.target.value)}}
+                />
+                {this.renderErrorTag(rePasswordErrorTag.match, 'Passwords do not match')}
+              </label>
+              <label htmlFor='user_type'>
+                <span className='label-tag'>*Account Type</span>
+                <select
+                  name='user_type'
+                  className='select-css'
+                  id='user_type'
+                  value={this.state.user_type}
+                  onChange={(e) => {this.handleUserTypeChange(e.target.value)}}
+                >
+                  <option value='-1'>Select an account type</option>
+                  <option value='shop'>Seller</option>
+                  <option value='buyer'>Buyer</option>
+                </select>
+                {this.renderErrorTag(userTypeErrorTag.noSelection, 'Select one account type to continue')}
+              </label>
+              {
+                this.state.user_type === 'shop' && 
+                  <AddShopProfileFields />
+              }
+              {
+                this.state.user_type === 'buyer' &&
+                  (<>
+                    <label htmlFor='name'>
+                      <span className='label-tag'>Name</span>
+                      <input
+                        type='text'
+                        name='name'
+                        id='name'
+                        defaultValue={this.state.name}
+                        onChange={(e)=>{this.handeNameChange(e.target.value)}}
+                      />
+                      {this.renderErrorTag(nameErrorTag.length, 'Name is required')}
+                    </label>
+                    <button
+                      type='submit'
+                      className='btn primary-btn'
+                      disabled={!this.state.isEnabled}
+                    >Register</button>
+                  </>)
+              }
             </div>
           </fieldset>
       </form>
