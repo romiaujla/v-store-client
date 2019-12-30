@@ -9,13 +9,13 @@ const ShopService = {
                 "content-type": "application/json"
             }
         })
-        .then(res => res.json())
-        .then(shops => {
-            return shops;
-        })
-        .catch(err => {
-            console.log(err);
-        })
+            .then(res => res.json())
+            .then(shops => {
+                return shops;
+            })
+            .catch(err => {
+                console.log(err);
+            })
     },
 
     getShop(id) {
@@ -33,7 +33,7 @@ const ShopService = {
                 console.log(err);
             })
     },
-    getShopProducts(shopId){
+    getShopProducts(shopId) {
         return fetch(`${config.API_ENDPOINT}/shops/${shopId}/products`, {
             method: 'GET',
             headers: {
@@ -48,7 +48,7 @@ const ShopService = {
                 console.log(err);
             })
     },
-    getShopsForCategory(serviceType){
+    getShopsForCategory(serviceType) {
         return fetch(`${config.API_ENDPOINT}/shops/service-type/${serviceType}`, {
             method: 'GET',
             headers: {
@@ -63,7 +63,7 @@ const ShopService = {
                 console.log(err);
             })
     },
-    getShopsForSearchBox(term){
+    getShopsForSearchBox(term) {
         return fetch(`${config.API_ENDPOINT}/shops/search/${term}`, {
             method: 'GET',
             headers: {
@@ -78,7 +78,7 @@ const ShopService = {
                 console.log(err);
             })
     },
-    updateShop(newShopData, id){
+    updateShop(newShopData, id) {
         return fetch(`${config.API_ENDPOINT}/shops/${id}`, {
             method: "PATCH",
             headers: {
@@ -93,12 +93,35 @@ const ShopService = {
                 start_date: newShopData.start_date,
                 end_date: newShopData.end_date,
                 opening_time: newShopData.opening_time,
-                closing_time: newShopData.closing_time, 
+                closing_time: newShopData.closing_time,
             })
         })
             .catch((error) => {
                 console.log(error);
             })
+    },
+    postNewProduct(shop_id, img_url, item, description, price) {
+        return fetch(`${config.API_ENDPOINT}/products`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+            body: JSON.stringify({
+                shop_id,
+                img_url,
+                item,
+                description,
+                price,
+            }),
+        })
+            .then(res => {
+                console.log(res)
+               return (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json() 
+            }
+            )
     }
 }
 
