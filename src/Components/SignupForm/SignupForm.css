@@ -10,3 +10,7 @@
     cursor: initial;
     background-color: silver;
 }
+
+.SignUpForm .label-tag{
+    margin-bottom: 5px;
+}
