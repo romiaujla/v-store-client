@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SignupForm.css';
+import AuthApiService from '../../Service/AuthService';
 
 export default class Signup extends Component {
 
@@ -22,7 +23,28 @@ export default class Signup extends Component {
       password: e.target.password.value,
       user_type: e.target.user_type.value,
     }
-    console.log(user);
+    
+    if(user_type !== 'shop'){
+      AuthApiService.postUser({
+        user,
+      })
+        .then((user) => {
+          e.target.username.value = ''
+          e.target.password.value = ''
+          e.target.user_type.value = ''
+        })
+        .catch((res) => {
+          this.setState({
+            error: res.error
+          })
+        })
+    }else{
+      this.renderShopProfile();
+    }
+  }
+
+  renderShopProfile = () => {
+    
   }
   
   render() {
