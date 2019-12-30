@@ -96,6 +96,8 @@ export default class Signup extends Component {
         }
       })
     }
+
+    this.buttonStateChange();
   }
 
   handlePasswordChange = (password) => {
@@ -118,6 +120,8 @@ export default class Signup extends Component {
         }
       })
     }
+
+    this.buttonStateChange();
   }
 
   handleUserTypeChange = (user_type) => {
@@ -146,7 +150,7 @@ export default class Signup extends Component {
         console.log(`renderBuyerProfileFields`);
       }
     }
-    
+    this.buttonStateChange(); 
   }
 
   handleReEnteringPasswordChange = (rePassword) => {
@@ -169,6 +173,7 @@ export default class Signup extends Component {
         }
       })
     }
+    this.buttonStateChange();
   }
 
   handeNameChange = (name) => {
@@ -191,6 +196,7 @@ export default class Signup extends Component {
         }
       })
     }
+    this.buttonStateChange();
   }
     
   renderErrorTag = (error, tag) => {
@@ -214,6 +220,41 @@ export default class Signup extends Component {
           <FontAwesomeIcon icon={faCheck} /> {tag}
         </span>
       )
+  }
+
+  buttonStateChange = () => {
+    const {
+      usernameErrorTags, 
+      passwordErrorTag, 
+      rePasswordErrorTag, 
+      userTypeErrorTag, 
+      nameErrorTag
+    } = this.state;
+
+    let errors = [
+      usernameErrorTags.length,
+      usernameErrorTags.alreadyExists,
+      passwordErrorTag.length,
+      rePasswordErrorTag.match,
+      userTypeErrorTag.noSelection,
+    ]
+
+    if(this.state.user_type === 'buyer'){
+      errors = [
+        ...this.state.errors,
+        nameErrorTag.length,
+      ]
+    }
+
+    if(errors.includes(true)){
+      this.setState({
+        isEnabled: false,
+      })
+    }else{
+      this.setState({
+        isEnabled: true,
+      })
+    }
   }
   
   render() {
