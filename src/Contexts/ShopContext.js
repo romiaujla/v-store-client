@@ -9,6 +9,7 @@ const ShopContext = React.createContext({
     error: null,
     setShop: () => {},
     setShopProducts: () => {},
+    addProduct: () => {},
     setError: () => {},
     clearError: () => {},
     
@@ -40,6 +41,16 @@ export class ShopProvider extends Component {
             shopProducts
         })
     }
+
+    //add new product to shop
+    addProduct = (product) => {
+        console.log(this.state.shopProducts)
+        console.log(product)
+        this.setShopProducts(
+            [...this.state.shopProducts, product]
+        )
+    }
+
     setError = (error) =>{
         this.setState({
             error
@@ -59,6 +70,7 @@ export class ShopProvider extends Component {
             error: this.state.error,
             setShop: this.setShop,
             setShopProducts: this.setShopProducts,
+            addProduct: this.addProduct,
             setError: this.setError,
             clearError: this.clearError
         }

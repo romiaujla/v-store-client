@@ -45,7 +45,7 @@ export default class Navbar extends Component {
                   onClick={()=>{this.handleLogout()}}>
                   Logout
               </button>
-              <Link to={`/shop/${this.context.loggedInUser.id}`}>
+              <Link to={`/shop/${localStorage.getItem('userId')}`}>
                 Your Shop
               </Link>
               </div>

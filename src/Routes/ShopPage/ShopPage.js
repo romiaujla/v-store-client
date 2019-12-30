@@ -4,6 +4,7 @@ import ShopContext from '../../Contexts/ShopContext';
 import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
+import AddProductForm from '../../Components/AddProductForm/AddProductForm';
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -16,8 +17,11 @@ export default class ShopPage extends Component {
       rprops: {},
       shop: props.shop || {},
       products: [],
+      product: {},
       editingMode: false,
+      editingProductMode: false,
       showEditButton: false,
+      showAddProductButton: false,
     };
   }
 
@@ -35,13 +39,15 @@ export default class ShopPage extends Component {
       })
       .catch(err => {
         console.log(err);
-    });
+      });
 
-    if(this.context.loggedInUser.id === this.props.rprops.match.params.id){
+    if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
       this.setState({
-        showEditButton: true
+        showEditButton: true,
+        showAddProductButton: true
       })
-    } 
+    }
+   
   }
 
   componentDidMount = () => {
@@ -56,6 +62,11 @@ export default class ShopPage extends Component {
     })
   }
 
+  handleCloseEditProdForm = () => {
+    this.setState({
+      editingProductMode: false
+    })
+  }
 
   handleEditShop = (shop) => {
     // change state of the current shop
@@ -69,8 +80,16 @@ export default class ShopPage extends Component {
     // change data in the database
     ShopService.updateShop(shop, this.props.rprops.match.params.id)
       .then(res => res)
-      .catch(err => {console.log(err)});
+      .catch(err => { console.log(err) });
   }
+
+
+  toggleAddproduct = () =>{
+    this.setState({
+      editingProductMode: !this.state.editingProductMode
+    })
+  }
+
 
   renderShopInfo(shop) {
     return (
@@ -84,43 +103,43 @@ export default class ShopPage extends Component {
           )}
         </div>
         {this.state.editingMode ? (
-          <SellerForm 
-            shop={shop} 
-            closeEditForm={()=>{this.handleCloseEditForm()}}
-            editShop={(shop) => {this.handleEditShop(shop)}}
+          <SellerForm
+            shop={shop}
+            closeEditForm={() => { this.handleCloseEditForm() }}
+            editShop={(shop) => { this.handleEditShop(shop) }}
           />
         ) : (
-          <div className='shop-info'>
-            <h1 className='shop-name'>{shop.shop_name}</h1>
-            <h4 className='description'>{shop.description}</h4>
             <div className='shop-info'>
-              <h4>Come visit us at :</h4>
-              <span>{shop.address}</span>
-            </div>
-            <div className='shop-info'>
-              <h4>Opening at: </h4>
-              <span>{shop.opening_time}</span>
-            </div>
-            <div className='shop-info'>
-              <h4>Closing at: </h4>
-              <span>{shop.closing_time}</span>
-            </div>
-            <h4>
-              From
+              <h1 className='shop-name'>{shop.shop_name}</h1>
+              <h4 className='description'>{shop.description}</h4>
+              <div className='shop-info'>
+                <h4>Come visit us at :</h4>
+                <span>{shop.address}</span>
+              </div>
+              <div className='shop-info'>
+                <h4>Opening at: </h4>
+                <span>{shop.opening_time}</span>
+              </div>
+              <div className='shop-info'>
+                <h4>Closing at: </h4>
+                <span>{shop.closing_time}</span>
+              </div>
+              <h4>
+                From
               <span className='not-bold'>
-                {' '}
-                {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
-              </span>
-              to{' '}
-              <span className='not-bold'>
-                {moment(shop.end_date).format('MM/DD/YYYY')}
-              </span>
-            </h4>
-          </div>
-        )}
+                  {' '}
+                  {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
+                </span>
+                to{' '}
+                <span className='not-bold'>
+                  {moment(shop.end_date).format('MM/DD/YYYY')}
+                </span>
+              </h4>
+            </div>
+          )}
         {
           (this.state.showEditButton && !this.state.editingMode) && (
-          <div>  
+            <div>
               <button
                 className='btn btn-primary'
                 type='button'
@@ -132,28 +151,33 @@ export default class ShopPage extends Component {
               >
                 Edit
               </button>
-          </div>
-        )}
+            </div>
+          )}
       </section>
     );
   }
 
   renderProducts(products) {
-    return products.map(product => {
-      return (
-        <article key={product.id}>
-          <img
-            src={require(`../../../public/images/products/${product.image_url}`)}
-            alt='product'
-          />
-          <div className='text'>
-            <h3>{product.item}</h3>
-            <p>Description: {product.description}</p>
-            <p>Price: $ {product.price}</p>
-          </div>
-        </article>
-      );
-    });
+    return (
+      products.map(product => {
+        return (
+          <article key={product.id}>
+            <img
+              src={require(`../../../public/images/products/${product.image_url}`)}
+              alt='product'
+            />
+            <div className='text'>
+              <h3>{product.item}</h3>
+              <p>Description: {product.description}</p>
+              <p>Price: $ {product.price}</p>
+            </div>
+          </article>
+        )
+      })
+    )
+
+
+
   }
 
   renderProductsIfFound = products => {
@@ -180,17 +204,34 @@ export default class ShopPage extends Component {
   };
 
   render() {
-    const {products =[] } = this.state;
-    const {shop = {}} = this.props;
+    const { products = [] } = this.state;
+    const { shop = {} } = this.props;
     return (
       <div className='seller-page'>
         {this.renderShopInfo(shop)}
         <section className='items'>
+          {this.state.showAddProductButton && (
+            <button
+              className='btn btn-primary'
+              type='button'
+              onClick={this.toggleAddproduct}
+            >
+              Add Product
+              </button>
+          )}
+          {this.state.editingProductMode &&
+            <AddProductForm
+              handleAddProduct={this.handleAddproduct}
+              handleCloseEditProdForm={this.handleCloseEditProdForm}
+            />
+          }
+
           {!products ? (
             <div className='LoadingScreen'>Loading Products</div>
           ) : (
-            this.renderProductsIfFound(products)
-          )}
+
+              this.renderProductsIfFound(products)
+            )}
         </section>
       </div>
     );
