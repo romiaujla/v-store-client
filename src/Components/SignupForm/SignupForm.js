@@ -24,27 +24,37 @@ export default class Signup extends Component {
       user_type: e.target.user_type.value,
     }
     
-    if(user_type !== 'shop'){
-      AuthApiService.postUser({
-        user,
-      })
-        .then((user) => {
-          e.target.username.value = ''
-          e.target.password.value = ''
-          e.target.user_type.value = ''
-        })
-        .catch((res) => {
-          this.setState({
-            error: res.error
-          })
-        })
+    if(user.user_type === 'shop'){
+      this.renderAddShopForm(user);
     }else{
-      this.renderShopProfile();
+      this.renderAddBuyerForm(user);
     }
   }
 
-  renderShopProfile = () => {
-    
+  renderAddShopForm = (userCredentials) => {
+    console.log(`Add shop`, userCredentials);
+  }
+
+  renderAddBuyerForm = (userCredentials) => {
+    console.log(`Add Buyer`, userCredentials);
+  }
+
+  handleUserNameChange = (username) => {
+    this.setState({
+      username,
+    })
+  }
+
+  handlePasswordChange = (password) => {
+    this.setState({
+      password,
+    })
+  }
+
+  handleUserTypeChange = (user_type) => {
+    this.setState({
+      user_type,
+    })
   }
   
   render() {
@@ -76,7 +86,7 @@ export default class Signup extends Component {
                   onChange = {(e) => {this.handleUserNameChange(e.target.value)}}
                 />
                 <span className='error' style={redColor}>Username cannot be empty</span>
-                <span className='error' style={redColor}>Username must be 6 to 72 characters long</span>
+                <span className='error' style={greenColor}>Username must be 6 to 72 characters long</span>
               </label>
               <label htmlFor="password">
                 <span className="input-title">* Password:</span>

@@ -34,8 +34,6 @@ export default class ShopPage extends Component {
         this.setState({
           products,
         })
-        console.log(products);
-        console.log(id);
       })
       .catch(err => {
         console.log(err);
