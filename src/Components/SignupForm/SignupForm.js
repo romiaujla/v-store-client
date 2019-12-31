@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import RegistrationService from '../../Service/RegistrationService';
 import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
-import AuthApiService from '../../Service/AuthService';
 
 export default class SignUpForm extends Component {
   static defaultProps = {
@@ -43,7 +42,7 @@ export default class SignUpForm extends Component {
 
   handleRegisteration = e => {
     e.preventDefault();
-    const user = {
+    let user = {
       username: e.target.username.value,
       password: e.target.password.value,
       user_type: e.target.user_type.value
@@ -51,14 +50,19 @@ export default class SignUpForm extends Component {
 
     if (user.user_type === 'shop') {
     } else {
+      user = {
+        ...user,
+        name: e.target.name.value,
+      }
       this.addBuyer(user);
     }
   };
 
   addBuyer = credentials => {
-    return AuthApiService.postUser(credentials)
-      .then(user => {
-        this.props.onRegistrationSuccess();
+    return RegistrationService.registerBuyer(credentials)
+      .then(registeredUser => {
+        console.log(credentials.username, credentials.password);
+        this.props.onRegistrationSuccess(credentials.username, credentials.password);
       })
       .catch(err => {
         console.log(err);
@@ -154,12 +158,6 @@ export default class SignUpForm extends Component {
           noSelection: false
         }
       });
-
-      if (user_type === 'shop') {
-        console.log(`renderShopProfileFields`);
-      } else {
-        console.log(`renderBuyerProfileFields`);
-      }
     }
     this.buttonStateChange();
   };

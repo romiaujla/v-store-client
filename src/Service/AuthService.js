@@ -45,28 +45,6 @@ const AuthApiService = {
         .catch(err => err);
     },
 
-    // create the buyer
-    postBuyer(buyer){
-        return fetch(`${config.API_ENDPOINT}/buyer`, {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(buyer)
-        })
-        .then(res => {
-            if(!res.ok){
-                return res.json().then(e => {
-                    throw new Error(e.error.message)
-                })
-            }
-
-            return res.json();
-        })
-        .then(res => res)
-        .catch(err => err);
-    },
-
     // create the shop
     postShop(shop){
         return fetch(`${config.API_ENDPOINT}/shop`, {
