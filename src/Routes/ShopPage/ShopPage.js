@@ -93,6 +93,16 @@ export default class ShopPage extends Component {
     });
   };
 
+  handleDeleteProduct = product_id => {
+    console.log(product_id, this.state.shop.id);
+    const updatedProducts = this.state.products.filter(
+      product => product.id !== product_id
+    );
+    this.setState({
+      products: [...updatedProducts]
+    });
+  };
+
   renderShopInfo(shop) {
     return (
       <section className='side-profile'>
@@ -174,7 +184,14 @@ export default class ShopPage extends Component {
             <h3>{product.item}</h3>
             <p>Description: {product.description}</p>
             <p>Price: $ {product.price}</p>
-            <button className='btn-delete'>Delete</button>
+            <button
+              onClick={() => {
+                this.handleDeleteProduct(product.id);
+              }}
+              className='btn-delete'
+            >
+              Delete
+            </button>
           </div>
         </article>
       );
