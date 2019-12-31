@@ -1,8 +1,7 @@
-import React, { Component } from './node_modules/react';
+import React, { Component } from 'react';
 import './SignUpForm.css';
-// import AuthApiService from '../../Service/AuthService';
-import {FontAwesomeIcon} from './node_modules/@fortawesome/react-fontawesome';
-import {faTimes, faCheck} from './node_modules/@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
 import RegistrationService from '../../Service/RegistrationService';
 import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
 import AuthApiService from '../../Service/AuthService';
