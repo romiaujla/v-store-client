@@ -101,6 +101,7 @@ export default class ShopPage extends Component {
     this.setState({
       products: [...updatedProducts]
     });
+    ShopService.deleteProduct(product_id, this.state.shop.id);
   };
 
   renderShopInfo(shop) {
