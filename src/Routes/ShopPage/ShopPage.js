@@ -21,7 +21,8 @@ export default class ShopPage extends Component {
       editingMode: false,
       editingProductMode: false,
       showEditButton: false,
-      showAddProductButton: false
+      showAddProductButton: false,
+      showDeleteButton: false,
     };
   }
 
@@ -42,7 +43,8 @@ export default class ShopPage extends Component {
     if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
       this.setState({
         showEditButton: true,
-        showAddProductButton: true
+        showAddProductButton: true,
+        showDeleteButton: true,
       });
     }
   };
@@ -185,14 +187,17 @@ export default class ShopPage extends Component {
             <h3>{product.item}</h3>
             <p>Description: {product.description}</p>
             <p>Price: $ {product.price}</p>
-            <button
+            {
+              this.state.showDeleteButton &&
+              <button
               onClick={() => {
                 this.handleDeleteProduct(product.id);
               }}
               className='btn-delete'
-            >
-              Delete
-            </button>
+              >
+                Delete
+              </button>
+            }
           </div>
         </article>
       );
