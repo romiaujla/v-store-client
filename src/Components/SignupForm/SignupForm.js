@@ -12,6 +12,9 @@ export default class SignUpForm extends Component {
     onRegistrationSuccess: () => {},
   }
 
+
+  // hey there adding a comment to check renaming of the file
+  
   constructor(props){
     super(props);
     this.state = {
