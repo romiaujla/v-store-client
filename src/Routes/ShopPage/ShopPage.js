@@ -21,7 +21,7 @@ export default class ShopPage extends Component {
       editingMode: false,
       editingProductMode: false,
       showEditButton: false,
-      showAddProductButton: false,
+      showAddProductButton: false
     };
   }
 
@@ -30,10 +30,10 @@ export default class ShopPage extends Component {
     const { id } = this.props.rprops.match.params;
 
     ShopService.getShopProducts(id)
-      .then((products) => {
+      .then(products => {
         this.setState({
-          products,
-        })
+          products
+        });
       })
       .catch(err => {
         console.log(err);
@@ -43,60 +43,55 @@ export default class ShopPage extends Component {
       this.setState({
         showEditButton: true,
         showAddProductButton: true
-      })
+      });
     }
-   
-  }
+  };
 
   componentDidMount = () => {
     this.renderInitialPageState();
   };
 
-  
   handleCloseEditForm = () => {
     // Change the state to close the edit form
     this.setState({
       editingMode: false
-    })
-  }
+    });
+  };
 
   handleCloseAddProdForm = () => {
     this.setState({
       editingProductMode: false
-    })
-  }
+    });
+  };
 
-  handleEditShop = (shop) => {
+  handleEditShop = shop => {
     // change state of the current shop
     this.setState({
       shop: {
         ...this.state.shop,
-        ...shop,
+        ...shop
       }
-    })
+    });
 
     // change data in the database
     ShopService.updateShop(shop, this.props.rprops.match.params.id)
       .then(res => res)
-      .catch(err => { console.log(err) });
-  }
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
-
-  toggleAddproduct = () =>{
+  toggleAddproduct = () => {
     this.setState({
       editingProductMode: !this.state.editingProductMode
-    })
-  }
+    });
+  };
 
-  handleAddProduct = (product) => {
+  handleAddProduct = product => {
     this.setState({
-      products: [
-        ...this.state.products,
-        product,
-      ]
-    })
-  }
-
+      products: [...this.state.products, product]
+    });
+  };
 
   renderShopInfo(shop) {
     return (
@@ -112,79 +107,78 @@ export default class ShopPage extends Component {
         {this.state.editingMode ? (
           <SellerForm
             shop={shop}
-            closeEditForm={() => { this.handleCloseEditForm() }}
-            editShop={(shop) => { this.handleEditShop(shop) }}
+            closeEditForm={() => {
+              this.handleCloseEditForm();
+            }}
+            editShop={shop => {
+              this.handleEditShop(shop);
+            }}
           />
         ) : (
+          <div className='shop-info'>
+            <h1 className='shop-name'>{shop.shop_name}</h1>
+            <h4 className='description'>{shop.description}</h4>
             <div className='shop-info'>
-              <h1 className='shop-name'>{shop.shop_name}</h1>
-              <h4 className='description'>{shop.description}</h4>
-              <div className='shop-info'>
-                <h4>Come visit us at :</h4>
-                <span>{shop.address}</span>
-              </div>
-              <div className='shop-info'>
-                <h4>Opening at: </h4>
-                <span>{shop.opening_time}</span>
-              </div>
-              <div className='shop-info'>
-                <h4>Closing at: </h4>
-                <span>{shop.closing_time}</span>
-              </div>
-              <h4>
-                From
+              <h4>Come visit us at :</h4>
+              <span>{shop.address}</span>
+            </div>
+            <div className='shop-info'>
+              <h4>Opening at: </h4>
+              <span>{shop.opening_time}</span>
+            </div>
+            <div className='shop-info'>
+              <h4>Closing at: </h4>
+              <span>{shop.closing_time}</span>
+            </div>
+            <h4>
+              From
               <span className='not-bold'>
-                  {' '}
-                  {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
-                </span>
-                to{' '}
-                <span className='not-bold'>
-                  {moment(shop.end_date).format('MM/DD/YYYY')}
-                </span>
-              </h4>
-            </div>
-          )}
-        {
-          (this.state.showEditButton && !this.state.editingMode) && (
-            <div>
-              <button
-                className='btn btn-primary'
-                type='button'
-                onClick={() => {
-                  this.setState({
-                    editingMode: !this.state.editingMode
-                  });
-                }}
-              >
-                Edit
-              </button>
-            </div>
-          )}
+                {' '}
+                {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
+              </span>
+              to{' '}
+              <span className='not-bold'>
+                {moment(shop.end_date).format('MM/DD/YYYY')}
+              </span>
+            </h4>
+          </div>
+        )}
+        {this.state.showEditButton && !this.state.editingMode && (
+          <div>
+            <button
+              className='btn btn-primary'
+              type='button'
+              onClick={() => {
+                this.setState({
+                  editingMode: !this.state.editingMode
+                });
+              }}
+            >
+              Edit
+            </button>
+          </div>
+        )}
       </section>
     );
   }
 
   renderProducts(products) {
-    return (
-      products.map(product => {
-        return (
-          <article key={product.id}>
-            <img
-              src={require(`../../../public/images/products/${product.image_url}`)}
-              alt='product'
-            />
-            <div className='text'>
-              <h3>{product.item}</h3>
-              <p>Description: {product.description}</p>
-              <p>Price: $ {product.price}</p>
-            </div>
-          </article>
-        )
-      })
-    )
-
-
-
+    return products.map(product => {
+      return (
+        <article key={product.id}>
+          <img
+            src={require(`../../../public/images/products/${product.image_url}`)}
+            alt='product'
+          />
+          <div className='text'>
+            <h3>{product.item}</h3>
+            <p>Description: {product.description}</p>
+            <p>Price: $ {product.price}</p>
+            <button className='btn-delete'>Delete</button>
+          </div>
+        </article>
+      );
+    });
   }
 
   renderProductsIfFound = products => {
@@ -224,21 +218,22 @@ export default class ShopPage extends Component {
               onClick={this.toggleAddproduct}
             >
               Add Product
-              </button>
+            </button>
           )}
-          {this.state.editingProductMode &&
+          {this.state.editingProductMode && (
             <AddProductForm
-              handleAddProduct={(prod) => {this.handleAddProduct(prod)}}
+              handleAddProduct={prod => {
+                this.handleAddProduct(prod);
+              }}
               handleCloseEditProdForm={this.handleCloseAddProdForm}
             />
-          }
+          )}
 
           {!products ? (
             <div className='LoadingScreen'>Loading Products</div>
           ) : (
-
-              this.renderProductsIfFound(products)
-            )}
+            this.renderProductsIfFound(products)
+          )}
         </section>
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Card.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 //this is to display information in a Shop Card
 export default class Cards extends Component {
@@ -9,14 +9,14 @@ export default class Cards extends Component {
     shop_name: 'Flip Flop USA',
     service_type: 'Clothing and accessories',
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image_url: '',
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    image_url: ''
   };
 
   // handleShopCardClick = () => {
-    
+
   //    this.props.handleShopCardClick(this.props.shop_id);
-    
+
   // };
 
   limitDescription = (description, length) => {
@@ -28,7 +28,8 @@ export default class Cards extends Component {
 
   render() {
     return (
-      <Link to={`/shop/${this.props.shopId}`}
+      <Link
+        to={`/shop/${this.props.shopId}`}
         className='card-container'
         // onClick={() => {
         //   this.handleShopCardClick();
