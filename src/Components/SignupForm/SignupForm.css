@@ -10,3 +10,12 @@
     cursor: initial;
     background-color: silver;
 }
+
+.SignUpForm .label-tag{
+    margin-bottom: 5px;
+}
+
+.SignUpForm #name,
+.SignUpForm input[type='password ']{
+    text-transform: none !important;
+}
