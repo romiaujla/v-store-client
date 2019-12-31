@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
-import './SignupForm.css';
+import React, { Component } from './node_modules/react';
+import './SignUpForm.css';
 // import AuthApiService from '../../Service/AuthService';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from './node_modules/@fortawesome/react-fontawesome';
+import {faTimes, faCheck} from './node_modules/@fortawesome/free-solid-svg-icons'
 import RegistrationService from '../../Service/RegistrationService';
 import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
+import AuthApiService from '../../Service/AuthService';
 
-export default class Signup extends Component {
+export default class SignUpForm extends Component {
+
+  static defaultProps = {
+    onRegistrationSuccess: () => {},
+  }
 
   constructor(props){
     super(props);
@@ -45,10 +50,18 @@ export default class Signup extends Component {
     }
     
     if(user.user_type === 'shop'){
-      this.renderAddShopForm(user);
+      
     }else{
-      this.renderAddBuyerForm(user);
+      this.addBuyer(user);
     }
+  }
+
+  addBuyer = (credentials) => {
+    return AuthApiService.postUser(credentials)
+      .then((user) => {
+        this.props.onRegistrationSuccess();
+      })
+      .catch((err) => {console.log(err)});
   }
 
   handleUserNameChange = (username) => {
@@ -241,7 +254,7 @@ export default class Signup extends Component {
 
     if(this.state.user_type === 'buyer'){
       errors = [
-        ...this.state.errors,
+        ...errors,
         nameErrorTag.length,
       ]
     }

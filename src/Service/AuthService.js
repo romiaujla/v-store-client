@@ -24,7 +24,7 @@ const AuthApiService = {
     },
 
     // creating a user
-    postCarrier(user){
+    postUser(user){
         return fetch(`${config.API_ENDPOINT}/user`, {
             method: "POST",
             headers: {

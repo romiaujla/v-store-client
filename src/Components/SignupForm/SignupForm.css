@@ -17,5 +17,5 @@
 
 .SignUpForm #name,
 .SignUpForm input[type='password ']{
-    text-transform: none;
+    text-transform: none !important;
 }
