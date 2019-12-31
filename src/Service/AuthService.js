@@ -24,7 +24,7 @@ const AuthApiService = {
     },
 
     // creating a user
-    postCarrier(user){
+    postUser(user){
         return fetch(`${config.API_ENDPOINT}/user`, {
             method: "POST",
             headers: {
@@ -43,7 +43,51 @@ const AuthApiService = {
         })
         .then(res => res)
         .catch(err => err);
-    }
+    },
+
+    // create the buyer
+    postBuyer(buyer){
+        return fetch(`${config.API_ENDPOINT}/buyer`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(buyer)
+        })
+        .then(res => {
+            if(!res.ok){
+                return res.json().then(e => {
+                    throw new Error(e.error.message)
+                })
+            }
+
+            return res.json();
+        })
+        .then(res => res)
+        .catch(err => err);
+    },
+
+    // create the shop
+    postShop(shop){
+        return fetch(`${config.API_ENDPOINT}/shop`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(shop)
+        })
+        .then(res => {
+            if(!res.ok){
+                return res.json().then(e => {
+                    throw new Error(e.error.message)
+                })
+            }
+
+            return res.json();
+        })
+        .then(res => res)
+        .catch(err => err);
+    },
 }
 
 export default AuthApiService;
