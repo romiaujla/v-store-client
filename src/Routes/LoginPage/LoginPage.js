@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from '../../Components/LoginForm/LoginForm';
 import Backdrop from '../../Components/Backdrop/Backdrop';
+import './LoginPage.css';
 
 class LoginPage extends Component {
     constructor(props) {
