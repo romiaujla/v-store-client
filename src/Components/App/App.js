@@ -31,7 +31,10 @@ export default class App extends Component {
       .catch(err => {
         this.context.setError(err)
       })
-
+    // ShopService.getShop(id)
+    // .then((shop) => {
+    //   this.context.setShop(shop)
+    // }).catch(err => console.log(err))
   }
 
   render() { 

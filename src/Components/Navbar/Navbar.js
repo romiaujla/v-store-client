@@ -14,6 +14,7 @@ export default class Navbar extends Component {
     this.props.history.push('/');
   }
 
+
   render() {
     return (
       <nav className='navbar bg-dark'>
@@ -48,6 +49,10 @@ export default class Navbar extends Component {
               <Link to={`/shop/${localStorage.getItem('userId')}`}>
                 Your Shop
               </Link>
+              {/* <button 
+              onClick={() => { this.props.history.push(`/shop/${localStorage.getItem('userId')}`) }}>
+              Your Shop
+              </button> */}
               </div>
                 
               : 

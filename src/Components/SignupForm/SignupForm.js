@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SignUpForm.css';
+import './SignupForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import RegistrationService from '../../Service/RegistrationService';

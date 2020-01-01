@@ -13,10 +13,12 @@ export default class ShopPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
+    console.log(props)
+    this.state = { 
       rprops: {},
       shop: props.shop || {},
-      products: [],
+      // products: [],
+      products: props.products || [],
       product: {},
       editingMode: false,
       editingProductMode: false,
@@ -31,6 +33,7 @@ export default class ShopPage extends Component {
 
     ShopService.getShopProducts(id)
       .then(products => {
+        console.log(products)
         this.setState({
           products
         });
@@ -47,9 +50,14 @@ export default class ShopPage extends Component {
     }
   };
 
-  componentDidMount = () => {
+  componentDidMount(){
     this.renderInitialPageState();
   };
+
+  shouldComponentUpdate(){
+    return true
+  }
+  
 
   handleCloseEditForm = () => {
     // Change the state to close the edit form

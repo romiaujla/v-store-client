@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Backdrop from '../../Components/Backdrop/Backdrop';
-import SignUpForm from '../../Components/SignUpForm/SignUpForm';
+import SignUpForm from '../../Components/SignupForm/SignupForm';
 
 class SignUpPage extends Component {
 
