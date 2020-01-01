@@ -1,3 +1,7 @@
+import React from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
+
 // takes user back to the previous page in history
 export function handleGoBack(history) {
     return history.goBack();
@@ -37,3 +41,24 @@ export function formatDate(dbDate) {
     const year = date.getFullYear();
     return `${month + 1}/${day}/${year}`;
 };
+
+export function renderErrorTag(error, tag){
+    const redColor = {
+      color: 'red',
+      fontSize: '0.8em'
+    };
+    const greenColor = {
+      color: 'green',
+      fontSize: '0.8em'
+    };
+
+    return error ? (
+      <span className='errorTag' style={redColor}>
+        <FontAwesomeIcon icon={faTimes} /> {tag}
+      </span>
+    ) : (
+      <span className='errorTag' style={greenColor}>
+        <FontAwesomeIcon icon={faCheck} /> {tag}
+      </span>
+    );
+  };

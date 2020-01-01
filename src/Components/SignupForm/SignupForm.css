@@ -16,6 +16,13 @@
 }
 
 .SignUpForm #name,
-.SignUpForm input[type='password ']{
+.SignUpForm input,
+.SignUpForm textarea{
     text-transform: none !important;
+    border: 1px solid var(--primary-color);
+}
+
+.SignUpForm #description{
+    resize: none;
+    height: 150px;
 }

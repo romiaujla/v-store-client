@@ -6,7 +6,7 @@ import Backdrop from "../Backdrop/Backdrop";
 export default class Landing extends Component {
   render() {
     return (
-      <div>
+      <div className='Landing'>
         <Backdrop>
           <img
             src={require("../../images/logo-white.png")}

@@ -54,8 +54,6 @@ class AddProductForm extends Component {
 
   render() {
 
-    // const { product } = this.state;
-
     return (
       <form className="ProductForm" onSubmit={this.handleAddProduct}>
         <fieldset>
@@ -89,7 +87,7 @@ class AddProductForm extends Component {
             <label htmlFor="price">
               <span className="input-title">* Price (in US dollars):</span>
               <input
-                type="number"
+                type="text"
                 id="price"
                 name="price"
                 required

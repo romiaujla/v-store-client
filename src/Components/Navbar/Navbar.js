@@ -46,13 +46,12 @@ export default class Navbar extends Component {
                   onClick={()=>{this.handleLogout()}}>
                   Logout
               </button>
-              <Link to={`/shop/${localStorage.getItem('userId')}`}>
-                Your Shop
-              </Link>
-              {/* <button 
-              onClick={() => { this.props.history.push(`/shop/${localStorage.getItem('userId')}`) }}>
-              Your Shop
-              </button> */}
+              {
+                localStorage.getItem('userType') === 'shop' &&
+                  <Link to={`/shop/${localStorage.getItem('userId')}`}>
+                    Your Shop
+                  </Link>
+              }
               </div>
                 
               : 

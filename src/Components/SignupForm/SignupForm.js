@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import './SignupForm.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import './SignUpForm.css';
 import RegistrationService from '../../Service/RegistrationService';
 import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
-import AuthApiService from '../../Service/AuthService';
+import {renderErrorTag} from '../../HelperFunctions/HelperFunctions';
+import ShopListContext from '../../Contexts/ShopListContext';
 
 export default class SignUpForm extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {}
   };
+
+  static contextType = ShopListContext;
 
   // hey there adding a comment to check renaming of the file
 
@@ -43,22 +44,49 @@ export default class SignUpForm extends Component {
 
   handleRegisteration = e => {
     e.preventDefault();
-    const user = {
+    let user = {
       username: e.target.username.value,
       password: e.target.password.value,
       user_type: e.target.user_type.value
     };
 
-    if (user.user_type === 'shop') {
+    if (user.user_type === 'buyer'){
+      user = {
+        ...user,
+        name: e.target.name.value,
+      }
     } else {
-      this.addBuyer(user);
+      user = {
+        ...user,
+        shop_name: e.target.shop_name.value,
+        address: e.target.address.value,
+        description: e.target.description.value,
+        service_type: e.target.service_type.value,
+        start_date: e.target.start_date.value,
+        end_date: e.target.end_date.value,
+        opening_time: e.target.opening_time.value,
+        closing_time: e.target.closing_time.value,
+        image_url: 'shop.png',
+      }
     }
+    this.addUser(user);
   };
 
-  addBuyer = credentials => {
-    return AuthApiService.postUser(credentials)
-      .then(user => {
-        this.props.onRegistrationSuccess();
+  addUser = credentials => {
+    
+    return RegistrationService.registerBuyer(credentials)
+      .then(registeredUser => {
+        // if shop add shop to the context
+        if(credentials.user_type === 'shop'){
+          let newShop = {
+            ...registeredUser,
+            id: registeredUser.shop_id,
+          }
+          delete newShop['username', 'password', 'shop_id', 'user_type', 'avatar_url'];
+          this.context.setShops([...this.context.shops, newShop]);      
+        }
+
+        this.props.onRegistrationSuccess(credentials.username, credentials.password);
       })
       .catch(err => {
         console.log(err);
@@ -66,10 +94,14 @@ export default class SignUpForm extends Component {
   };
 
   handleUserNameChange = username => {
+    
+    // to make sure username get stored in lowercase in the db
+    username = username.toLowerCase();
+
     // username.trim() - So the user is not able to add
     // spaces to the begining and the end of the username
     this.setState({
-      username: username.trim()
+      username: username.trim().toLowerCase()
     });
 
     // check the length of the username
@@ -154,12 +186,6 @@ export default class SignUpForm extends Component {
           noSelection: false
         }
       });
-
-      if (user_type === 'shop') {
-        console.log(`renderShopProfileFields`);
-      } else {
-        console.log(`renderBuyerProfileFields`);
-      }
     }
     this.buttonStateChange();
   };
@@ -208,27 +234,6 @@ export default class SignUpForm extends Component {
       });
     }
     this.buttonStateChange();
-  };
-
-  renderErrorTag = (error, tag) => {
-    const redColor = {
-      color: 'red',
-      fontSize: '0.8em'
-    };
-    const greenColor = {
-      color: 'green',
-      fontSize: '0.8em'
-    };
-
-    return error ? (
-      <span className='errorTag' style={redColor}>
-        <FontAwesomeIcon icon={faTimes} /> {tag}
-      </span>
-    ) : (
-      <span className='errorTag' style={greenColor}>
-        <FontAwesomeIcon icon={faCheck} /> {tag}
-      </span>
-    );
   };
 
   buttonStateChange = () => {
@@ -288,16 +293,17 @@ export default class SignUpForm extends Component {
                 type='text'
                 name='username'
                 id='username'
+                required
                 value={this.state.username}
                 onChange={e => {
                   this.handleUserNameChange(e.target.value);
                 }}
               />
-              {this.renderErrorTag(
+              {renderErrorTag(
                 usernameErrorTags.length,
                 'Username must be between 6 and 72 characters in length'
               )}
-              {this.renderErrorTag(
+              {renderErrorTag(
                 usernameErrorTags.alreadyExists,
                 'Username already taken'
               )}
@@ -308,12 +314,13 @@ export default class SignUpForm extends Component {
                 type='password'
                 name='password'
                 id='password'
+                required
                 value={this.state.password}
                 onChange={e => {
                   this.handlePasswordChange(e.target.value);
                 }}
               />
-              {this.renderErrorTag(
+              {renderErrorTag(
                 passwordErrorTag.length,
                 'Password must be between 6 and 72 character in length'
               )}
@@ -324,12 +331,13 @@ export default class SignUpForm extends Component {
                 type='password'
                 name='rePassword'
                 id='rePassword'
+                required
                 value={this.state.rePassword}
                 onChange={e => {
                   this.handleReEnteringPasswordChange(e.target.value);
                 }}
               />
-              {this.renderErrorTag(
+              {renderErrorTag(
                 rePasswordErrorTag.match,
                 'Passwords do not match'
               )}
@@ -340,6 +348,7 @@ export default class SignUpForm extends Component {
                 name='user_type'
                 className='select-css'
                 id='user_type'
+                required
                 value={this.state.user_type}
                 onChange={e => {
                   this.handleUserTypeChange(e.target.value);
@@ -349,7 +358,7 @@ export default class SignUpForm extends Component {
                 <option value='shop'>Seller</option>
                 <option value='buyer'>Buyer</option>
               </select>
-              {this.renderErrorTag(
+              {renderErrorTag(
                 userTypeErrorTag.noSelection,
                 'Select one account type to continue'
               )}
@@ -363,12 +372,13 @@ export default class SignUpForm extends Component {
                     type='text'
                     name='name'
                     id='name'
+                    required
                     defaultValue={this.state.name}
                     onChange={e => {
                       this.handeNameChange(e.target.value);
                     }}
                   />
-                  {this.renderErrorTag(nameErrorTag.length, 'Name is required')}
+                  {renderErrorTag(nameErrorTag.length, 'Name is required')}
                 </label>
                 <button
                   type='submit'
