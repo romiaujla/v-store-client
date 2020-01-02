@@ -6,6 +6,7 @@ import LoggedContext from './LoggedContext';
 const ShopContext = React.createContext({
     shop: {},
     shopProducts: [],
+    savedProducts: [],
     error: null,
     setShop: () => {},
     setShopProducts: () => {},
@@ -22,6 +23,7 @@ export class ShopProvider extends Component {
         super(props);
         this.state = {
             shop: {},
+            savedProducts: [],
             error: null,
         }
     }
@@ -44,11 +46,17 @@ export class ShopProvider extends Component {
 
     //add new product to shop
     addProduct = (product) => {
-        console.log(this.state.shopProducts)
-        console.log(product)
+        
         this.setShopProducts(
             [...this.state.shopProducts, product]
         )
+    }
+
+    saveProduct = (product) => { //save customer's favorite product
+        this.setState({
+            savedProducts: this.state.savedProducts.concat(product)
+        })
+       
     }
 
     setError = (error) =>{
@@ -67,10 +75,12 @@ export class ShopProvider extends Component {
         const value = {
             shop: this.state.shop,
             shopProducts: this.state.shopProducts,
+            savedProducts: this.state.savedProducts,
             error: this.state.error,
             setShop: this.setShop,
             setShopProducts: this.setShopProducts,
             addProduct: this.addProduct,
+            saveProduct: this.saveProduct,
             setError: this.setError,
             clearError: this.clearError
         }
