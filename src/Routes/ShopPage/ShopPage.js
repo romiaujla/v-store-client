@@ -6,6 +6,10 @@ import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
 import AddProductForm from '../../Components/AddProductForm/AddProductForm';
 import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from "@fortawesome/free-solid-svg-icons"
+
+
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
 export default class ShopPage extends Component {
@@ -21,6 +25,7 @@ export default class ShopPage extends Component {
       products: props.products || [],
       savedProducts: [],
       product: {},
+      heart: false,
       editingMode: false,
       editingProductMode: false,
       showEditButton: false,
@@ -56,10 +61,6 @@ export default class ShopPage extends Component {
   componentDidMount() {
     this.renderInitialPageState();
   };
-
-  shouldComponentUpdate() {
-    return true
-  }
 
 
   handleCloseEditForm = () => {
@@ -115,11 +116,21 @@ export default class ShopPage extends Component {
     ShopService.deleteProduct(product_id, this.state.shop.id);
   };
 
-  handleSaveProduct = product => {
-    const{ savedProducts }= this.context
+  handleSaveProduct = (product) => {
+    const { savedProducts } = this.context
     //qualify if the product hasn't existed using product id
-   this.context.saveProduct(product)
- 
+    const result = savedProducts.find(prod => prod.id === product.id)
+    // console.log(savedProducts)
+    if (savedProducts.indexOf(result) === -1) {
+      this.context.saveProduct(product)
+      this.setState({
+        heart: true
+      })
+    }
+    else {
+      alert('Product already saved!')
+    }
+
   }
 
   renderShopInfo(shop) {
@@ -194,7 +205,15 @@ export default class ShopPage extends Component {
   renderProducts(products) {
     return products.map(product => {
       return (
-        <article key={product.id} onClick={() => this.handleSaveProduct(product)}>
+        <article key={product.id} >
+         <span>
+            <FontAwesomeIcon
+              icon={faHeart}
+              onClick={() => this.handleSaveProduct(product)}
+              className={`saved ${this.state.heart === true ? 'red' : ''}`}
+              size="lg" />
+          </span>
+         
           <img
             src={require(`../../../public/images/products/${product.image_url}`)}
             alt='product'

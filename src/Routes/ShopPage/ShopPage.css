@@ -118,6 +118,17 @@
   outline: none;
 }
 
+.saved{
+  position: relative;
+  top: 5px;
+  left: 3px;
+  cursor: pointer;
+}
+.red {
+  color: red;
+}
+
+
 /*Style pagination*/
 .seller-page .pagination {
   display: inline-block;
