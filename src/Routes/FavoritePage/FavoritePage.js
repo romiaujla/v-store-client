@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ShopContext from '../../Contexts/ShopContext'
 import './FavoritePage.css'
+// import Product from '../../Components/Product/Product'
+import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 
 class FavoritePage extends Component {
     state = {
@@ -12,7 +14,8 @@ class FavoritePage extends Component {
         this.setState(previousState => ({
             savedProducts: [...previousState.savedProducts, this.context.savedProducts]
         }));
-        //    console.log(this.state.savedProducts)
+
+      console.log(this.state.savedProducts)
     }
 
     renderProduct() {
@@ -30,29 +33,32 @@ class FavoritePage extends Component {
                         {
                             this.state.showDeleteButton &&
                             <button
-
+                                onClick={() => this.props.handleDeleteProduct}
                                 className='btn-delete'
                             >
-                                Remove
-                    </button>
+                                Delete
+                            </button>
                         }
                     </div>
                 </article>
             );
         });
-    }
-    render() {
-        return (
-            <div >
-                <h1>Your Saved Items</h1>
-                <section className='grid'>
-                    {this.renderProduct()}
-                </section>
+}
+render() {
+    return (
+        <div >
+            <h1>Your Saved Items</h1>
+            <section className='grid'>
+            {
+                arrayIsEmpty(this.state.savedProducts) ? <div>Loading...</div> : this.renderProduct()
+            }
+               
+            </section>
 
-            </div>
+        </div>
 
-        )
-    }
+    )
+}
 }
 
 export default FavoritePage;

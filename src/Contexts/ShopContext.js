@@ -56,7 +56,6 @@ export class ShopProvider extends Component {
         this.setState({
             savedProducts: this.state.savedProducts.concat(product)
         })
-       
     }
 
     setError = (error) =>{

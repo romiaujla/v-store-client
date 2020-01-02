@@ -6,9 +6,7 @@ import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
 import AddProductForm from '../../Components/AddProductForm/AddProductForm';
 import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from "@fortawesome/free-solid-svg-icons"
-
+import Product from '../../Components/Product/Product'
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -25,7 +23,6 @@ export default class ShopPage extends Component {
       products: props.products || [],
       savedProducts: [],
       product: {},
-      heart: false,
       editingMode: false,
       editingProductMode: false,
       showEditButton: false,
@@ -123,9 +120,7 @@ export default class ShopPage extends Component {
     // console.log(savedProducts)
     if (savedProducts.indexOf(result) === -1) {
       this.context.saveProduct(product)
-      this.setState({
-        heart: true
-      })
+      alert('Product saved successfully!')
     }
     else {
       alert('Product already saved!')
@@ -203,40 +198,14 @@ export default class ShopPage extends Component {
   }
 
   renderProducts(products) {
-    return products.map(product => {
-      return (
-        <article key={product.id} >
-         <span>
-            <FontAwesomeIcon
-              icon={faHeart}
-              onClick={() => this.handleSaveProduct(product)}
-              className={`saved ${this.state.heart === true ? 'red' : ''}`}
-              size="lg" />
-          </span>
-         
-          <img
-            src={require(`../../../public/images/products/${product.image_url}`)}
-            alt='product'
-          />
-          <div className='text'>
-            <h3>{product.item}</h3>
-            <p>Description: {product.description}</p>
-            <p>Price: $ {product.price}</p>
-            {
-              this.state.showDeleteButton &&
-              <button
-                onClick={() => {
-                  this.handleDeleteProduct(product.id);
-                }}
-                className='btn-delete'
-              >
-                Delete
-              </button>
-            }
-          </div>
-        </article>
-      );
-    });
+    return products.map(product => 
+      <Product 
+        product={product}
+        key={product.id}
+        handleSaveProduct={this.handleSaveProduct}
+        showDeleteButton={this.state.showDeleteButton}
+        handleDeleteProduct={this.handleDeleteProduct}
+      />)
   }
 
   renderProductsIfFound = products => {
