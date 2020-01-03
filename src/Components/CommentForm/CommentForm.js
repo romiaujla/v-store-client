@@ -10,10 +10,18 @@ export default class CommentForm extends Component {
     ev.preventDefault()
     
     const { review, rating } = ev.target
-    const { shop } = this.context
-    const { buyerId } = localStorage.getItem('userId')
+    // const { shop } = this.context
+    const { shop } = this.props
+    const  buyerId  = this.context.loggedInUser.id
 
-    ShopService.postComment(shop.id, buyerId, review.value, rating.value)
+    const newReview = {
+      shop_id: shop.id,
+      buyer_id: buyerId,
+      review: review.value,
+      rating: rating.value
+    }
+    console.log(newReview)
+    ShopService.postComment(newReview)
       .then(this.context.addComment)
       .then(() => {
         review.value = ''

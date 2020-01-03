@@ -16,7 +16,7 @@ export default class ShopPage extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props)
+    // console.log(props)
     this.state = {
       rprops: {},
       shop: props.shop || {},
@@ -38,7 +38,7 @@ export default class ShopPage extends Component {
 
     ShopService.getShopProducts(id)
       .then(products => {
-        console.log(products)
+        // console.log(products)
         this.setState({
           products
         });
@@ -208,7 +208,7 @@ export default class ShopPage extends Component {
           </div>
         )}
         <ShopComments comments={this.state.comments}/>
-        <CommentForm />
+        <CommentForm shop={this.state.shop}/>
       </section>
     );
   }
@@ -291,12 +291,12 @@ function ShopComments({ comments = [] }) {
       {comments.map(comment =>
         <li key={comment.id} className='comment'>
           <p className='comment-text'>
-            {comment.text}
+            {comment.review}
           </p>
           <p className='comment-user'>
             {/* <ThingStarRating rating={review.rating} /> */}
-           
-            {comment.user.user_name}
+           by UserName
+            {/* {comment.user.user_name} */}
           </p>
         </li>
       )}

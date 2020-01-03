@@ -7,7 +7,6 @@ import CommentForm from '../CommentForm/CommentForm';
 class Product extends Component {
     render() {
         const { product } = this.props;
-        console.log(product)
         return (
             <>
             <article key={product.id} >

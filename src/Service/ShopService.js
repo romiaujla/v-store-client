@@ -146,19 +146,14 @@ const ShopService = {
           : res.json()
       )
   },
-  postComment(shop_id, buyer_id, review, rating) {
+  postComment(newReview) {
     return fetch(`${config.API_ENDPOINT}/reviews`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`
       },
-      body: JSON.stringify({
-        shop_id,
-        buyer_id,
-        review,
-        rating
-      }),
+      body: JSON.stringify(newReview),
     })
       .then(res =>
         (!res.ok)
