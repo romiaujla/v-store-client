@@ -133,6 +133,36 @@ const ShopService = {
       .catch(err => {
         console.log(err);
       });
+  },
+  getProductComments(product_id) {
+    return fetch(`${config.API_ENDPOINT}/products/${product_id}/comments`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
+  postComment(product_id, text) {
+    return fetch(`${config.API_ENDPOINT}/comments`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify({
+        product_id,
+        text,
+      }),
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
   }
 };
 
