@@ -23,7 +23,6 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    
     // get all the shops and set to context
     ShopService.getShops()
       .then((shops) => {

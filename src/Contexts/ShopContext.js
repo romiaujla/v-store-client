@@ -7,10 +7,13 @@ const ShopContext = React.createContext({
     shop: {},
     shopProducts: [],
     savedProducts: [],
+    comments: [],
     error: null,
     setShop: () => {},
     setShopProducts: () => {},
     addProduct: () => {},
+    setComments: () => {},
+    addComment: () => {},
     setError: () => {},
     clearError: () => {},
     
@@ -57,6 +60,17 @@ export class ShopProvider extends Component {
             savedProducts: this.state.savedProducts.concat(product)
         })
     }
+    //add comment to the product
+    addComment = comment => {
+        this.setComments([
+          ...this.state.comments,
+          comment
+        ])
+      }
+
+    setComments = comments => {
+        this.setState({ comments })
+      }
 
     setError = (error) =>{
         this.setState({
@@ -79,7 +93,8 @@ export class ShopProvider extends Component {
             setShop: this.setShop,
             setShopProducts: this.setShopProducts,
             addProduct: this.addProduct,
-            saveProduct: this.saveProduct,
+            setComments: this.setComments,
+            addComment: this.addComment,
             setError: this.setError,
             clearError: this.clearError
         }
