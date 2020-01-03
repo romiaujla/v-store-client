@@ -83,7 +83,7 @@ class ExplorePage extends Component {
   }
 
   render() {
-
+   
     const { shops } = this.state
     return (
 
@@ -169,7 +169,9 @@ class ExplorePage extends Component {
           <h1>Featured Popups</h1>
           <div className="cards">
             {
-              arrayIsEmpty(shops)
+             
+              arrayIsEmpty(shops) 
+              
                 ?
                 <div className='LoadingScreen'></div>
                 :

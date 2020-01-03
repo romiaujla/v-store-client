@@ -14,6 +14,7 @@ export default class Navbar extends Component {
     this.props.history.push('/');
   }
 
+
   render() {
     return (
       <nav className='navbar bg-dark'>
@@ -49,6 +50,12 @@ export default class Navbar extends Component {
                 localStorage.getItem('userType') === 'shop' &&
                   <Link to={`/shop/${localStorage.getItem('userId')}`}>
                     Your Shop
+                  </Link>
+              }
+              {
+                localStorage.getItem('userType') === 'buyer' &&
+                  <Link to={`/favorite`}>
+                    Saved Items
                   </Link>
               }
               </div>

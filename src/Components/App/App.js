@@ -9,6 +9,7 @@ import ExplorePage from '../../Routes/ExplorePage/ExplorePage';
 import ShopPage from '../../Routes/ShopPage/ShopPage';
 import ShopListContext from '../../Contexts/ShopListContext';
 import ShopService from '../../Service/ShopService';
+import FavoritePage from '../../Routes/FavoritePage/FavoritePage';
 
 export default class App extends Component {
 
@@ -22,7 +23,6 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    
     // get all the shops and set to context
     ShopService.getShops()
       .then((shops) => {
@@ -31,7 +31,6 @@ export default class App extends Component {
       .catch(err => {
         this.context.setError(err)
       })
-
   }
 
   render() { 
@@ -55,6 +54,7 @@ export default class App extends Component {
             />
           }} 
         />
+        <Route path='/favorite' component={FavoritePage}/>
       </Switch>
     </div>
     );

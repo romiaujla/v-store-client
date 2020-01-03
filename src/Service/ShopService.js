@@ -133,7 +133,35 @@ const ShopService = {
       .catch(err => {
         console.log(err);
       });
-  }
+  },
+  getComments(shop_id) {
+    return fetch(`${config.API_ENDPOINT}/reviews/${shop_id}`, {
+      headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
+  postComment(newReview) {
+    return fetch(`${config.API_ENDPOINT}/reviews`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(newReview),
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
+  
 };
 
 export default ShopService;
