@@ -16,7 +16,7 @@ export default class ShopPage extends Component {
     this.state = {
       rprops: {},
       shop: props.shop || {},
-      products: [],
+      products: props.products || [],
       product: {},
       editingMode: false,
       editingProductMode: false,
@@ -40,7 +40,8 @@ export default class ShopPage extends Component {
         console.log(err);
       });
 
-    if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
+    if (localStorage.getItem('userId') === this.props.rprops.match.params.id
+      && localStorage.getItem('userType') === 'shop') {
       this.setState({
         showEditButton: true,
         showAddProductButton: true,
@@ -96,7 +97,6 @@ export default class ShopPage extends Component {
   };
 
   handleDeleteProduct = product_id => {
-    console.log(product_id, this.state.shop.id);
     const updatedProducts = this.state.products.filter(
       product => product.id !== product_id
     );
