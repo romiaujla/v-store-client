@@ -6,10 +6,13 @@ import LoggedContext from './LoggedContext';
 const ShopContext = React.createContext({
     shop: {},
     shopProducts: [],
+    comments: [],
     error: null,
     setShop: () => {},
     setShopProducts: () => {},
     addProduct: () => {},
+    setComments: () => {},
+    addComment: () => {},
     setError: () => {},
     clearError: () => {},
     
@@ -51,6 +54,18 @@ export class ShopProvider extends Component {
         )
     }
 
+    //add comment to the product
+    addComment = comment => {
+        this.setComments([
+          ...this.state.comments,
+          comment
+        ])
+      }
+
+    setComments = comments => {
+        this.setState({ comments })
+      }
+
     setError = (error) =>{
         this.setState({
             error
@@ -71,6 +86,8 @@ export class ShopProvider extends Component {
             setShop: this.setShop,
             setShopProducts: this.setShopProducts,
             addProduct: this.addProduct,
+            setComments: this.setComments,
+            addComment: this.addComment,
             setError: this.setError,
             clearError: this.clearError
         }
