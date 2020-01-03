@@ -7,6 +7,7 @@ import SellerForm from '../../Components/SellerForm/SellerForm';
 import AddProductForm from '../../Components/AddProductForm/AddProductForm';
 import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 import Product from '../../Components/Product/Product'
+import CommentForm from '../../Components/CommentForm/CommentForm'
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -19,7 +20,7 @@ export default class ShopPage extends Component {
     this.state = {
       rprops: {},
       shop: props.shop || {},
-      // products: [],
+      comments: [],
       products: props.products || [],
       savedProducts: [],
       product: {},
@@ -55,8 +56,21 @@ export default class ShopPage extends Component {
     }
   };
 
+  getCommentsForShop = () => {
+    const { shopId } = this.props.rprops.match.params;
+
+    ShopService.getComments(shopId)
+    .then(comments => {
+      this.setState({
+        comments
+      })
+      console.log(comments)
+    })
+  }
+
   componentDidMount() {
     this.renderInitialPageState();
+    this.getCommentsForShop()
   };
 
 
@@ -193,9 +207,13 @@ export default class ShopPage extends Component {
             </button>
           </div>
         )}
+        <ShopComments comments={this.state.comments}/>
+        <CommentForm />
       </section>
     );
   }
+
+  
 
   renderProducts(products) {
     return products.map(product => 
@@ -265,4 +283,23 @@ export default class ShopPage extends Component {
       </div>
     );
   }
+}
+
+function ShopComments({ comments = [] }) {
+  return (
+    <ul className='comment-list'>
+      {comments.map(comment =>
+        <li key={comment.id} className='comment'>
+          <p className='comment-text'>
+            {comment.text}
+          </p>
+          <p className='comment-user'>
+            {/* <ThingStarRating rating={review.rating} /> */}
+           
+            {comment.user.user_name}
+          </p>
+        </li>
+      )}
+    </ul>
+  )
 }

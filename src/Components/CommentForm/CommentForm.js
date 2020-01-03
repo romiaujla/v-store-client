@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
 import './CommentForm.css'
 import ShopService from '../../Service/ShopService'
+import ShopContext from '../../Contexts/ShopContext'
 
 export default class CommentForm extends Component {
-  
+  static contextType = ShopContext
 
   handleSubmitComment = ev => {
     ev.preventDefault()
     
-    const { text } = ev.target
+    const { review, rating } = ev.target
+    const { shop } = this.context
+    const { buyerId } = localStorage.getItem('userId')
 
-    ShopService.postComment(product.id, text.value)
+    ShopService.postComment(shop.id, buyerId, review.value, rating.value)
       .then(this.context.addComment)
       .then(() => {
-        text.value = ''
+        review.value = ''
+        rating.value = 0
       })
       .catch(this.context.setError)
   }
@@ -24,12 +28,13 @@ export default class CommentForm extends Component {
         className='CommentForm'
         onSubmit={this.handleSubmitComment}
       >
-        <div className='text'>
+      <h2>Leave a review for our shop</h2>
+        <div className='review'>
           <textarea
             required
             aria-label='Type a comment...'
-            name='text'
-            id='text'
+            name='review'
+            id='review'
             cols='30'
             rows='3'
             placeholder='Type a comment..'>
@@ -37,10 +42,10 @@ export default class CommentForm extends Component {
         </div>
 
         <div className='select'>
-          <label htmlFor='rating'>Rate this product!</label>
+          <label htmlFor='rating'>Rate this shop!</label>
           <select
             required
-            aria-label='Rate this thing!'
+            aria-label='Rate this shop!'
             name='rating'
             id='rating'
           >

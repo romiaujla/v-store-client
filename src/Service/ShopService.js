@@ -134,8 +134,8 @@ const ShopService = {
         console.log(err);
       });
   },
-  getProductComments(product_id) {
-    return fetch(`${config.API_ENDPOINT}/products/${product_id}/comments`, {
+  getComments(shop_id) {
+    return fetch(`${config.API_ENDPOINT}/reviews/${shop_id}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`
       },
@@ -146,16 +146,18 @@ const ShopService = {
           : res.json()
       )
   },
-  postComment(product_id, text) {
-    return fetch(`${config.API_ENDPOINT}/comments`, {
+  postComment(shop_id, buyer_id, review, rating) {
+    return fetch(`${config.API_ENDPOINT}/reviews`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify({
-        product_id,
-        text,
+        shop_id,
+        buyer_id,
+        review,
+        rating
       }),
     })
       .then(res =>
