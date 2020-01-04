@@ -1,5 +1,6 @@
 {
-  "name": "v-store-client",
+  "name": "shopzilla-client",
+  "homepage": "https://github.com/romiaujla/shopzilla-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
