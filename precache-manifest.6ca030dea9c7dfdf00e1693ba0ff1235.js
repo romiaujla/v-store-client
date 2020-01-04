@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "07594fe2c452cd89e931b87f75a4104c",
+    "revision": "78cdd210061301ef4c9527a43052601a",
     "url": "/romiaujla/shopzilla-client/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/romiaujla/shopzilla-client/static/css/2.3bc790af.chunk.css"
   },
   {
-    "revision": "c861a12eaa5e731d6f24",
+    "revision": "6f5804efccf549914aac",
     "url": "/romiaujla/shopzilla-client/static/css/main.a707d71f.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/romiaujla/shopzilla-client/static/js/2.3ef1ba15.chunk.js.LICENSE"
   },
   {
-    "revision": "c861a12eaa5e731d6f24",
-    "url": "/romiaujla/shopzilla-client/static/js/main.4b792703.chunk.js"
+    "revision": "6f5804efccf549914aac",
+    "url": "/romiaujla/shopzilla-client/static/js/main.919222f5.chunk.js"
   },
   {
     "revision": "71c1a4961414254f8592",
