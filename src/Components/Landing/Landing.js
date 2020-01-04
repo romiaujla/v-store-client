@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import "./Landing.css";
 import Backdrop from "../Backdrop/Backdrop";
+import config from '../../config';
 
 export default class Landing extends Component {
   render() {
@@ -20,10 +21,10 @@ export default class Landing extends Component {
             You have a product? We'll help you grow your brand and your business
           </p>
           <div className="buttons">
-            <Link to="/signup" className="btn btn-primary">
+            <Link to={`${config.BASEPATH}/signup`} className="btn btn-primary">
               Sign Up
             </Link>
-            <Link to="/login" className="btn btn-light">
+            <Link to={`${config.BASEPATH}/login`} className="btn btn-light">
               Login
             </Link>
           </div>
