@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/romiaujla/shopzilla-client/precache-manifest.6ca030dea9c7dfdf00e1693ba0ff1235.js"
+  "/romiaujla/shopzilla-client/precache-manifest.edc2b81c05019a84a6fd682506109074.js"
 );
 
 self.addEventListener('message', (event) => {
