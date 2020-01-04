@@ -39,14 +39,14 @@ class FavoritePage extends Component {
                         <h3>{product.item}</h3>
                         <p>Description: {product.description}</p>
                         <p>Price: $ {product.price}</p>
-                        {
+{/*                         
                             <button
                                 onClick={() => this.handleRemoveProduct(product.id)}
                                 className='btn-delete'>
                             
                                 Remove
-                            </button>
-                        }
+                            </button> */}
+                        
                     </div>
                 </article>
             );
