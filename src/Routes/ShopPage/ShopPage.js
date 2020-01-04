@@ -5,6 +5,8 @@ import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
 import AddProductForm from '../../Components/AddProductForm/AddProductForm';
+import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
+import Product from '../../Components/Product/Product'
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -14,11 +16,12 @@ export default class ShopPage extends Component {
   constructor(props) {
     super(props);
     console.log(props)
-    this.state = { 
+    this.state = {
       rprops: {},
       shop: props.shop || {},
       // products: [],
       products: props.products || [],
+      savedProducts: [],
       product: {},
       editingMode: false,
       editingProductMode: false,
@@ -52,14 +55,10 @@ export default class ShopPage extends Component {
     }
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.renderInitialPageState();
   };
 
-  shouldComponentUpdate(){
-    return true
-  }
-  
 
   handleCloseEditForm = () => {
     // Change the state to close the edit form
@@ -114,6 +113,21 @@ export default class ShopPage extends Component {
     ShopService.deleteProduct(product_id, this.state.shop.id);
   };
 
+  handleSaveProduct = (product) => {
+    const { savedProducts } = this.context
+    //qualify if the product hasn't existed using product id
+    const result = savedProducts.find(prod => prod.id === product.id)
+    // console.log(savedProducts)
+    if (savedProducts.indexOf(result) === -1) {
+      this.context.saveProduct(product)
+      alert('Product saved successfully!')
+    }
+    else {
+      alert('Product already saved!')
+    }
+
+  }
+
   renderShopInfo(shop) {
     return (
       <section className='side-profile'>
@@ -136,34 +150,34 @@ export default class ShopPage extends Component {
             }}
           />
         ) : (
-          <div className='shop-info'>
-            <h1 className='shop-name'>{shop.shop_name}</h1>
-            <h4 className='description'>{shop.description}</h4>
             <div className='shop-info'>
-              <h4>Come visit us at :</h4>
-              <span>{shop.address}</span>
-            </div>
-            <div className='shop-info'>
-              <h4>Opening at: </h4>
-              <span>{shop.opening_time}</span>
-            </div>
-            <div className='shop-info'>
-              <h4>Closing at: </h4>
-              <span>{shop.closing_time}</span>
-            </div>
-            <h4>
-              From
+              <h1 className='shop-name'>{shop.shop_name}</h1>
+              <h4 className='description'>{shop.description}</h4>
+              <div className='shop-info'>
+                <h4>Come visit us at :</h4>
+                <span>{shop.address}</span>
+              </div>
+              <div className='shop-info'>
+                <h4>Opening at: </h4>
+                <span>{shop.opening_time}</span>
+              </div>
+              <div className='shop-info'>
+                <h4>Closing at: </h4>
+                <span>{shop.closing_time}</span>
+              </div>
+              <h4>
+                From
               <span className='not-bold'>
-                {' '}
-                {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
-              </span>
-              to{' '}
-              <span className='not-bold'>
-                {moment(shop.end_date).format('MM/DD/YYYY')}
-              </span>
-            </h4>
-          </div>
-        )}
+                  {' '}
+                  {moment(shop.start_date).format('MM/DD/YYYY')}{' '}
+                </span>
+                to{' '}
+                <span className='not-bold'>
+                  {moment(shop.end_date).format('MM/DD/YYYY')}
+                </span>
+              </h4>
+            </div>
+          )}
         {this.state.showEditButton && !this.state.editingMode && (
           <div>
             <button
@@ -184,32 +198,14 @@ export default class ShopPage extends Component {
   }
 
   renderProducts(products) {
-    return products.map(product => {
-      return (
-        <article key={product.id}>
-          <img
-            src={require(`../../../public/images/products/${product.image_url}`)}
-            alt='product'
-          />
-          <div className='text'>
-            <h3>{product.item}</h3>
-            <p>Description: {product.description}</p>
-            <p>Price: $ {product.price}</p>
-            {
-              this.state.showDeleteButton &&
-              <button
-              onClick={() => {
-                this.handleDeleteProduct(product.id);
-              }}
-              className='btn-delete'
-              >
-                Delete
-              </button>
-            }
-          </div>
-        </article>
-      );
-    });
+    return products.map(product => 
+      <Product 
+        product={product}
+        key={product.id}
+        handleSaveProduct={this.handleSaveProduct}
+        showDeleteButton={this.state.showDeleteButton}
+        handleDeleteProduct={this.handleDeleteProduct}
+      />)
   }
 
   renderProductsIfFound = products => {
@@ -263,8 +259,8 @@ export default class ShopPage extends Component {
           {!products ? (
             <div className='LoadingScreen'>Loading Products</div>
           ) : (
-            this.renderProductsIfFound(products)
-          )}
+              this.renderProductsIfFound(products)
+            )}
         </section>
       </div>
     );

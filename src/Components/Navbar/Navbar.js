@@ -52,6 +52,12 @@ export default class Navbar extends Component {
                     Your Shop
                   </Link>
               }
+              {
+                localStorage.getItem('userType') === 'buyer' &&
+                  <Link to={`/favorite`}>
+                    Saved Items
+                  </Link>
+              }
               </div>
                 
               : 
