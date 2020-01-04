@@ -35,7 +35,7 @@ class AddProductForm extends Component {
 
     const shopId  = this.context.loggedInUser.id
 
-    ShopService.postNewProduct(shopId , imageURL, product_name.value, description.value, price.value)
+    ShopService.postNewProduct(shopId , imageURL , product_name.value, description.value, price.value)
       .then((product) => {
         this.props.handleAddProduct(product)
       })
@@ -64,6 +64,7 @@ class AddProductForm extends Component {
                 type='text'
                 name='img_url'
                 id='img_url'
+                placeholder='Paste a link here'
               />
             </label>
             <label htmlFor="product_name">
