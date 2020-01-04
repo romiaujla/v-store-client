@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import TokenService from '../../Service/TokenService';
 import LoggedContext from '../../Contexts/LoggedContext';
+import config from '../../config';
 
 export default class Navbar extends Component {
 
@@ -11,7 +12,7 @@ export default class Navbar extends Component {
   handleLogout = () => {
     TokenService.clearAuthToken();
     this.context.clearLoggedInUser();
-    this.props.history.push('/');
+    this.props.history.push(`${config.BASEPATH}`);
   }
 
 
@@ -22,18 +23,18 @@ export default class Navbar extends Component {
           {
             TokenService.hasAuthToken()
             ?
-            <Link to='/explore'>Shopzilla</Link>
+            <Link to={`${config.BASEPATH}/explore`}>Shopzilla</Link>
             :
-            <Link to='/'>Shopzilla</Link>
+            <Link to={`${config.BASEPATH}`}>Shopzilla</Link>
           }
         </h1>
         <ul>
           <li>
-            <Link to='/explore'>Explore</Link>
+            <Link to={`${config.BASEPATH}/explore`}>Explore</Link>
           </li>
           { !TokenService.hasAuthToken() &&
             <li>
-              <Link to='/signup'>Register</Link>
+              <Link to={`${config.BASEPATH}/signup`}>Register</Link>
             </li>
           }
           <li>
@@ -48,20 +49,20 @@ export default class Navbar extends Component {
               </button>
               {
                 localStorage.getItem('userType') === 'shop' &&
-                  <Link to={`/shop/${localStorage.getItem('userId')}`}>
+                  <Link to={`${config.BASEPATH}/shop/${localStorage.getItem('userId')}`}>
                     Your Shop
                   </Link>
               }
               {
                 localStorage.getItem('userType') === 'buyer' &&
-                  <Link to={`/favorite`}>
+                  <Link to={`${config.BASEPATH}/favorite`}>
                     Saved Items
                   </Link>
               }
               </div>
                 
               : 
-                <Link to='/login'>Login</Link>   
+                <Link to={`${config.BASEPATH}/login`}>Login</Link>   
             }
           </li>
         </ul>
