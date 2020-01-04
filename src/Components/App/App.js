@@ -47,7 +47,7 @@ export default class App extends Component {
         <Route exact path={`${config.BASEPATH}/explore`} component={ExplorePage} />
         <Route 
           exact 
-          path='/shop/:id' 
+          path={`${config.BASEPATH}/shop/:id`} 
           component={ (rprops) => {
             const {id} = rprops.match.params;
             const shop = this.context.getShopById(id)[0];
@@ -57,7 +57,7 @@ export default class App extends Component {
             />
           }} 
         />
-        <Route path='/favorite' component={FavoritePage}/>
+        <Route path={`${config.BASEPATH}/favourite`} component={FavoritePage}/>
       </Switch>
     </div>
     );

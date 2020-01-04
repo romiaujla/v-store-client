@@ -55,7 +55,7 @@ export default class Navbar extends Component {
               }
               {
                 localStorage.getItem('userType') === 'buyer' &&
-                  <Link to={`${config.BASEPATH}/favorite`}>
+                  <Link to={`${config.BASEPATH}/favourite`}>
                     Saved Items
                   </Link>
               }
