@@ -15,7 +15,16 @@ class FavoritePage extends Component {
             savedProducts: [...previousState.savedProducts, this.context.savedProducts]
         }));
 
-      console.log(this.state.savedProducts)
+    //   console.log(this.state.savedProducts)
+    }
+
+    handleRemoveProduct = (id) => {
+        const updatedProducts = this.state.savedProducts.filter(product => product.id !== id)
+        this.setState({
+            savedProducts: [...updatedProducts]
+          });
+        alert('Removed')
+        console.log(updatedProducts)
     }
 
     renderProduct() {
@@ -31,12 +40,11 @@ class FavoritePage extends Component {
                         <p>Description: {product.description}</p>
                         <p>Price: $ {product.price}</p>
                         {
-                            this.state.showDeleteButton &&
                             <button
-                                onClick={() => this.props.handleDeleteProduct}
-                                className='btn-delete'
-                            >
-                                Delete
+                                onClick={() => this.handleRemoveProduct(product.id)}
+                                className='btn-delete'>
+                            
+                                Remove
                             </button>
                         }
                     </div>
