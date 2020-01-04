@@ -5,7 +5,6 @@ import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
 import AddProductForm from '../../Components/AddProductForm/AddProductForm';
-import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 import Product from '../../Components/Product/Product'
 import CommentForm from '../../Components/CommentForm/CommentForm'
 
@@ -16,7 +15,6 @@ export default class ShopPage extends Component {
 
   constructor(props) {
     super(props);
-    // console.log(props)
     this.state = {
       rprops: {},
       shop: props.shop || {},
@@ -39,7 +37,6 @@ export default class ShopPage extends Component {
 
     ShopService.getShopProducts(id)
       .then(products => {
-        // console.log(products)
         this.setState({
           products
         });
