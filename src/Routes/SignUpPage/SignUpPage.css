@@ -11,3 +11,6 @@
     position: fixed;
     overflow: scroll;
 }
+.SignUpPage .dark-overlay{
+    overflow: scroll;
+}
