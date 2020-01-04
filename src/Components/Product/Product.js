@@ -8,9 +8,12 @@ class Product extends Component {
         const { product } = this.props;
         return (
             <article key={product.id} >
+            {this.props.showSaveButton &&
                 <button  className='save-button' onClick={() => this.props.handleSaveProduct(product)}>
                    Save
                 </button>
+            }
+               
 
                 <img
                     src={require(`../../../public/images/products/${product.image_url}`)}

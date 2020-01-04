@@ -28,6 +28,7 @@ export default class ShopPage extends Component {
       showEditButton: false,
       showAddProductButton: false,
       showDeleteButton: false,
+      showSaveButton: false,
     };
   }
 
@@ -46,12 +47,24 @@ export default class ShopPage extends Component {
         console.log(err);
       });
 
-    if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
+    // if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
+    //   this.setState({
+    //     showEditButton: true,
+    //     showAddProductButton: true,
+    //     showDeleteButton: true,
+    //   });
+    // }
+    if (localStorage.getItem('userType') === 'shop' && localStorage.getItem('userId') === this.props.rprops.match.params.id) {
+        this.setState({
+          showEditButton: true,
+          showAddProductButton: true,
+          showDeleteButton: true,
+        });
+      }
+    if(localStorage.getItem('userType') === 'buyer'){
       this.setState({
-        showEditButton: true,
-        showAddProductButton: true,
-        showDeleteButton: true,
-      });
+        showSaveButton: true
+      })
     }
   };
 
@@ -202,6 +215,7 @@ export default class ShopPage extends Component {
       <Product 
         product={product}
         key={product.id}
+        showSaveButton={this.state.showSaveButton}
         handleSaveProduct={this.handleSaveProduct}
         showDeleteButton={this.state.showDeleteButton}
         handleDeleteProduct={this.handleDeleteProduct}
