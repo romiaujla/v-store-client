@@ -5,9 +5,11 @@ import ShopService from '../../Service/ShopService';
 import moment from 'moment';
 import SellerForm from '../../Components/SellerForm/SellerForm';
 import AddProductForm from '../../Components/AddProductForm/AddProductForm';
-import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 import Product from '../../Components/Product/Product'
 import CommentForm from '../../Components/CommentForm/CommentForm'
+import { StarRating } from '../../Components/StarRating/StarRating'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 //Shop Page route is when the buyer/customer clicks to visit the shop to see shop info and the products it offer
 
@@ -56,17 +58,6 @@ export default class ShopPage extends Component {
     }
   };
 
-  getCommentsForShop = () => {
-    const { shopId } = this.props.rprops.match.params;
-
-    ShopService.getComments(shopId)
-    .then(comments => {
-      this.setState({
-        comments
-      })
-      console.log(comments)
-    })
-  }
 
   componentDidMount() {
     this.renderInitialPageState();
@@ -126,6 +117,33 @@ export default class ShopPage extends Component {
     });
     ShopService.deleteProduct(product_id, this.state.shop.id);
   };
+
+  getCommentsForShop = () => {
+    const shopId = this.state.shop.id
+    ShopService.getComments(shopId)
+      .then(comments => {
+        this.setState({
+          comments
+        })
+        console.log(comments)
+      })
+
+  }
+
+  addComment = comment => {
+    this.setState([
+      ...this.state.comments,
+      comment
+    ])
+  }
+
+  handleDeleteComment = comment_id => {
+    const updatedComments = this.state.comments.filter(comment => comment.id !== comment_id)
+    this.setState({
+      comments: [...updatedComments]
+    });
+    ShopService.deleteComment(comment_id);
+  }
 
   handleSaveProduct = (product) => {
     const { savedProducts } = this.context
@@ -207,17 +225,23 @@ export default class ShopPage extends Component {
             </button>
           </div>
         )}
-        <ShopComments comments={this.state.comments}/>
-        <CommentForm shop={this.state.shop}/>
+        <div className='Comment_Section'>
+          <ShopComments comments={this.state.comments} handleDeleteComment={this.handleDeleteComment}/>
+          <CommentForm shop={this.state.shop}
+            addComment={this.addComment}
+            comments={this.state.comments}
+          />
+        </div>
+
       </section>
     );
   }
 
-  
+
 
   renderProducts(products) {
-    return products.map(product => 
-      <Product 
+    return products.map(product =>
+      <Product
         product={product}
         key={product.id}
         handleSaveProduct={this.handleSaveProduct}
@@ -285,18 +309,30 @@ export default class ShopPage extends Component {
   }
 }
 
-function ShopComments({ comments = [] }) {
+function ShopComments({ comments = [], handleDeleteComment }) {
   return (
-    <ul className='comment-list'>
+    <ul className='review-list'>
       {comments.map(comment =>
-        <li key={comment.id} className='comment'>
-          <p className='comment-text'>
-            {comment.review}
-          </p>
-          <p className='comment-user'>
-            {/* <ThingStarRating rating={review.rating} /> */}
-           by UserName
-            {/* {comment.user.user_name} */}
+        <li key={comment.shop_id} className='comment'>
+          <p className='review-text'>
+            <FontAwesomeIcon
+              size='lg'
+              icon='quote-left'
+              className='review-icon blue'
+            />
+
+            "{comment.review}"
+            <div
+            className='delete-review'
+            onClick={() => handleDeleteComment(comment.id)}>
+            <FontAwesomeIcon icon={faTrash} size='sm' />
+          </div>
+          </p>  
+         
+          <p className='review-user'>
+            <StarRating rating={comment.rating} />
+            {"  "}
+            - {comment.name}
           </p>
         </li>
       )}
