@@ -83,7 +83,8 @@ export default class SignUpForm extends Component {
             id: registeredUser.shop_id,
           }
           // removing unwanted fields
-          ['username', 'password', 'shop_id', 'user_type', 'avatar_url'].forEach(field => {
+          const fieldsToRemove = ['username', 'password', 'shop_id', 'user_type', 'avatar_url']
+          fieldsToRemove.forEach(field => {
             delete newShop[field];
           })
           

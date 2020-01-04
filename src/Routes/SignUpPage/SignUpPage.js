@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Backdrop from '../../Components/Backdrop/Backdrop';
-import SignUpForm from '../../Components/SignUpForm/SignUpForm';
+import SignUpForm from '../../Components/SignUpForm/SignupForm';
 import AuthService from '../../Service/AuthService';
 import TokenService from '../../Service/TokenService';
 import LoggedContext from '../../Contexts/LoggedContext';
