@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/romiaujla/shopzilla-client/static/css/main.fc822fe5.chunk.css",
-    "main.js": "/romiaujla/shopzilla-client/static/js/main.3a35285d.chunk.js",
-    "main.js.map": "/romiaujla/shopzilla-client/static/js/main.3a35285d.chunk.js.map",
+    "main.js": "/romiaujla/shopzilla-client/static/js/main.226870a1.chunk.js",
+    "main.js.map": "/romiaujla/shopzilla-client/static/js/main.226870a1.chunk.js.map",
     "runtime-main.js": "/romiaujla/shopzilla-client/static/js/runtime-main.0d3a0547.js",
     "runtime-main.js.map": "/romiaujla/shopzilla-client/static/js/runtime-main.0d3a0547.js.map",
     "static/css/2.3bc790af.chunk.css": "/romiaujla/shopzilla-client/static/css/2.3bc790af.chunk.css",
     "static/js/2.bc5554ca.chunk.js": "/romiaujla/shopzilla-client/static/js/2.bc5554ca.chunk.js",
     "static/js/2.bc5554ca.chunk.js.map": "/romiaujla/shopzilla-client/static/js/2.bc5554ca.chunk.js.map",
     "index.html": "/romiaujla/shopzilla-client/index.html",
-    "precache-manifest.b8b2fc06dcb67e3636f5973266a20524.js": "/romiaujla/shopzilla-client/precache-manifest.b8b2fc06dcb67e3636f5973266a20524.js",
+    "precache-manifest.d8f80af9f1a9bec3e546ea3cf48a7346.js": "/romiaujla/shopzilla-client/precache-manifest.d8f80af9f1a9bec3e546ea3cf48a7346.js",
     "service-worker.js": "/romiaujla/shopzilla-client/service-worker.js",
     "static/css/2.3bc790af.chunk.css.map": "/romiaujla/shopzilla-client/static/css/2.3bc790af.chunk.css.map",
     "static/css/main.fc822fe5.chunk.css.map": "/romiaujla/shopzilla-client/static/css/main.fc822fe5.chunk.css.map",
@@ -54,6 +54,6 @@
     "static/css/2.3bc790af.chunk.css",
     "static/js/2.bc5554ca.chunk.js",
     "static/css/main.fc822fe5.chunk.css",
-    "static/js/main.3a35285d.chunk.js"
+    "static/js/main.226870a1.chunk.js"
   ]
 }
