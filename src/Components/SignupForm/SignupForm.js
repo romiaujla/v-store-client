@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SignupForm.css';
+import './SignUpForm.css';
 import RegistrationService from '../../Service/RegistrationService';
 import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
 import {renderErrorTag} from '../../HelperFunctions/HelperFunctions';

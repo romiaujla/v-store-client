@@ -23,7 +23,6 @@ export default class ShopPage extends Component {
       shop: props.shop || {},
       comments: [],
       products: props.products || [],
-      products: [],
       savedProducts: [],
       product: {},
       editingMode: false,

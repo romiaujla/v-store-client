@@ -23,7 +23,7 @@ export default class CommentForm extends Component {
       .then(this.props.addComment)
       .then(() => {
         review.value = ''
-        rating.value = 0
+        rating = 0
       })
       .catch(this.context.setError)
   }
