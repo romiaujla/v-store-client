@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginForm from '../../Components/LoginForm/LoginForm';
 import Backdrop from '../../Components/Backdrop/Backdrop';
 import './LoginPage.css';
+import config from '../../config';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class LoginPage extends Component {
     }
 
     onLoginSuccess = () => {
-        this.props.history.push('/explore');
+        this.props.history.push(`${config.BASEPATH}/explore`);
         
     }
 

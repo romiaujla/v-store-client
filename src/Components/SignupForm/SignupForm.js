@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './SignUpForm.css';
+import './SignupForm.css';
 import RegistrationService from '../../Service/RegistrationService';
 import AddShopProfileFields from '../AddShopProfileFields/AddShopProfileFields';
 import {renderErrorTag} from '../../HelperFunctions/HelperFunctions';
@@ -82,7 +82,12 @@ export default class SignUpForm extends Component {
             ...registeredUser,
             id: registeredUser.shop_id,
           }
-          delete newShop['username', 'password', 'shop_id', 'user_type', 'avatar_url'];
+          // removing unwanted fields
+          const fieldsToRemove = ['username', 'password', 'shop_id', 'user_type', 'avatar_url']
+          fieldsToRemove.forEach(field => {
+            delete newShop[field];
+          })
+          
           this.context.setShops([...this.context.shops, newShop]);      
         }
 

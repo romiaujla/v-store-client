@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ShopContext from '../../Contexts/ShopContext'
 import './FavoritePage.css'
-// import Product from '../../Components/Product/Product'
 import { arrayIsEmpty } from '../../HelperFunctions/HelperFunctions';
 
 class FavoritePage extends Component {
@@ -14,8 +13,6 @@ class FavoritePage extends Component {
         this.setState(previousState => ({
             savedProducts: [...previousState.savedProducts, this.context.savedProducts]
         }));
-
-    //   console.log(this.state.savedProducts)
     }
 
     handleRemoveProduct = (id) => {
@@ -23,8 +20,7 @@ class FavoritePage extends Component {
         this.setState({
             savedProducts: [...updatedProducts]
           });
-        alert('Removed')
-        console.log(updatedProducts)
+        alert('Removed');
     }
 
     renderProduct() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Card.css';
 import { Link } from 'react-router-dom';
+import config from '../../config';
 
 //this is to display information in a Shop Card
 export default class Cards extends Component {
@@ -29,7 +30,7 @@ export default class Cards extends Component {
   render() {
     return (
       <Link
-        to={`/shop/${this.props.shopId}`}
+        to={`${config.BASEPATH}/shop/${this.props.shopId}`}
         className='card-container'
         // onClick={() => {
         //   this.handleShopCardClick();
