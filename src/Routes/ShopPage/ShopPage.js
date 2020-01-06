@@ -24,6 +24,7 @@ export default class ShopPage extends Component {
       shop: props.shop || {},
       comments: [],
       products: props.products || [],
+      products: [],
       savedProducts: [],
       product: {},
       editingMode: false,
@@ -31,6 +32,7 @@ export default class ShopPage extends Component {
       showEditButton: false,
       showAddProductButton: false,
       showDeleteButton: false,
+      hideCommentForm: true
     };
   }
 
@@ -48,7 +50,7 @@ export default class ShopPage extends Component {
       .catch(err => {
         console.log(err);
       });
-
+    
     if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
       this.setState({
         showEditButton: true,
@@ -56,14 +58,18 @@ export default class ShopPage extends Component {
         showDeleteButton: true,
       });
     }
+    if (localStorage.getItem('userType') === 'buyer') {
+      this.setState({
+        hideCommentForm: false
+      });
+    }
   };
 
 
   componentDidMount() {
     this.renderInitialPageState();
-    this.getCommentsForShop()
+    this.getCommentsForShop();
   };
-
 
   handleCloseEditForm = () => {
     // Change the state to close the edit form
@@ -125,7 +131,6 @@ export default class ShopPage extends Component {
         this.setState({
           comments
         })
-        console.log(comments)
       })
 
   }
@@ -225,11 +230,15 @@ export default class ShopPage extends Component {
             </button>
           </div>
         )}
+
         <div className='Comment_Section'>
-          <ShopComments comments={this.state.comments} handleDeleteComment={this.handleDeleteComment}/>
+          <ShopComments 
+          comments={this.state.comments} 
+          handleDeleteComment={this.handleDeleteComment} />
           <CommentForm shop={this.state.shop}
             addComment={this.addComment}
             comments={this.state.comments}
+            isDisabled={this.state.hideCommentForm}
           />
         </div>
 
@@ -239,7 +248,7 @@ export default class ShopPage extends Component {
 
 
 
-  renderProducts(products) {
+  renderProducts = products => {
     return products.map(product =>
       <Product
         product={product}
@@ -313,7 +322,7 @@ function ShopComments({ comments = [], handleDeleteComment }) {
   return (
     <ul className='review-list'>
       {comments.map(comment =>
-        <li key={comment.shop_id} className='comment'>
+        <li key={comment.id} className='comment'>
           <p className='review-text'>
             <FontAwesomeIcon
               size='lg'
@@ -322,13 +331,13 @@ function ShopComments({ comments = [], handleDeleteComment }) {
             />
 
             "{comment.review}"
-            <div
-            className='delete-review'
-            onClick={() => handleDeleteComment(comment.id)}>
-            <FontAwesomeIcon icon={faTrash} size='sm' />
-          </div>
-          </p>  
-         
+            <span
+              className='delete-review'
+              onClick={() => handleDeleteComment(comment.id)}>
+              <FontAwesomeIcon icon={faTrash} size='sm' style={{ color: 'red' }} />
+            </span>
+          </p>
+
           <p className='review-user'>
             <StarRating rating={comment.rating} />
             {"  "}
