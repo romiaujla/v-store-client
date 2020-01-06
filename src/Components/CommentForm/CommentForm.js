@@ -10,7 +10,6 @@ export default class CommentForm extends Component {
     ev.preventDefault()
     
     const { review, rating } = ev.target
-    // const { shop } = this.context
     const { shop } = this.props
     const  buyerId  = this.context.loggedInUser.id
 
@@ -18,11 +17,10 @@ export default class CommentForm extends Component {
       shop_id: shop.id,
       buyer_id: buyerId,
       review: review.value,
-      rating: rating.value
+      rating: Number(rating.value)
     }
-    console.log(newReview)
     ShopService.postComment(newReview)
-      .then(this.context.addComment)
+      .then(this.props.addComment)
       .then(() => {
         review.value = ''
         rating.value = 0
@@ -35,8 +33,8 @@ export default class CommentForm extends Component {
       <form
         className='CommentForm'
         onSubmit={this.handleSubmitComment}
+        hidden={this.props.isDisabled}
       >
-      <h2>Leave a review for our shop</h2>
         <div className='review'>
           <textarea
             required
@@ -45,14 +43,13 @@ export default class CommentForm extends Component {
             id='review'
             cols='30'
             rows='3'
-            placeholder='Type a comment..'>
+            placeholder='Leave a review for our shop here...'>
           </textarea>
         </div>
 
         <div className='select'>
-          <label htmlFor='rating'>Rate this shop!</label>
+          <label htmlFor='rating'>Rate this shop!</label>{'  '}
           <select
-            required
             aria-label='Rate this shop!'
             name='rating'
             id='rating'
