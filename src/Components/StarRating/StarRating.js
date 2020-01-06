@@ -21,6 +21,7 @@ export function StarRating({rating}) {
 }
 
 function Star({filled}) {
-  const library = filled ? 'fas' : 'far'
-  return <FontAwesomeIcon  icon={ faStar } />
+  return <FontAwesomeIcon 
+  icon={faStar} 
+  style={filled ?{  color: '#e16b22' }: null}/>
 }
