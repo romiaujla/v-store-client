@@ -49,8 +49,7 @@ export default class ShopPage extends Component {
         console.log(err);
       });
 
-    if (localStorage.getItem('userId') === this.props.rprops.match.params.id
-      && localStorage.getItem('userType') === 'shop') {
+    if (localStorage.getItem('userId') === this.props.rprops.match.params.id) {
       this.setState({
         showEditButton: true,
         showAddProductButton: true,
@@ -132,14 +131,15 @@ export default class ShopPage extends Component {
           comments
         })
       })
-
   }
 
-  addComment = comment => {
-    this.setState([
+  addComment = (comment) => {
+    this.setState({
+      comments: [
       ...this.state.comments,
       comment
-    ])
+    ]
+  })
   }
 
   handleDeleteComment = comment_id => {
@@ -154,7 +154,6 @@ export default class ShopPage extends Component {
     const { savedProducts } = this.context
     //qualify if the product hasn't existed using product id
     const result = savedProducts.find(prod => prod.id === product.id)
-    // console.log(savedProducts)
     if (savedProducts.indexOf(result) === -1) {
       this.context.saveProduct(product)
       alert('Product saved successfully!')
@@ -232,12 +231,12 @@ export default class ShopPage extends Component {
         )}
 
         <div className='Comment_Section'>
-          <ShopComments 
-          comments={this.state.comments} 
-          handleDeleteComment={this.handleDeleteComment} />
-          <CommentForm shop={this.state.shop}
-            addComment={this.addComment}
+          <ShopComments
             comments={this.state.comments}
+            handleDeleteComment={this.handleDeleteComment} />
+          <CommentForm
+            shop={this.state.shop}
+            addComment={this.addComment}
             isDisabled={this.state.hideCommentForm}
           />
         </div>
@@ -325,11 +324,11 @@ function ShopComments({ comments = [], handleDeleteComment }) {
       {comments.map(comment =>
         <li key={comment.id} className='comment'>
           <p className='review-text'>
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               size='lg'
               icon='quote-left'
               className='review-icon blue'
-            />
+            /> */}
 
             "{comment.review}"
             <span

@@ -20,12 +20,15 @@ export default class CommentForm extends Component {
       rating: Number(rating.value)
     }
     ShopService.postComment(newReview)
-      .then(this.props.addComment)
+      .then((newReview) => {
+        ShopService.getCommentById(newReview.id)
+        .then(addedReview => this.props.addComment(addedReview))
+      })
       .then(() => {
         review.value = ''
         rating = 0
       })
-      .catch(this.context.setError)
+      .catch(err => console.log(err))
   }
 
   render() {

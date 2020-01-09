@@ -89,6 +89,7 @@ export class ShopProvider extends Component {
         const value = {
             shop: this.state.shop,
             products: this.state.products,
+            comments: this.state.comments,
             savedProducts: this.state.savedProducts,
             error: this.state.error,
             setShop: this.setShop,
