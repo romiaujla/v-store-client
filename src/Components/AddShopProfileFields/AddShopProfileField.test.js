@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from '@testing-library/react';
-import App from './App';
-import { BrowserRouter } from "react-router-dom";
+import AddShopProfileFields from './AddShopProfileFields';
 
-//this is the test case
+
 it('renders without crashing', () => {
   const div = document.createElement('div');
 
   //render the component, this is the actual test, if something is wrong it will fail here
   ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+      <AddShopProfileFields />
     , div);
 
   //clean up code
