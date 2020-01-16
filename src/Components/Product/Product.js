@@ -6,16 +6,16 @@ import './Product.css'
 class Product extends Component {
     render() {
         const { product } = this.props;
+        console.log(product)
         return (
             <>
-            <article key={product.id} >
+            <article>
             {this.props.showSaveButton &&
                 <button  className='save-button' onClick={() => this.props.handleSaveProduct(product)}>
                    Save
                 </button>
             }
                
-
                 <img
                     src={require(`../../../public/images/products/${product.image_url}`)}
                     alt='product'
