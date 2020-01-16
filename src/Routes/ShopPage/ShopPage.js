@@ -136,10 +136,10 @@ export default class ShopPage extends Component {
   addComment = (comment) => {
     this.setState({
       comments: [
-      ...this.state.comments,
-      comment
-    ]
-  })
+          ...this.state.comments,
+          comment
+        ]
+    })
   }
 
   handleDeleteComment = comment_id => {
